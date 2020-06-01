@@ -34,11 +34,11 @@ It was confirmed working with the following compilers:
 
 The project contains configurations for the following tools:
 
-* [Doxygen] (https://www.doxygen.nl/)
+* [Doxygen](https://www.doxygen.nl/):
 You can use the Doxyfile to create a full source code documentation.
-* [Cppcheck] (http://cppcheck.sourceforge.net/)
+* [Cppcheck](http://cppcheck.sourceforge.net/):
 You can use Cppcheck with the included config file to perform a static code analysis.
-* [cpplint] (https://github.com/cpplint/cpplint)
+* [cpplint](https://github.com/cpplint/cpplint):
 You can use cpplint with the included config file on the .cpp and .hpp files in the src folder.
 
 ## FAQ
@@ -53,7 +53,7 @@ Yes, but only by modifying the source code. You need to change the constant HE_H
 
 ### Do I need any external libraries to build HEdit from scratch?
 
-No, the only dependency is [ncurses](https://invisible-island.net/ncurses/) (and only if not using Windows)
+No, the only dependency is [ncurses](https://invisible-island.net/ncurses/) (and only if not using Windows).
 For the tests, the [Googletest](https://github.com/google/googletest) framework is used.
 
 ### I can see there are tests but they are not built using the Makefile. Why?
