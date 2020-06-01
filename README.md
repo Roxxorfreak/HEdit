@@ -30,7 +30,7 @@ It was confirmed working with the following compilers:
 * g++ (Ubuntu 9.3.0-10ubuntu2) 9.3.0
 * g++ (Raspbian 8.3.0-6+rpi1) 8.3.0
 
-# Other tools 
+## Other tools 
 
 The project contains configurations for the following tools:
 
@@ -43,19 +43,19 @@ You can use cpplint with the included config file on the .cpp and .hpp files in 
 
 ## FAQ
 
-# Why is the first version v4.2.0?
+### Why is the first version v4.2.0?
 
 Because the project is quite old and was just moved to GitHub recently.
 
-# My screen is quite large, can I edit more than five files simultaneously?
+### My screen is quite large, can I edit more than five files simultaneously?
 
 Yes, but only by modifying the source code. You need to change the constant HE_HEDIT_MAX_EDITORS and rebuild HEdit.
 
-# Do I need any external libraries to build HEdit from scratch?
+### Do I need any external libraries to build HEdit from scratch?
 
 No, the only dependency is [ncurses](https://invisible-island.net/ncurses/) (and only if not using Windows)
 For the tests, the [Googletest](https://github.com/google/googletest) framework is used.
 
-# I can see there are tests but they are not built using the Makefile. Why?
+### I can see there are tests but they are not built using the Makefile. Why?
 
 Because the tests are currently only built using the Visual Studio 2019 solution.
