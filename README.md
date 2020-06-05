@@ -34,11 +34,11 @@ It was confirmed working with the following compilers:
 
 The project contains configurations for the following tools:
 
-* [Doxygen](https://www.doxygen.nl/):
+* [Doxygen](https://www.doxygen.nl/)  
 You can use the Doxyfile to create a full source code documentation.
-* [Cppcheck](http://cppcheck.sourceforge.net/):
+* [Cppcheck](http://cppcheck.sourceforge.net/)  
 You can use Cppcheck with the included config file to perform a static code analysis.
-* [cpplint](https://github.com/cpplint/cpplint):
+* [cpplint](https://github.com/cpplint/cpplint)  
 You can use cpplint with the included config file on the .cpp and .hpp files in the src folder.
 
 ## FAQ
