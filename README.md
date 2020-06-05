@@ -1,9 +1,9 @@
 # HEdit 4
 
-## Overview
-
 HEdit is a small console-based hex editor with a focus on cross-platform reverse engineering.
 It is designed to run and tested on Windows, Linux, Rasperry Pi and MacOS X.
+
+![HEdit](hedit.png)
 
 ## Features
 
@@ -49,7 +49,7 @@ Because the project is quite old and was just moved to GitHub recently.
 
 ### My screen is quite large, can I edit more than five files simultaneously?
 
-Yes, but only by modifying the source code. You need to change the constant HE_HEDIT_MAX_EDITORS and rebuild HEdit.
+Yes, but only by modifying the source code. You need to change the constant HE_MAX_EDITORS and rebuild HEdit.
 
 ### Do I need any external libraries to build HEdit from scratch?
 

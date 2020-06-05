@@ -1,0 +1,18 @@
+#!/bin/bash
+. /etc/rc.status
+# The file names with the version number. Change for future releases
+linux_file="hedit402.tgz"
+windows_file="hedit402.zip"
+# Delete the old and create the new linux archive
+if test -w $linux_file; then rm $linux_file; fi
+echo -e "Creating archive $linux_file for the linux version...\c"
+tar -cvzf $linux_file -C .. hedit changes.log script.txt plugins > /dev/null
+if [ $? -eq 0 ]; then echo $rc_done; else echo $rc_failed; fi
+# Delete the old and create the new windows archive
+if test -w $windows_file; then rm $windows_file; fi
+echo -e "Creating archive $windows_file for the windows version...\c"
+cd ..
+zip -R release/$windows_file hedit.exe changes.log script.txt plugins/*.* > /dev/null
+if [ $? -eq 0 ]; then echo $rc_done; else echo $rc_failed; fi
+cd release
+

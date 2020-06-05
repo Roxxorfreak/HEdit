@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\src\string.cpp">
+      <Filter>hedit-Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\disassembler.cpp">
+      <Filter>hedit-Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\file.cpp">
+      <Filter>hedit-Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\asm_instruction.cpp">
+      <Filter>hedit-Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\asm_buffer.cpp">
+      <Filter>hedit-Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\asm_opcode_manager.cpp">
+      <Filter>hedit-Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\_disassembler_runner.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\_new_operator.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\_test_data_factory.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\disassembler_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\string_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="hedit-Sources">
+      <UniqueIdentifier>{63beec5d-7fc3-4040-9161-d5034b3835cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{89ccd748-5538-46ff-8385-e634398831a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{3f1ef893-2532-40a4-a9d4-ef916110a918}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\src\hedit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\src\hedit.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\tests\headers_test.hpp" />
+  </ItemGroup>
+</Project>

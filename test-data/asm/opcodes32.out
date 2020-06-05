@@ -1,0 +1,315 @@
+0000000000000000  0F 01 C1                        vmcall
+0000000000000003  0F 01 C2                        vmlaunch
+0000000000000006  0F 01 C3                        vmresume
+0000000000000009  0F 01 C4                        vmxoff
+000000000000000C  0F 01 C8                        monitor
+000000000000000F  0F 01 C7                        sgdt ?
+0000000000000012  0F AE F8                        sfence
+0000000000000015  90                              nop
+0000000000000016  D5 0A                           aad
+0000000000000018  D4 0A                           aam
+000000000000001A  90                              nop
+000000000000001B  0F BC 00                        bsf eax, dword ptr [eax]
+000000000000001E  0F BD 00                        bsr eax, dword ptr [eax]
+0000000000000021  66 0F BC 00                     bsf ax, word ptr [eax]
+0000000000000025  66 0F BD 00                     bsr ax, word ptr [eax]
+0000000000000029  67 0F BC 00                     bsf eax, dword ptr [bx+si]
+000000000000002D  67 0F BD 00                     bsr eax, dword ptr [bx+si]
+0000000000000031  66 67 0F BC 00                  bsf ax, word ptr [bx+si]
+0000000000000036  66 67 0F BD 00                  bsr ax, word ptr [bx+si]
+000000000000003B  36 0F BC 00                     bsf eax, dword ptr ss:[eax]
+000000000000003F  F0 0F BD 00                     lock bsr eax, dword ptr [eax]
+0000000000000043  F2 0F BC 00                     repne bsf eax, dword ptr [eax]
+0000000000000047  F0 F2 0F BD 00                  repne lock bsr eax, dword ptr [eax]
+000000000000004C  90                              nop
+000000000000004D  0F C8                           bswap eax
+000000000000004F  0F C9                           bswap ecx
+0000000000000051  0F CA                           bswap edx
+0000000000000053  0F CB                           bswap ebx
+0000000000000055  0F CC                           bswap esp
+0000000000000057  0F CD                           bswap ebp
+0000000000000059  0F CE                           bswap esi
+000000000000005B  0F CF                           bswap edi
+000000000000005D  66 0F C8                        bswap ax
+0000000000000060  66 0F C9                        bswap cx
+0000000000000063  66 0F CA                        bswap dx
+0000000000000066  66 0F CB                        bswap bx
+0000000000000069  66 0F CC                        bswap sp
+000000000000006C  66 0F CD                        bswap bp
+000000000000006F  66 0F CE                        bswap si
+0000000000000072  66 0F CF                        bswap di
+0000000000000075  90                              nop
+0000000000000076  0F A3 00                        bt dword ptr [eax], eax
+0000000000000079  0F A3 01                        bt dword ptr [ecx], eax
+000000000000007C  0F A3 02                        bt dword ptr [edx], eax
+000000000000007F  0F A3 03                        bt dword ptr [ebx], eax
+0000000000000082  0F A3 04 00                     bt dword ptr [eax+eax*1], eax
+0000000000000086  0F A3 05 11 22 33 44            bt dword ptr [0x44332211], eax
+000000000000008D  0F A3 06                        bt dword ptr [esi], eax
+0000000000000090  0F A3 07                        bt dword ptr [edi], eax
+0000000000000093  0F BB 48 11                     btc dword ptr [eax+0x11], ecx
+0000000000000097  0F BB 49 22                     btc dword ptr [ecx+0x22], ecx
+000000000000009B  0F BB 4A 33                     btc dword ptr [edx+0x33], ecx
+000000000000009F  0F BB 4B 44                     btc dword ptr [ebx+0x44], ecx
+00000000000000A3  0F BB 4C 00 55                  btc dword ptr [eax+eax*1+0x55], ecx
+00000000000000A8  0F BB 4D 66                     btc dword ptr [ebp+0x66], ecx
+00000000000000AC  0F BB 4E 77                     btc dword ptr [esi+0x77], ecx
+00000000000000B0  0F BB 4F 88                     btc dword ptr [edi-0x78], ecx
+00000000000000B4  0F B3 90 11 22 33 44            btr dword ptr [eax+0x44332211], edx
+00000000000000BB  0F B3 91 55 66 77 88            btr dword ptr [ecx-0x778899AB], edx
+00000000000000C2  0F B3 92 99 AA BB CC            btr dword ptr [edx-0x33445567], edx
+00000000000000C9  0F B3 93 DD EE FF 00            btr dword ptr [ebx+0x00FFEEDD], edx
+00000000000000D0  0F B3 94 00 11 22 33 44         btr dword ptr [eax+eax*1+0x44332211], edx
+00000000000000D8  0F B3 95 55 66 77 88            btr dword ptr [ebp-0x778899AB], edx
+00000000000000DF  0F B3 96 99 AA BB CC            btr dword ptr [esi-0x33445567], edx
+00000000000000E6  0F B3 97 DD EE FF 00            btr dword ptr [edi+0x00FFEEDD], edx
+00000000000000ED  0F AB D8                        bts eax, ebx
+00000000000000F0  0F AB D9                        bts ecx, ebx
+00000000000000F3  0F AB EA                        bts edx, ebp
+00000000000000F6  0F AB EB                        bts ebx, ebp
+00000000000000F9  0F AB FC                        bts esp, edi
+00000000000000FC  0F AB FD                        bts ebp, edi
+00000000000000FF  0F AB DE                        bts esi, ebx
+0000000000000102  0F AB DF                        bts edi, ebx
+0000000000000105  90                              nop
+0000000000000106  66 0F A3 00                     bt word ptr [eax], ax
+000000000000010A  66 0F A3 01                     bt word ptr [ecx], ax
+000000000000010E  66 0F A3 02                     bt word ptr [edx], ax
+0000000000000112  66 0F A3 03                     bt word ptr [ebx], ax
+0000000000000116  66 0F A3 04 00                  bt word ptr [eax+eax*1], ax
+000000000000011B  66 0F A3 05 11 22 33 44         bt word ptr [0x44332211], ax
+0000000000000123  66 0F A3 06                     bt word ptr [esi], ax
+0000000000000127  66 0F A3 07                     bt word ptr [edi], ax
+000000000000012B  66 0F BB 48 11                  btc word ptr [eax+0x11], cx
+0000000000000130  66 0F BB 49 22                  btc word ptr [ecx+0x22], cx
+0000000000000135  66 0F BB 4A 33                  btc word ptr [edx+0x33], cx
+000000000000013A  66 0F BB 4B 44                  btc word ptr [ebx+0x44], cx
+000000000000013F  66 0F BB 4C 00 55               btc word ptr [eax+eax*1+0x55], cx
+0000000000000145  66 0F BB 4D 66                  btc word ptr [ebp+0x66], cx
+000000000000014A  66 0F BB 4E 77                  btc word ptr [esi+0x77], cx
+000000000000014F  66 0F BB 4F 88                  btc word ptr [edi-0x78], cx
+0000000000000154  66 0F B3 90 11 22 33 44         btr word ptr [eax+0x44332211], dx
+000000000000015C  66 0F B3 91 55 66 77 88         btr word ptr [ecx-0x778899AB], dx
+0000000000000164  66 0F B3 92 99 AA BB CC         btr word ptr [edx-0x33445567], dx
+000000000000016C  66 0F B3 93 DD EE FF 00         btr word ptr [ebx+0x00FFEEDD], dx
+0000000000000174  66 0F B3 94 00 11 22 33 44      btr word ptr [eax+eax*1+0x44332211], dx
+000000000000017D  66 0F B3 95 55 66 77 88         btr word ptr [ebp-0x778899AB], dx
+0000000000000185  66 0F B3 96 99 AA BB CC         btr word ptr [esi-0x33445567], dx
+000000000000018D  66 0F B3 97 DD EE FF 00         btr word ptr [edi+0x00FFEEDD], dx
+0000000000000195  66 0F AB D8                     bts ax, bx
+0000000000000199  66 0F AB D9                     bts cx, bx
+000000000000019D  66 0F AB EA                     bts dx, bp
+00000000000001A1  66 0F AB EB                     bts bx, bp
+00000000000001A5  66 0F AB FC                     bts sp, di
+00000000000001A9  66 0F AB FD                     bts bp, di
+00000000000001AD  66 0F AB DE                     bts si, bx
+00000000000001B1  66 0F AB DF                     bts di, bx
+00000000000001B5  90                              nop
+00000000000001B6  67 0F A3 00                     bt dword ptr [bx+si], eax
+00000000000001BA  67 0F A3 01                     bt dword ptr [bx+di], eax
+00000000000001BE  67 0F A3 02                     bt dword ptr [bp+si], eax
+00000000000001C2  67 0F A3 03                     bt dword ptr [bp+di], eax
+00000000000001C6  67 0F A3 04                     bt dword ptr [si], eax
+00000000000001CA  67 0F A3 05                     bt dword ptr [di], eax
+00000000000001CE  67 0F A3 06 11 22               bt dword ptr [0x2211], eax
+00000000000001D4  67 0F A3 07                     bt dword ptr [bx], eax
+00000000000001D8  67 0F BB 48 11                  btc dword ptr [bx+si+0x11], ecx
+00000000000001DD  67 0F BB 49 22                  btc dword ptr [bx+di+0x22], ecx
+00000000000001E2  67 0F BB 4A 33                  btc dword ptr [bp+si+0x33], ecx
+00000000000001E7  67 0F BB 4B 44                  btc dword ptr [bp+di+0x44], ecx
+00000000000001EC  67 0F BB 4C 55                  btc dword ptr [si+0x55], ecx
+00000000000001F1  67 0F BB 4D 66                  btc dword ptr [di+0x66], ecx
+00000000000001F6  67 0F BB 4E 77                  btc dword ptr [bp+0x77], ecx
+00000000000001FB  67 0F BB 4F 88                  btc dword ptr [bx-0x78], ecx
+0000000000000200  67 0F B3 90 11 22               btr dword ptr [bx+si+0x2211], edx
+0000000000000206  67 0F B3 91 33 44               btr dword ptr [bx+di+0x4433], edx
+000000000000020C  67 0F B3 92 55 66               btr dword ptr [bp+si+0x6655], edx
+0000000000000212  67 0F B3 93 77 88               btr dword ptr [bp+di-0x7789], edx
+0000000000000218  67 0F B3 94 99 AA               btr dword ptr [si-0x5567], edx
+000000000000021E  67 0F B3 95 11 22               btr dword ptr [di+0x2211], edx
+0000000000000224  67 0F B3 96 33 44               btr dword ptr [bp+0x4433], edx
+000000000000022A  67 0F B3 97 55 66               btr dword ptr [bx+0x6655], edx
+0000000000000230  67 0F AB D8                     bts eax, ebx
+0000000000000234  67 0F AB D9                     bts ecx, ebx
+0000000000000238  67 0F AB EA                     bts edx, ebp
+000000000000023C  67 0F AB EB                     bts ebx, ebp
+0000000000000240  67 0F AB FC                     bts esp, edi
+0000000000000244  67 0F AB FD                     bts ebp, edi
+0000000000000248  67 0F AB DE                     bts esi, ebx
+000000000000024C  67 0F AB DF                     bts edi, ebx
+0000000000000250  90                              nop
+0000000000000251  66 67 0F A3 00                  bt word ptr [bx+si], ax
+0000000000000256  66 67 0F A3 01                  bt word ptr [bx+di], ax
+000000000000025B  66 67 0F A3 02                  bt word ptr [bp+si], ax
+0000000000000260  66 67 0F A3 03                  bt word ptr [bp+di], ax
+0000000000000265  66 67 0F A3 04                  bt word ptr [si], ax
+000000000000026A  66 67 0F A3 05                  bt word ptr [di], ax
+000000000000026F  66 67 0F A3 06 11 22            bt word ptr [0x2211], ax
+0000000000000276  66 67 0F A3 07                  bt word ptr [bx], ax
+000000000000027B  66 67 0F BB 48 11               btc word ptr [bx+si+0x11], cx
+0000000000000281  66 67 0F BB 49 22               btc word ptr [bx+di+0x22], cx
+0000000000000287  66 67 0F BB 4A 33               btc word ptr [bp+si+0x33], cx
+000000000000028D  66 67 0F BB 4B 44               btc word ptr [bp+di+0x44], cx
+0000000000000293  66 67 0F BB 4C 55               btc word ptr [si+0x55], cx
+0000000000000299  66 67 0F BB 4D 66               btc word ptr [di+0x66], cx
+000000000000029F  66 67 0F BB 4E 77               btc word ptr [bp+0x77], cx
+00000000000002A5  66 67 0F BB 4F 88               btc word ptr [bx-0x78], cx
+00000000000002AB  66 67 0F B3 90 11 22            btr word ptr [bx+si+0x2211], dx
+00000000000002B2  66 67 0F B3 91 33 44            btr word ptr [bx+di+0x4433], dx
+00000000000002B9  66 67 0F B3 92 55 66            btr word ptr [bp+si+0x6655], dx
+00000000000002C0  66 67 0F B3 93 77 88            btr word ptr [bp+di-0x7789], dx
+00000000000002C7  66 67 0F B3 94 99 AA            btr word ptr [si-0x5567], dx
+00000000000002CE  66 67 0F B3 95 11 22            btr word ptr [di+0x2211], dx
+00000000000002D5  66 67 0F B3 96 33 44            btr word ptr [bp+0x4433], dx
+00000000000002DC  66 67 0F B3 97 55 66            btr word ptr [bx+0x6655], dx
+00000000000002E3  66 67 0F AB D8                  bts ax, bx
+00000000000002E8  66 67 0F AB D9                  bts cx, bx
+00000000000002ED  66 67 0F AB EA                  bts dx, bp
+00000000000002F2  66 67 0F AB EB                  bts bx, bp
+00000000000002F7  66 67 0F AB FC                  bts sp, di
+00000000000002FC  66 67 0F AB FD                  bts bp, di
+0000000000000301  66 67 0F AB DE                  bts si, bx
+0000000000000306  66 67 0F AB DF                  bts di, bx
+000000000000030B  90                              nop
+000000000000030C  90                              nop
+000000000000030D  0F 06                           clts
+000000000000030F  90                              nop
+0000000000000310  8C E0                           mov eax, fs
+0000000000000312  8C 28                           mov dword ptr [eax], gs
+0000000000000314  8C 30                           mov dword ptr [eax], ?
+0000000000000316  8C 38                           mov dword ptr [eax], ?
+0000000000000318  8C 40 FF                        mov dword ptr [eax-0x01], es
+000000000000031B  66 8C E0                        mov ax, fs
+000000000000031E  66 8C 28                        mov word ptr [eax], gs
+0000000000000321  66 8C 30                        mov word ptr [eax], ?
+0000000000000324  66 8C 38                        mov word ptr [eax], ?
+0000000000000327  66 8C 40 FF                     mov word ptr [eax-0x01], es
+000000000000032B  67 8C E0                        mov eax, fs
+000000000000032E  67 8C 28                        mov dword ptr [bx+si], gs
+0000000000000331  67 8C 30                        mov dword ptr [bx+si], ?
+0000000000000334  67 8C 38                        mov dword ptr [bx+si], ?
+0000000000000337  67 8C 40 FF                     mov dword ptr [bx+si-0x01], es
+000000000000033B  90                              nop
+000000000000033C  A0 11 22 33 44                  mov al, [0x44332211]
+0000000000000341  A1 11 22 33 44                  mov eax, [0x44332211]
+0000000000000346  A2 11 22 33 44                  mov [0x44332211], al
+000000000000034B  A3 11 22 33 44                  mov [0x44332211], eax
+0000000000000350  2E A0 11 22 33 44               mov al, cs:[0x44332211]
+0000000000000356  36 A1 11 22 33 44               mov eax, ss:[0x44332211]
+000000000000035C  64 A2 11 22 33 44               mov fs:[0x44332211], al
+0000000000000362  65 A3 11 22 33 44               mov gs:[0x44332211], eax
+0000000000000368  66 A0 11 22 33 44               mov al, [0x44332211]
+000000000000036E  67 A1 11 22                     mov eax, [0x2211]
+0000000000000372  90                              nop
+0000000000000373  9A 11 22 33 44 55 66            call 0x6655:0x44332211
+000000000000037A  66 9A 11 22 33 44               call 0x4433:0x2211
+0000000000000380  67 9A 11 22 33 44 55 66         call 0x6655:0x44332211
+0000000000000388  36 9A 11 22 33 44 55 66         call 0x6655:0x44332211
+0000000000000390  90                              nop
+0000000000000391  EA 11 22 33 44 55 66            jmp 0x6655:0x44332211
+0000000000000398  66 EA 11 22 33 44               jmp 0x4433:0x2211
+000000000000039E  67 EA 11 22 33 44 55 66         jmp 0x6655:0x44332211
+00000000000003A6  36 EA 11 22 33 44 55 66         jmp 0x6655:0x44332211
+00000000000003AE  90                              nop
+00000000000003AF  0F 80 11 22 33 44               jo 0x00000000443325C6
+00000000000003B5  0F 81 11 22 33 44               jno 0x00000000443325CC
+00000000000003BB  66 0F 82 11 22                  jb 0x00000000000025D1
+00000000000003C0  67 0F 83 11 22 33 44            jnb 0x00000000443325D8
+00000000000003C7  3E 0F 84 11 22 33 44            je 0x00000000443325DF
+00000000000003CE  36 0F 85 11 22 33 44            jne 0x00000000443325E6
+00000000000003D5  F3 0F 86 11 22 33 44            rep jbe 0x00000000443325ED
+00000000000003DC  90                              nop
+00000000000003DD  01 00                           add dword ptr [eax], eax
+00000000000003DF  67 01 00                        add dword ptr [bx+si], eax
+00000000000003E2  01 01                           add dword ptr [ecx], eax
+00000000000003E4  67 01 01                        add dword ptr [bx+di], eax
+00000000000003E7  01 02                           add dword ptr [edx], eax
+00000000000003E9  67 01 02                        add dword ptr [bp+si], eax
+00000000000003EC  01 03                           add dword ptr [ebx], eax
+00000000000003EE  67 01 03                        add dword ptr [bp+di], eax
+00000000000003F1  01 50 11                        add dword ptr [eax+0x11], edx
+00000000000003F4  67 01 50 11                     add dword ptr [bx+si+0x11], edx
+00000000000003F8  01 51 11                        add dword ptr [ecx+0x11], edx
+00000000000003FB  67 01 51 11                     add dword ptr [bx+di+0x11], edx
+00000000000003FF  01 54 51 22                     add dword ptr [ecx+edx*2+0x22], edx
+0000000000000403  67 01 54 11                     add dword ptr [si+0x11], edx
+0000000000000407  01 84 0D 11 22 33 44            add dword ptr [ebp+ecx*1+0x44332211], eax
+000000000000040E  67 01 84 11 22                  add dword ptr [si+0x2211], eax
+0000000000000413  90                              nop
+0000000000000414  0F 6E 30                        movd mm6, dword ptr [eax]
+0000000000000417  66 0F 6E 30                     movd xmm6, dword ptr [eax]
+000000000000041B  67 0F 6E 30                     movd mm6, dword ptr [bx+si]
+000000000000041F  36 66 67 0F 6E 30               movd xmm6, dword ptr ss:[bx+si]
+0000000000000425  90                              nop
+0000000000000426  0F F8 30                        psubb mm6, qword ptr [eax]
+0000000000000429  66 0F F8 30                     psubb xmm6, xmmword ptr [eax]
+000000000000042D  67 0F F8 30                     psubb mm6, qword ptr [bx+si]
+0000000000000431  3E 66 67 0F F8 30               psubb xmm6, xmmword ptr ds:[bx+si]
+0000000000000437  90                              nop
+0000000000000438  0F E8 30                        psubsb mm6, qword ptr [eax]
+000000000000043B  66 0F E8 30                     psubsb xmm6, xmmword ptr [eax]
+000000000000043F  67 0F E8 30                     psubsb mm6, qword ptr [bx+si]
+0000000000000443  64 66 67 0F E8 30               psubsb xmm6, xmmword ptr fs:[bx+si]
+0000000000000449  90                              nop
+000000000000044A  0F FB C5                        psubq mm0, mm5
+000000000000044D  66 0F FB C5                     psubq xmm0, xmm5
+0000000000000451  67 0F FB C5                     psubq mm0, mm5
+0000000000000455  66 67 0F FB C5                  psubq xmm0, xmm5
+000000000000045A  90                              nop
+000000000000045B  0F FB 45 11                     psubq mm0, qword ptr [ebp+0x11]
+000000000000045F  66 0F FB 45 11                  psubq xmm0, xmmword ptr [ebp+0x11]
+0000000000000464  67 0F FB 45 FE                  psubq mm0, qword ptr [di-0x02]
+0000000000000469  66 67 0F FB 45 FE               psubq xmm0, xmmword ptr [di-0x02]
+000000000000046F  90                              nop
+0000000000000470  0F FB 6C 11 22                  psubq mm5, qword ptr [ecx+edx*1+0x22]
+0000000000000475  66 0F FB 6C 11 22               psubq xmm5, xmmword ptr [ecx+edx*1+0x22]
+000000000000047B  0F FB AC 11 22 33 44 FF         psubq mm5, qword ptr [ecx+edx*1-0x00BBCCDE]
+0000000000000483  66 0F FB AC 11 22 33 44 FF      psubq xmm5, xmmword ptr [ecx+edx*1-0x00BBCCDE]
+000000000000048C  0F FB AC 9D 22 33 44 FF         psubq mm5, qword ptr [ebp+ebx*4-0x00BBCCDE]
+0000000000000494  66 0F FB AC 9D 22 33 44 FF      psubq xmm5, xmmword ptr [ebp+ebx*4-0x00BBCCDE]
+000000000000049D  90                              nop
+000000000000049E  0F 01 00                        sgdt [eax]
+00000000000004A1  0F 01 08                        sidt [eax]
+00000000000004A4  0F 01 20                        smsw word ptr [eax]
+00000000000004A7  0F 01 10                        lgdt [eax]
+00000000000004AA  0F 01 18                        lidt [eax]
+00000000000004AD  0F 01 30                        lmsw word ptr [eax]
+00000000000004B0  66 67 0F 01 00                  sgdt [bx+si]
+00000000000004B5  66 67 0F 01 08                  sidt [bx+si]
+00000000000004BA  66 67 0F 01 20                  smsw word ptr [bx+si]
+00000000000004BF  66 67 0F 01 10                  lgdt [bx+si]
+00000000000004C4  66 67 0F 01 18                  lidt [bx+si]
+00000000000004C9  66 67 0F 01 30                  lmsw word ptr [bx+si]
+00000000000004CE  0F 01 43 A0                     sgdt [ebx-0x60]
+00000000000004D2  66 67 0F 01 43 A0               sgdt [bp+di-0x60]
+00000000000004D8  90                              nop
+00000000000004D9  0F 68 00                        punpckhbw mm0, qword ptr [eax]
+00000000000004DC  0F 69 04 49                     punpckhwd mm0, qword ptr [ecx+ecx*2]
+00000000000004E0  0F 6A 05 11 22 33 44            punpckhdq mm0, qword ptr [0x44332211]
+00000000000004E7  0F 60 44 AC 11                  punpcklbw mm0, dword ptr [esp+ebp*4+0x11]
+00000000000004EC  0F 61 84 11 11 22 33 44         punpcklwd mm0, dword ptr [ecx+edx*1+0x44332211]
+00000000000004F4  0F 62 84 E7 11 22 33 FF         punpckldq mm0, dword ptr [edi-0x00CCDDEF]
+00000000000004FC  0F 62 E7                        punpckldq mm4, mm7
+00000000000004FF  66 67 0F 68 00                  punpckhbw xmm0, xmmword ptr [bx+si]
+0000000000000504  66 67 0F 69 82 11 22            punpckhwd xmm0, xmmword ptr [bp+si+0x2211]
+000000000000050B  66 67 0F 6A 06 11 22            punpckhdq xmm0, xmmword ptr [0x2211]
+0000000000000512  66 67 0F 60 44 AC               punpcklbw xmm0, xmmword ptr [si-0x54]
+0000000000000518  66 67 0F 61 84 11 22            punpcklwd xmm0, xmmword ptr [si+0x2211]
+000000000000051F  66 67 0F 62 E7                  punpckldq xmm4, xmm7
+0000000000000524  90                              nop
+0000000000000525  0F C7 0A                        cmpxchg8b qword ptr [edx]
+0000000000000528  0F C7 0D 11 22 33 44            cmpxchg8b qword ptr [0x44332211]
+000000000000052F  0F C7 0C 19                     cmpxchg8b qword ptr [ecx+ebx*1]
+0000000000000533  0F C7 0C 22                     cmpxchg8b qword ptr [edx]
+0000000000000537  0F C7 0C 6A                     cmpxchg8b qword ptr [edx+ebp*2]
+000000000000053B  0F C7 4C AA FF                  cmpxchg8b qword ptr [edx+ebp*4-0x01]
+0000000000000540  0F C7 8C AA 11 22 33 44         cmpxchg8b qword ptr [edx+ebp*4+0x44332211]
+0000000000000548  0F C7 CC                        cmpxchg8b mm4
+000000000000054B  66 67 0F C7 0A                  cmpxchg8b qword ptr [bp+si]
+0000000000000550  66 67 0F C7 0E 11 22            cmpxchg8b qword ptr [0x2211]
+0000000000000557  66 67 0F C7 4A FD               cmpxchg8b qword ptr [bp+si-0x03]
+000000000000055D  66 67 0F C7 8B 99 AA            cmpxchg8b qword ptr [bp+di-0x5567]
+0000000000000564  66 67 0F C7 CC                  cmpxchg8b mm4
+0000000000000569  90                              nop
+000000000000056A  0F 0D 08                        prefetchw byte ptr [eax]
+000000000000056D  90                              nop

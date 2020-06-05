@@ -1,0 +1,10 @@
+/bin/*
+/build/c++builder-10.3/*.local
+/build/c++builder-10.3/*.res
+/build/vs19/.vs
+/build/vs19/packages
+/build/vs19/*.user
+/tools/doxygen/html
+/tools/doxygen/latex
+/src/*.aps
+/temp/*

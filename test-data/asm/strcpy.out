@@ -1,0 +1,17 @@
+0000000000000000  55               push ebp
+0000000000000001  31 D2            xor edx, edx
+0000000000000003  89 E5            mov ebp, esp
+0000000000000005  8B 45 08         mov eax, dword ptr [ebp+0x08]
+0000000000000008  56               push esi
+0000000000000009  8B 75 0C         mov esi, dword ptr [ebp+0x0C]
+000000000000000C  53               push ebx
+000000000000000D  8D 58 FF         lea ebx, dword ptr [eax-0x01]
+0000000000000010  0F B6 0C 16      movzx ecx, byte ptr [esi+edx*1]
+0000000000000014  88 4C 13 01      mov byte ptr [ebx+edx*1+0x01], cl
+0000000000000018  83 C2 01         add edx, 0x01
+000000000000001B  84 C9            test cl, cl
+000000000000001D  75 F1            jne 0x0000000000000010
+000000000000001F  5B               pop ebx
+0000000000000020  5E               pop esi
+0000000000000021  5D               pop ebp
+0000000000000022  C3               ret

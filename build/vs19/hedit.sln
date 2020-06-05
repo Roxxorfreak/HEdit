@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hedit", "hedit.vcxproj", "{104E4308-DFB2-415E-B0B5-4CE070E75F3B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hedit_test", "hedit_test.vcxproj", "{D2185E40-2DA4-41D0-A2D2-0E83158FA499}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{104E4308-DFB2-415E-B0B5-4CE070E75F3B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{104E4308-DFB2-415E-B0B5-4CE070E75F3B}.Debug|Win32.Build.0 = Debug|Win32
+		{104E4308-DFB2-415E-B0B5-4CE070E75F3B}.Debug|x64.ActiveCfg = Debug|Win32
+		{104E4308-DFB2-415E-B0B5-4CE070E75F3B}.Release|Win32.ActiveCfg = Release|Win32
+		{104E4308-DFB2-415E-B0B5-4CE070E75F3B}.Release|Win32.Build.0 = Release|Win32
+		{104E4308-DFB2-415E-B0B5-4CE070E75F3B}.Release|x64.ActiveCfg = Release|Win32
+		{D2185E40-2DA4-41D0-A2D2-0E83158FA499}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D2185E40-2DA4-41D0-A2D2-0E83158FA499}.Debug|Win32.Build.0 = Debug|Win32
+		{D2185E40-2DA4-41D0-A2D2-0E83158FA499}.Debug|x64.ActiveCfg = Debug|Win32
+		{D2185E40-2DA4-41D0-A2D2-0E83158FA499}.Release|Win32.ActiveCfg = Release|Win32
+		{D2185E40-2DA4-41D0-A2D2-0E83158FA499}.Release|Win32.Build.0 = Release|Win32
+		{D2185E40-2DA4-41D0-A2D2-0E83158FA499}.Release|x64.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60DA5D23-670B-4D76-B60C-F3BD915DE9EC}
+	EndGlobalSection
+EndGlobal

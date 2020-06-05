@@ -1,0 +1,26 @@
+0000000000000000  FF 14 E5 11 22 33 44                  call dword ptr [+0x44332211]
+0000000000000007  FF 94 E5 11 22 33 44                  call dword ptr [ebp+0x44332211]
+000000000000000E  FF 94 A2 11 22 33 44                  call dword ptr [edx+0x44332211]
+0000000000000015  FF 14 A2                              call dword ptr [edx]
+0000000000000018  90                                    nop
+0000000000000019  90                                    nop
+000000000000001A  C7 04 BD A0 FF 42 00 76 07 00 00      mov dword ptr [+edi*4+0x0042FFA0], 0x00000776
+0000000000000025  89 3D 9C FF 42 00                     mov dword ptr [0x0042FF9C], edi
+000000000000002B  65 89 00                              mov dword ptr gs:[eax], eax
+000000000000002E  66 89 C1                              mov cx, ax
+0000000000000031  89 C1                                 mov ecx, eax
+0000000000000033  89 0D 11 22 33 44                     mov dword ptr [0x44332211], ecx
+0000000000000039  8B 15 11 22 33 44                     mov edx, dword ptr [0x44332211]
+000000000000003F  BB 11 22 33 44                        mov ebx, 0x44332211
+0000000000000044  90                                    nop
+0000000000000045  90                                    nop
+0000000000000046  8D 4C 24 04                           lea ecx, dword ptr [esp+0x04]
+000000000000004A  68 2F 2F 73 68                        push 0x68732F2F
+000000000000004F  66 81 7D 02 11 5C                     cmp word ptr [ebp+0x02], 0x5C11
+0000000000000055  00 00                                 add byte ptr [eax], al
+0000000000000057  81 7D 02 11 5C 00 00                  cmp dword ptr [ebp+0x02], 0x00005C11
+000000000000005E  90                                    nop
+000000000000005F  90                                    nop
+0000000000000060  F2 F0 36 66 67 81 84 00 00 11 22      repne lock add word ptr ss:[si+0x0000], 0x2211
+000000000000006B  33 44 F2 F0                           xor eax, dword ptr [edx+esi*8-0x10]
+000000000000006F  36 66 67 81 84 00 00 11 22            add word ptr ss:[si+0x0000], 0x2211
