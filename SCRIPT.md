@@ -52,7 +52,7 @@ Executes the code in the loop body until the variable reaches the specified valu
     until(variable, value);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *variable* | variable | The name of the variable to check
 *value* | integer | The value to reach
 
@@ -64,7 +64,7 @@ Moves the cursor to the specified position on the virtual screen.
     gotoxy(x, y);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *x* | integer | Cursor column, must be between 1 and 200
 *y* | integer | Cursor row, must be between 1 and 90
 
@@ -74,7 +74,7 @@ Outputs the specified text at the current cursor position.
     print(text);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *text* | string | Any text up to 78 characters
 
 #### cprintb
@@ -84,7 +84,7 @@ if the value at "offset" equals to "value", compared as byte
     cprintb(text, offset, value);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 *text* | string | Any text up to 78 characters
 *offset* | integer | The offset of the value to compare (may be a variable)
 *value* | integer | The value to compare with (may be a variable)
@@ -96,7 +96,7 @@ if the value at "offset" equals to "value", compared as word
     cprintw(text, offset, value);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 *text* | string | Any text up to 78 characters
 *offset* | integer | The offset of the value to compare (may be a variable)
 *value* | integer | The value to compare with (may be a variable)
@@ -108,7 +108,7 @@ if the value at "offset" equals to "value", compared as double word
     cprintd(text, offset, value);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 *text* | string | Any text up to 78 characters
 *offset* | integer | The offset of the value to compare (may be a variable)
 *value* | integer | The value to compare with (may be a variable)
@@ -120,7 +120,7 @@ with the Prefix left of it and the Suffix right of it at the current position.
     printub(prefix, suffix, offset);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 prefix | string | Any text up to 30 characters, printed left of the value
 suffix | string | Any text up to 30 characters, printed right of the value
 offset | integer | The offset of the value to print as unsigned byte (may be a variable)
@@ -132,7 +132,7 @@ with the prefix left of it and the suffix right of it at the current position.
     printuw(prefix, suffix, offset);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 prefix | string | Any text up to 30 characters, printed left of the value
 suffix | string | Any text up to 30 characters, printed right of the value
 offset | integer | The offset of the value to print as unsigned word (may be a variable)
@@ -144,7 +144,7 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
     printud(prefix, suffix, offset);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 prefix | string | Any text up to 30 characters, printed left of the value.
 suffix | string | Any text up to 30 characters, printed right of the value.
 offset | integer | The offset of the value to print as unsigned double word (may be a variable)
@@ -156,7 +156,7 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
     printhb(prefix, suffix, offset);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 prefix | string | Any text up to 30 characters, printed left of the value.
 suffix | string | Any text up to 30 characters, printed right of the value.
 offset | integer | The offset of the value to print as hexdecimal byte (May be a variable)
@@ -168,7 +168,7 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
     printhw(prefix, suffix, offset);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 prefix | string | Any text up to 30 characters, printed left of the value.
 suffix | string | Any text up to 30 characters, printed right of the value.
 offset | integer | The offset of the value to print as hexdecimal word (May be a variable)
@@ -180,7 +180,7 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
     printhd(prefix, suffix, offset);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 prefix | string | Any text up to 30 characters, printed left of the value.
 suffix | string | Any text up to 30 characters, printed right of the value.
 offset | integer | The offset of the value to print as hexdecimal double word (May be a variable)
@@ -192,7 +192,7 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
     printsb(prefix, suffix, offset);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 prefix | string | Any text up to 30 characters, printed left of the value.
 suffix | string | Any text up to 30 characters, printed right of the value.
 offset | integer | The offset of the value to print as signed byte (May be a variable)
@@ -204,7 +204,7 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
     printsw(prefix, suffix, offset);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 prefix | string | Any text up to 30 characters, printed left of the value.
 suffix | string | Any text up to 30 characters, printed right of the value.
 offset | integer | The offset of the value to print as signed word (May be a variable)
@@ -216,7 +216,7 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
     printsd(prefix, suffix, offset);
 ###### Parameters
 Name | Type | Description
-- | - | -
+ - | - | -
 Prefix | string | Any text up to 30 characters, printed left of the value
 Suffix | string | Any text up to 30 characters, printed right of the value
 offset | integer | The offset of the value to print as signed double word (May be a variable)
@@ -228,7 +228,7 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
     printfd(prefix, suffix, offset);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 prefix | string | Any text up to 30 characters, printed left of the value
 suffix | string | Any text up to 30 characters, printed right of the value
 offset | integer | The offset of the value to print as floating point number (may be a variable)
@@ -240,7 +240,7 @@ if a binary zero is reached.
     printds(offset, length);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 offset | integer | The offset of the string to print (may be a variable)
 length | integer | The length of the string to print (may be a variable)
 
@@ -250,7 +250,7 @@ Outputs "length" bytes from "offset" as hexdecimal values (e.g. 0F043B).
     prinths(offset, length);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 offset | integer | The offset of the string to print (may be a variable)
 length | integer | The length of the string to print (may be a variable)
 
@@ -260,7 +260,7 @@ Outputs the XOR'ed checksum of "length" bytes from "offset" as hexdecimal byte v
     printxor(offset, length);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *offset* | integer | The offset of the string to calculate the checksum of (may be a variable)
 *length* | integer | The length of the string to calculate the checksum of (may be a variable)
 
@@ -273,7 +273,7 @@ All variables are zero-initialized on declaration.
     declare(variable, signed);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *variable* | variable | The name of the variable to declare, must not start with a number.
 *signed* | boolean | Specifies if the variable should be "signed", i.e. can be negative.
 
@@ -283,7 +283,7 @@ Loads a value into the variable.
     set(variable, value);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *variable* | variable | The name of the variable to load the value into
 *value* | integer | The value to load (may be a variable)
 
@@ -293,7 +293,7 @@ Adds a value to the variable.
     add(variable, value);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *variable* | variable | The name of the variable to add the value to
 *value* | integer | The value to add (may be a variable)
 
@@ -303,7 +303,7 @@ Subtracts a value from the variable.
     sub(variable, value);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *variable* | variable | The name of the variable to subtract the value from
 *value* | integer | The value to subtract (may be a variable)
 
@@ -313,7 +313,7 @@ Increases the value of the variable by one
     incr(variable);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *variable* | variable | The name of the variable to increase
 
 #### decr
@@ -322,7 +322,7 @@ Decreases the value of the variable by one.
     decr(variable);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *variable* | variable | The name of the variable to decrease
 
 #### loadb
@@ -332,7 +332,7 @@ Loads the byte value at the specified offset into the variable.
     loadb(variable, offset);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *variable* | variable | The name of the variable to load the byte value into
 *offset* | integer | The offset of the value to load (may be a variable)
 
@@ -343,7 +343,7 @@ Loads the word value at the specified offset into the variable.
     loadw(variable, offset);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *variable* | variable | The name of the variable to load the word value into
 *offset* | integer | The offset of the value to load (may be a variable)
 
@@ -354,6 +354,6 @@ Loads the double word value at the specified offset into the variable.
     loadd(variable, offset);
 ###### Parameters
 Name | Type | Description
-- | -
+ - | - | -
 *variable* | variable | The name of the variable to load the double word value into
 *offset* | integer | The offset of the value to load (may be a variable)
