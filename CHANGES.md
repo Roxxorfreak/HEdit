@@ -10,5 +10,5 @@ The config file name is now ".hedit" for all platforms.\
 Increased virtual screen size for scripts to 200 columns.\
 Various Disassembler improvements (bug fixes, opcode fixes).\
 The "Checksum" script is now part of the "Numeric Value" script.\
-[Windows] The config file is now stored in user's home directory.\
+The config file is now stored in user's home directory (Windows).\
 The "Comparing hex" search now works with different string lengths.
