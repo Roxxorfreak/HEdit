@@ -121,9 +121,9 @@ with the Prefix left of it and the Suffix right of it at the current position.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-prefix | string | Any text up to 30 characters, printed left of the value
-suffix | string | Any text up to 30 characters, printed right of the value
-offset | integer | The offset of the value to print as unsigned byte (may be a variable)
+*prefix* | string | Any text up to 30 characters, printed left of the value
+*suffix* | string | Any text up to 30 characters, printed right of the value
+*offset* | integer | The offset of the value to print as unsigned byte (may be a variable)
 
 #### printuw
 Outputs the value at the specified offset as unsigned word,
@@ -133,9 +133,9 @@ with the prefix left of it and the suffix right of it at the current position.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-prefix | string | Any text up to 30 characters, printed left of the value
-suffix | string | Any text up to 30 characters, printed right of the value
-offset | integer | The offset of the value to print as unsigned word (may be a variable)
+*prefix* | string | Any text up to 30 characters, printed left of the value
+*suffix* | string | Any text up to 30 characters, printed right of the value
+*offset* | integer | The offset of the value to print as unsigned word (may be a variable)
 
 #### printud
 Outputs the value at the specified offset as unsigned double word,
@@ -145,9 +145,9 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-prefix | string | Any text up to 30 characters, printed left of the value.
-suffix | string | Any text up to 30 characters, printed right of the value.
-offset | integer | The offset of the value to print as unsigned double word (may be a variable)
+*prefix* | string | Any text up to 30 characters, printed left of the value.
+*suffix* | string | Any text up to 30 characters, printed right of the value.
+*offset* | integer | The offset of the value to print as unsigned double word (may be a variable)
 
 #### printhb
 Outputs the value at the specified offset as hexdecimal byte,
@@ -157,9 +157,9 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-prefix | string | Any text up to 30 characters, printed left of the value.
-suffix | string | Any text up to 30 characters, printed right of the value.
-offset | integer | The offset of the value to print as hexdecimal byte (May be a variable)
+*prefix* | string | Any text up to 30 characters, printed left of the value.
+*suffix* | string | Any text up to 30 characters, printed right of the value.
+*offset* | integer | The offset of the value to print as hexdecimal byte (May be a variable)
 
 #### printhw
 Outputs the value at the specified offset as hexdecimal word,
@@ -169,9 +169,9 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-prefix | string | Any text up to 30 characters, printed left of the value.
-suffix | string | Any text up to 30 characters, printed right of the value.
-offset | integer | The offset of the value to print as hexdecimal word (May be a variable)
+*prefix* | string | Any text up to 30 characters, printed left of the value.
+*suffix* | string | Any text up to 30 characters, printed right of the value.
+*offset* | integer | The offset of the value to print as hexdecimal word (May be a variable)
 
 #### printhd
 Outputs the value at the specified offset as hexdecimal double word,
@@ -181,9 +181,9 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-prefix | string | Any text up to 30 characters, printed left of the value.
-suffix | string | Any text up to 30 characters, printed right of the value.
-offset | integer | The offset of the value to print as hexdecimal double word (May be a variable)
+*prefix* | string | Any text up to 30 characters, printed left of the value.
+*suffix* | string | Any text up to 30 characters, printed right of the value.
+*offset* | integer | The offset of the value to print as hexdecimal double word (May be a variable)
 
 #### printsb
 Outputs the value at the specified offset as signed byte,
@@ -193,9 +193,9 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-prefix | string | Any text up to 30 characters, printed left of the value.
-suffix | string | Any text up to 30 characters, printed right of the value.
-offset | integer | The offset of the value to print as signed byte (May be a variable)
+*prefix* | string | Any text up to 30 characters, printed left of the value.
+*suffix* | string | Any text up to 30 characters, printed right of the value.
+*offset* | integer | The offset of the value to print as signed byte (May be a variable)
 
 #### printsw
 Outputs the value at the specified offset as signed word,
@@ -205,9 +205,9 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-prefix | string | Any text up to 30 characters, printed left of the value.
-suffix | string | Any text up to 30 characters, printed right of the value.
-offset | integer | The offset of the value to print as signed word (May be a variable)
+*prefix* | string | Any text up to 30 characters, printed left of the value.
+*suffix* | string | Any text up to 30 characters, printed right of the value.
+*offset* | integer | The offset of the value to print as signed word (May be a variable)
 
 #### printsd
 Outputs the value at the specified offset as signed double word,
@@ -219,7 +219,7 @@ Name | Type | Description
 ---- | ---- | -----------
 Prefix | string | Any text up to 30 characters, printed left of the value
 Suffix | string | Any text up to 30 characters, printed right of the value
-offset | integer | The offset of the value to print as signed double word (May be a variable)
+*offset* | integer | The offset of the value to print as signed double word (May be a variable)
 
 #### printfd
 Outputs the value at the specified offset as floating point number,
@@ -229,9 +229,9 @@ with the "prefix" left of it and the "suffix" right of it at the current cursor 
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-prefix | string | Any text up to 30 characters, printed left of the value
-suffix | string | Any text up to 30 characters, printed right of the value
-offset | integer | The offset of the value to print as floating point number (may be a variable)
+*prefix* | string | Any text up to 30 characters, printed left of the value
+*suffix* | string | Any text up to 30 characters, printed right of the value
+*offset* | integer | The offset of the value to print as floating point number (may be a variable)
 
 #### printds
 Outputs "length" bytes from "offset" as character string at the current cursor position, stopping
@@ -241,8 +241,8 @@ if a binary zero is reached.
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-offset | integer | The offset of the string to print (may be a variable)
-length | integer | The length of the string to print (may be a variable)
+*offset* | integer | The offset of the string to print (may be a variable)
+*length* | integer | The length of the string to print (may be a variable)
 
 #### prinths
 Outputs "length" bytes from "offset" as hexdecimal values (e.g. 0F043B).
@@ -251,8 +251,8 @@ Outputs "length" bytes from "offset" as hexdecimal values (e.g. 0F043B).
 ###### Parameters
 Name | Type | Description
 ---- | ---- | -----------
-offset | integer | The offset of the string to print (may be a variable)
-length | integer | The length of the string to print (may be a variable)
+*offset* | integer | The offset of the string to print (may be a variable)
+*length* | integer | The length of the string to print (may be a variable)
 
 #### printxor
 Outputs the XOR'ed checksum of "length" bytes from "offset" as hexdecimal byte value.
