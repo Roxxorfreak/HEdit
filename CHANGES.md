@@ -1,6 +1,6 @@
 # Changelog
 
-## 09.05.2020 - HEdit 4.2.0
+## 05.06.2020 - HEdit 4.2.0
 
 All source code is now C++11.\
 Overall code improvements and reworks.\
