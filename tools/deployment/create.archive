@@ -1,18 +1,97 @@
 #!/bin/bash
-. /etc/rc.status
-# The file names with the version number. Change for future releases
-linux_file="hedit402.tgz"
-windows_file="hedit402.zip"
-# Delete the old and create the new linux archive
-if test -w $linux_file; then rm $linux_file; fi
-echo -e "Creating archive $linux_file for the linux version...\c"
-tar -cvzf $linux_file -C .. hedit changes.log script.txt plugins > /dev/null
-if [ $? -eq 0 ]; then echo $rc_done; else echo $rc_failed; fi
-# Delete the old and create the new windows archive
-if test -w $windows_file; then rm $windows_file; fi
-echo -e "Creating archive $windows_file for the windows version...\c"
-cd ..
-zip -R release/$windows_file hedit.exe changes.log script.txt plugins/*.* > /dev/null
-if [ $? -eq 0 ]; then echo $rc_done; else echo $rc_failed; fi
-cd release
+
+# Define version number and date
+version=4_2_0
+creation_date="06/06/2020"
+
+# Get system information
+declare -l platform=$(uname -s)
+declare -l architecture=$(uname -m)
+
+# Create the input file names
+linux_source="../../bin/hedit"
+windows_source="../../bin/hedit.exe"
+
+function create_archive 
+{
+    # test for specified tool
+    if ! which $2 > /dev/null 
+    then
+        echo -e "Skipping creation of \"${3}\": \033[31mCommand <${2}> not installed\033[0m"
+        return 0
+    fi
+
+    # test for source file
+    if [ ! -r $1 ]
+    then
+        echo -e "Skipping creation of \"${3}\": \033[33mExecutable not found\033[0m"
+        return 0
+    fi
+
+    # delete the old folder, if present
+    if test -w ./temp; then rm -rf ./temp; fi
+  
+    # create folder
+    mkdir ./temp
+    mkdir ./temp/.hedit-scripts
+
+    # copy files
+    cp $1 ./temp/
+    cp ../../LICENSE ./temp/
+    cp ../../SCRIPT.md ./temp/
+    cp ../../CHANGES.md ./temp/
+    cp ../../scripts/* ./temp/.hedit-scripts/
+
+    # Get current date/time
+    current_date=$creation_date
+    
+    # Set the date of the files
+    touch --date="${current_date}" ./temp/* ./temp/.hedit-scripts/*
+
+    # display info
+    echo -e "Creating \"${3}\"...\c"
+
+    # delete the old archive, if present
+    if test -w $3; then rm $3; fi
+
+    # descend into temp path
+    cd ./temp/
+
+    # check tool to use
+    if [ "$2" == "zip" ]; then
+
+	# create new archive
+        zip ../$3 * .hedit-scripts/* > /dev/null
+
+    elif [ "$2" == "tar" ]; then
+
+        # create new archive
+        tar -cvzf ../$3 --{owner,group}=root * .hedit-scripts/* > /dev/null
+
+    fi
+
+    # ascend back
+    cd ..
+
+    # display status
+    if [ $? -eq 0 ]; then 
+        echo -e "\033[32mdone\033[0m"
+    else 
+        echo -e "\033[31mfailed\033[0m"
+    fi
+    
+    # Set the date of the archive
+    touch --date="${current_date}" $3
+
+    # delete folder
+    rm -rf ./temp
+}
+
+# Create the output file names with the version number
+linux_file="hedit"${version}_${platform}_${architecture}".tgz"
+windows_file="hedit"${version}"_windows.zip"
+
+# create Linux archive
+create_archive $linux_source tar $linux_file 
+create_archive $windows_source zip $windows_file 
 

@@ -8,3 +8,5 @@
 /tools/doxygen/latex
 /src/*.aps
 /temp/*
+/tools/deployment/*.tgz
+/tools/deployment/*.zip
