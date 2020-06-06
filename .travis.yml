@@ -1,0 +1,6 @@
+language: cpp
+
+before_script: cd build/make/
+
+script: make
+
