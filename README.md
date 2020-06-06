@@ -3,6 +3,7 @@
 ![Codacy grade](https://img.shields.io/codacy/grade/b3f7f8435745453aae04b0f164b2f5e3)
 ![GitHub issues](https://img.shields.io/github/issues/Roxxorfreak/HEdit)
 ![GitHub](https://img.shields.io/github/license/Roxxorfreak/HEdit)
+![Travis-CI](https://img.shields.io/travis/com/Roxxorfreak/HEdit)
 
 HEdit is a small console-based hex editor with a focus on cross-platform reverse engineering.
 It is designed to run and tested on Windows, Linux, Rasperry Pi and MacOS X.
