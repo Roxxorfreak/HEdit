@@ -1,9 +1,15 @@
 # HEdit 4
 
+![Codacy grade](https://img.shields.io/codacy/grade/b3f7f8435745453aae04b0f164b2f5e3)
+![GitHub issues](https://img.shields.io/github/issues/Roxxorfreak/HEdit)
+![GitHub](https://img.shields.io/github/license/Roxxorfreak/HEdit)
+
 HEdit is a small console-based hex editor with a focus on cross-platform reverse engineering.
 It is designed to run and tested on Windows, Linux, Rasperry Pi and MacOS X.
 
-![HEdit](hedit.png)
+<p align="center">
+  <img alt="HEdit" src="hedit.png">
+</p>
 
 ## Features
 
@@ -16,7 +22,15 @@ It is designed to run and tested on Windows, Linux, Rasperry Pi and MacOS X.
 
 ## Directory structure
 
-Soon to come...
+<pre>
+.
+├─ bin          The output directory for the binaries (created during build process)
+├─ build        The build scripts and project files (Makefile, VS2019, etc.)
+├─ scripts      Some HEdit scripts (see SCRIPT.md)
+├─ src          The source code (including test sources)
+├─ test-data    Some test data for the unit tests (you guessed it)
+└─ tools        Tool configurations for additional tools, see <a href="#other-tools">below</a>
+</pre>
 
 ## Supported compilers
 
@@ -43,13 +57,15 @@ You can use cpplint with the included config file on the .cpp and .hpp files in 
 
 ## FAQ
 
-### Why is the first version v4.2.0?
+### How do I build HEdit on Linux?
 
-Because the project is quite old and was just moved to GitHub recently.
+Assuming your build environment for C++ is ready, just go to `./build/make/` and execute `make`.
+Otherwise you need to install `g++`, `libncurses5-dev` and `make`.
 
-### My screen is quite large, can I edit more than five files simultaneously?
+### How do I build HEdit on Windows?
 
-Yes, but only by modifying the source code. You need to change the constant HE_MAX_EDITORS and rebuild HEdit.
+Using Visual Studio, just go to `./build/vs19/` and use the solution file `hedit.sln`.
+You will need to have "C++ build tools" installed.
 
 ### Do I need any external libraries to build HEdit from scratch?
 
@@ -59,3 +75,11 @@ For the tests, the [Googletest](https://github.com/google/googletest) framework 
 ### I can see there are tests but they are not built using the Makefile. Why?
 
 Because the tests are currently only built using the Visual Studio 2019 solution.
+
+### Why is the first version v4.2.0?
+
+Because the project is quite old and was just moved to GitHub recently.
+
+### My screen is quite large, can I edit more than five files simultaneously?
+
+Yes, but only by modifying the source code. You need to change the constant HE_MAX_EDITORS and rebuild HEdit.
