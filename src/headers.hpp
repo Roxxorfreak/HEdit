@@ -29,7 +29,9 @@
         // Re-define the secure crt functions
         #define strcpy_s(target, size, source) strcpy(target, source)
         #define strcat_s(target, size, source) strcat(target, source)
-        #define strncat_s(target, size, source, length) strncat(target, source, length)
+
+        // May be removed, if __STDC_LIB_EXT1__ is defined and __STDC_WANT_LIB_EXT1__ is set to 1
+        // (see https://en.cppreference.com/w/c/string/byte/strncpy)
         #define strncpy_s(target, size, source, length) strncpy(target, source, length)
 
         // Some 64bit function names
@@ -91,6 +93,7 @@
     #include <cinttypes>
     #include <vector>
     #include <map>
+    #include <utility>
 
     // The maximum number of file editors in one HEdit window (also used by the comparator engine).
     constexpr int32_t HE_MAX_EDITORS = 5;
