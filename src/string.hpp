@@ -20,20 +20,22 @@
         std::size_t buffer_size_ = {};  //!< The size of the internal string buffer (including binary zero).
     public:
         TString() noexcept;
+        TString(TString&& source_string) noexcept;
         TString(const TString& source_string);
         explicit TString(std::size_t size, char filler = ' ');
         explicit TString(const char* source_string);
         ~TString();
         void Free() noexcept;
+        TString& operator=(TString&& source_string) noexcept;
         TString& operator=(const char* source_string);
-        TString& operator=(const TString &source_string);
+        TString& operator=(const TString& source_string);
         TString& operator+=(const char character);
         TString& operator+=(const char* source_string);
-        TString& operator+=(const TString & source_string);
+        TString& operator+=(const TString& source_string);
         const TString operator+(const char* source_string) const;
-        const TString operator+(const TString & source_string) const;
+        const TString operator+(const TString& source_string) const;
         char operator[](std::size_t offset) const;
-        char &operator[](std::size_t offset);
+        char& operator[](std::size_t offset);
         operator char* () noexcept;
         operator char const* () const noexcept;
         char const* ToString() const noexcept;

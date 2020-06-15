@@ -13,17 +13,19 @@ TString::TString() noexcept
 }
 
 /**
+ * Move constructor.
+ * @param source_string The source string to move.
+ */
+TString::TString(TString&& source_string) noexcept : TString(std::exchange(source_string.buffer_, nullptr))
+{
+}
+
+/**
  * Creates a new string object from the specified string object.
  * @param source_string The string object to use to initialize the new string object.
  */
-TString::TString(const TString& source_string)
+TString::TString(const TString& source_string) : TString(source_string.buffer_)
 {
-    // Reset data
-    this->buffer_ = nullptr;
-    this->buffer_size_ = 0;
-
-    // Assign the string
-    this->operator =(source_string.buffer_);
 }
 
 /**
@@ -86,6 +88,19 @@ void TString::Free() noexcept
     // Clear the data
     this->buffer_ = nullptr;
     this->buffer_size_ = 0;
+}
+
+/**
+ * Move assignment.
+ * @param source_string The character string to move.
+ */
+TString& TString::operator=(TString&& source_string) noexcept
+{
+    // move string
+    std::swap(this->buffer_, source_string.buffer_);
+
+    // Return this reference
+    return *this;
 }
 
 /**

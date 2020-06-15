@@ -173,9 +173,13 @@ void TAsmViewer::Draw()
         this->console_->Print(this->screen_buffer_[i]);
     }
 
-    // Clear the space that is not occupied by data (only if there is less data than display space)
+    // Process the remaining lines
     for (int32_t i = this->disassembled_lines_; i < this->editor_->lines_; i++)
     {
+        // Clear the screen buffer
+        memset(this->screen_buffer_[i], 0, static_cast<std::size_t>(this->editor_->width_) + 1);
+
+        // Clear the space that is not occupied by data (only if there is less data than display space)
         this->console_->SetCursor(2, this->editor_->start_line_ + i + 1);
         this->console_->ClearLine();
         this->console_->SetCursor(this->editor_->width_, this->editor_->start_line_ + i + 1);
