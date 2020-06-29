@@ -173,7 +173,7 @@ void TEditor::DrawFileName(bool active)
     else
     {
         display_string += "...";
-        display_string += file_name.SubString(file_name.Length() - (static_cast<unsigned>(this->editor_info_.width_) - 14));
+        display_string += file_name.SubString(file_name.Length() - (static_cast<std::size_t>(this->editor_info_.width_) - 14));
     }
 
     // Draw file name

@@ -257,6 +257,7 @@ bool TFile::Seek(int64_t position) noexcept
 
 /**
  * Reads one line of text from the current position in the file.
+ * If no data can be read, an empty line is returned.
  * @return A string with the read line.
  */
 TString TFile::ReadLine()

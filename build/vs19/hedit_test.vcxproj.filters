@@ -34,6 +34,12 @@
     <ClCompile Include="..\..\src\tests\string_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\value_processor.cpp">
+      <Filter>hedit-Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\tests\value_processor_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

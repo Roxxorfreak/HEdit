@@ -332,20 +332,49 @@ char const* TString::ToString() const noexcept
 }
 
 /**
- * Returns a pointer to the sub-string at the specified zero-based offset.
+ * Returns the sub-string at the specified zero-based offset with the specified lenght.
  * @param offset The zero-based starting offset of the sub-string to get.
- * @return A pointer to the sub-string or nullptr on error.
+ * @param length The length of the sub-string to return or -1 (default) to return the whole string up the terminating zero.
+ * @return The sub-string or an empty string on error.
  */
-char* TString::SubString(std::size_t offset) const noexcept
+TString TString::SubString(std::size_t offset, int32_t length) const
 {
+    TString result;
+    std::size_t chars_to_copy;
+
     // Ensure a valid string
-    if (this->buffer_ == nullptr) return nullptr;
+    if (this->buffer_ == nullptr) return TString("");
 
     // Ensure a valid offset
-    if (offset > this->buffer_size_ - 1) return nullptr;
+    if (offset > this->buffer_size_ - 1) return TString("");
+
+    // Get the number of characters to copy
+    if (length < 0)
+    {
+        chars_to_copy = strlen(this->buffer_) - offset;
+    }
+    else
+    {
+        chars_to_copy = static_cast<std::size_t>(length);
+    }
+
+    // Create buffer for sub-string
+    auto buffer = new char[chars_to_copy + 1];
+
+    // Clear the buffer
+    memset(buffer, 0, chars_to_copy + 1);
+
+    // Copy string-data to new buffer
+    strncpy_s(buffer, chars_to_copy + 1, &this->buffer_[offset], chars_to_copy);
+
+    // Copy buffer to TString object
+    result = buffer;
+
+    // Free buffer
+    delete[] buffer;
 
     // Return the char at the specified offset
-    return &this->buffer_[offset];
+    return result;
 }
 
 /**
@@ -514,7 +543,7 @@ bool TString::IsEmpty() noexcept
  * @param string The character string to compare the current string object to.
  * @return true if the strings are equal, false otherwise.
  */
-bool TString::Equals(const char* string) noexcept
+bool TString::Equals(const char* string) const noexcept
 {
     // If one of the strings is not initialized, they are considered NOT equal
     if ((this->buffer_ == nullptr) || (string == nullptr)) return false;
@@ -529,7 +558,7 @@ bool TString::Equals(const char* string) noexcept
  * @param length The number of characters to compare.
  * @return true if the strings are equal, false otherwise.
  */
-bool TString::Equals(const char* string, std::size_t length) noexcept
+bool TString::Equals(const char* string, std::size_t length) const noexcept
 {
     // If one of the strings is not initialized, they are considered NOT equal
     if ((this->buffer_ == nullptr) || (string == nullptr)) return false;
@@ -543,7 +572,7 @@ bool TString::Equals(const char* string, std::size_t length) noexcept
  * @param string The character string to compare the current string object to.
  * @return true if the strings are equal, false otherwise.
  */
-bool TString::EqualsCI(const char* string) noexcept
+bool TString::EqualsCI(const char* string) const noexcept
 {
     // If one of the strings is not initialized, they are considered NOT equal
     if ((this->buffer_ == nullptr) || (string == nullptr)) return false;
@@ -558,7 +587,7 @@ bool TString::EqualsCI(const char* string) noexcept
  * @param length The number of characters to compare.
  * @return true if the strings are equal, false otherwise.
  */
-bool TString::EqualsCI(const char* string, std::size_t length) noexcept
+bool TString::EqualsCI(const char* string, std::size_t length) const noexcept
 {
     // If one of the strings is not initialized, they are considered NOT equal
     if ((this->buffer_ == nullptr) || (string == nullptr)) return false;
@@ -681,7 +710,7 @@ bool TString::EndsWith(const TString& compare_string, bool case_sensitive) const
 }
 
 /**
- * Returns the zero-based index of the specified char within the string.
+ * Returns the zero-based index of the first occurence of the specified char within the string.
  * The index of the terminating zero cannot be retrieved by this function.
  * @param char_code The character to find.
  * @return The index of the first occurence of the character or -1 if character not found.

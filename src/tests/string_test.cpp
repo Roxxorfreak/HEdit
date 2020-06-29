@@ -208,12 +208,16 @@ TEST(TString, SubString)
     TString string2;
 
     // unitialized string
-    ASSERT_EQ(string1.SubString(2), nullptr);
+    ASSERT_STREQ(string1.SubString(2), "");
     // out of bounds
     string1 = "Test";
-    ASSERT_EQ(string1.SubString(5), nullptr);
+    ASSERT_STREQ(string1.SubString(5), "");
 
-    // works
+    // works (middle)
+    ASSERT_NO_THROW(string2 = string1.SubString(1, 2));
+    ASSERT_STREQ(string2, "es");
+
+    // works (end)
     ASSERT_NO_THROW(string2 = string1.SubString(2));
     ASSERT_STREQ(string2, "st");
 }

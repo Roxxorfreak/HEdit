@@ -12,13 +12,6 @@
         x86_64     //!< 64bit (x86-64)
     };
 
-    // The number formats for the value display in the Disassembler
-    enum class TNumberFormat : int32_t {
-        HEX,    //!< The number format for the disassembler: Hex
-        DEC,    //!< The number format for the disassembler: Dec
-        BIN     //!< The number format for the disassembler: Bin
-    };
-
     // The register names
     constexpr const char* reg_mm[] = { "mm0", "mm1", "mm2", "mm3", "mm4", "mm5", "mm6", "mm7" };
     constexpr const char* reg_xmm[] = { "xmm0", "xmm1", "xmm2", "xmm3", "xmm4", "xmm5", "xmm6", "xmm7" };
@@ -39,19 +32,19 @@
     class TDisassembler
     {
     private:
+        TValueProcessor formatter_;
         TAsmOpcodeManager opcode_manager_;
     public:
         int32_t Disassemble(TAsmBuffer* buffer, TAsmInstruction* instruction, int32_t instruction_size, TArchitecture architecture, TNumberFormat number_format);
     private:
-        void DisassembleInstruction(TAsmBuffer* buffer, TAsmInstruction* ai, TArchitecture architecture, TNumberFormat number_format);
+        void DisassembleInstruction(TAsmBuffer* buffer, TAsmInstruction* ai, TArchitecture architecture);
         void ProcessPrefixes(TAsmBuffer* buffer, TAsmInstruction* ai);
-        TString DecodeModRmByte16(TAsmInstruction* ai, int32_t index, TAsmBuffer* buffer, TArchitecture architecture, TNumberFormat number_format);
-        TString DecodeModRmByte32(TAsmInstruction* ai, int32_t index, TAsmBuffer* buffer, TArchitecture architecture, TNumberFormat number_format);
+        TString DecodeModRmByte16(TAsmInstruction* ai, int32_t index, TAsmBuffer* buffer, TArchitecture architecture);
+        TString DecodeModRmByte32(TAsmInstruction* ai, int32_t index, TAsmBuffer* buffer, TArchitecture architecture);
         TString GetRegisterName(TAsmInstruction* ai, uint16_t register_code, uint16_t size, TArchitecture architecture);
         TString GetOperandPointerName(TAsmInstruction* ai, uint16_t size, TArchitecture architecture);
         static bool OperandSize32(TArchitecture bit_mode, bool operand_size_prefix) noexcept;
         static bool AddressSize32(TArchitecture bit_mode, bool address_size_prefix) noexcept;
-        TString FormatValue(int64_t value, TValueSize value_size, TNumberFormat number_format, bool use_sign = false) const;
     };
 
 #endif  // HEDIT_SRC_DISASSEMBLER_HPP_

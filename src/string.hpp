@@ -39,7 +39,7 @@
         operator char* () noexcept;
         operator char const* () const noexcept;
         char const* ToString() const noexcept;
-        char* SubString(std::size_t offset) const noexcept;
+        TString SubString(std::size_t offset, int32_t length = -1) const;
         TString& ToLower() noexcept;
         TString& ToUpper() noexcept;
         TString& Trim();
@@ -48,10 +48,10 @@
         std::size_t Size() const noexcept;
         std::size_t Length() const noexcept;
         bool IsEmpty() noexcept;
-        bool Equals(const char* string) noexcept;
-        bool Equals(const char* string, std::size_t length) noexcept;
-        bool EqualsCI(const char* string) noexcept;
-        bool EqualsCI(const char* string, std::size_t length) noexcept;
+        bool Equals(const char* string) const noexcept;
+        bool Equals(const char* string, std::size_t length) const noexcept;
+        bool EqualsCI(const char* string) const noexcept;
+        bool EqualsCI(const char* string, std::size_t length) const noexcept;
         TString& InsertAt(int32_t index, const char insert_char);
         TString& InsertAt(int32_t index, const char* insert_string);
         bool EndsWith(const char* compare_string, bool case_sensitive = true) const noexcept;
