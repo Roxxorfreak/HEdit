@@ -113,6 +113,7 @@
     #include "asm_opcode_manager.hpp"
     #include "asm_instruction.hpp"
     #include "disassembler.hpp"
+    #include "config_file.hpp"
     #include "settings.hpp"
     #include "script_variable.hpp"
     #include "script_command_manager.hpp"

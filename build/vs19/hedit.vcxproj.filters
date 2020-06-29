@@ -89,6 +89,9 @@
     <ClCompile Include="..\..\src\text_viewer.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\config_file.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\comparator.hpp">
@@ -167,6 +170,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\asm_viewer.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\config_file.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

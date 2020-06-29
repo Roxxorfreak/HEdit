@@ -100,7 +100,7 @@ void TSettings::GetColor(TString& line, const char* color_name, TColor* color_va
  * Write a newline to the specified (text) file.
  * @param file The file to write to.
  */
-void TSettings::WriteNewline(TFile* file) noexcept
+void TSettings::WriteNewline(TConfigFile* file) noexcept
 {
     // Write newline string
     file->Write(reinterpret_cast<const unsigned char*>(HE_LINE_BREAK_STRING), strlen(HE_LINE_BREAK_STRING));
@@ -115,7 +115,7 @@ void TSettings::WriteNewline(TFile* file) noexcept
 #if !defined(_MSC_VER)
 __attribute__((format(printf, 3, 4)))
 #endif
-void TSettings::WriteConfigLine(TFile* file, const char* format, ...) noexcept
+void TSettings::WriteConfigLine(TConfigFile* file, const char* format, ...) noexcept
 {
     va_list arguments;
     char string[128] = {};
@@ -148,7 +148,7 @@ bool TSettings::LoadSettings()
     TString line;
 
     // Create the config file object
-    auto file = new TFile(this->config_file_, true);
+    auto file = new TConfigFile(this->config_file_);
 
     // Open the config file
     if (!file->Open(TFileMode::READ))
@@ -266,7 +266,7 @@ bool TSettings::LoadSettings()
 bool TSettings::SaveSettings()
 {
     // Create the config file object
-    TFile file(this->config_file_, false);
+    TConfigFile file(this->config_file_);
 
     // Try to open the config file
     if (file.Open(TFileMode::CREATE) == false)

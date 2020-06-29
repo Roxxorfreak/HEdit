@@ -49,8 +49,8 @@
         static const char* GetColorName(TColor color_id) noexcept;
         void LoadDefaultSettings();
         void GetColor(TString& line, const char* color_name, TColor* color_value) noexcept;
-        void WriteNewline(TFile* file) noexcept;
-        void WriteConfigLine(TFile* file, const char* format, ...) noexcept;
+        void WriteNewline(TConfigFile* file) noexcept;
+        void WriteConfigLine(TConfigFile* file, const char* format, ...) noexcept;
     public:
         explicit TSettings(const char* config_file);
         TSettings(const TSettings&) = delete;

@@ -102,6 +102,7 @@
     <ClCompile Include="..\..\src\asm_instruction.cpp" />
     <ClCompile Include="..\..\src\asm_opcode_manager.cpp" />
     <ClCompile Include="..\..\src\comparator.cpp" />
+    <ClCompile Include="..\..\src\config_file.cpp" />
     <ClCompile Include="..\..\src\console.cpp" />
     <ClCompile Include="..\..\src\disassembler.cpp" />
     <ClCompile Include="..\..\src\editor.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="..\..\src\asm_instruction.hpp" />
     <ClInclude Include="..\..\src\asm_opcode_manager.hpp" />
     <ClInclude Include="..\..\src\comparator.hpp" />
+    <ClInclude Include="..\..\src\config_file.hpp" />
     <ClInclude Include="..\..\src\console.hpp" />
     <ClInclude Include="..\..\src\disassembler.hpp" />
     <ClInclude Include="..\..\src\editor.hpp" />
