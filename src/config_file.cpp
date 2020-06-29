@@ -62,3 +62,46 @@ bool TConfigFile::ReadNextEntry(TConfigEntry* entry)
     // No entry was found
     return false;
 }
+
+/**
+ * Write a newline to the specified (text) file.
+ * @param file The file to write to.
+ */
+void TConfigFile::WriteNewline() noexcept
+{
+    // Write newline string
+    this->Write(reinterpret_cast<const unsigned char*>(HE_LINE_BREAK_STRING), strlen(HE_LINE_BREAK_STRING));
+}
+
+/**
+ * Writes a single line to the config file. The appropriate newline character(s) are appended.
+ * @param file The file to write to.
+ * @param format The string to write to the file.
+ * @param ... additional arguments
+ */
+#if !defined(_MSC_VER)
+__attribute__((format(printf, 2, 3)))
+#endif
+void TConfigFile::WriteConfigLine(const char* format, ...) noexcept
+{
+    va_list arguments;
+    char string[128] = {};
+
+    // Validate input
+    if (format == nullptr) return;
+
+    // Get the start address of the variable arguments
+    va_start(arguments, format);
+
+    // Create the string
+    vsnprintf(string, sizeof(string), format, arguments);
+
+    // Write the string to file
+    this->Write(reinterpret_cast<const unsigned char*>(string), strlen(string));
+
+    // Append newline
+    this->Write(reinterpret_cast<const unsigned char*>(HE_LINE_BREAK_STRING), strlen(HE_LINE_BREAK_STRING));
+
+    // End the argument processing
+    va_end(arguments);
+}

@@ -12,6 +12,7 @@
     {
         TString key;    //!< The config entry key.
         TString value;  //!< The config entry value as string
+        bool is(const char* val) const { return key.EqualsCI(val); }
     };
 
     /**
@@ -26,6 +27,8 @@
         TConfigFile(TConfigFile&&) = delete;
         TConfigFile& operator=(TConfigFile&&) = delete;
         bool ReadNextEntry(TConfigEntry* entry);
+        void WriteNewline() noexcept;
+        void WriteConfigLine(const char* format, ...) noexcept;
     };
 
 #endif  // HEDIT_SRC_CONFIG_FILE_HPP_
