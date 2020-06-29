@@ -109,6 +109,7 @@
     #include "console.hpp"
     #include "window.hpp"
     #include "message_box.hpp"
+    #include "value_processor.hpp"
     #include "asm_buffer.hpp"
     #include "asm_opcode_manager.hpp"
     #include "asm_instruction.hpp"

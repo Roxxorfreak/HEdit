@@ -124,6 +124,7 @@
     <ClCompile Include="..\..\src\script_viewer.cpp" />
     <ClCompile Include="..\..\src\text_viewer.cpp" />
     <ClCompile Include="..\..\src\base_viewer.cpp" />
+    <ClCompile Include="..\..\src\value_processor.cpp" />
     <ClCompile Include="..\..\src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="..\..\src\script_viewer.hpp" />
     <ClInclude Include="..\..\src\text_viewer.hpp" />
     <ClInclude Include="..\..\src\base_viewer.hpp" />
+    <ClInclude Include="..\..\src\value_processor.hpp" />
     <ClInclude Include="..\..\src\window.hpp" />
   </ItemGroup>
   <ItemGroup>

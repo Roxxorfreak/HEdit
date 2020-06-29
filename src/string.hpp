@@ -39,7 +39,7 @@
         operator char* () noexcept;
         operator char const* () const noexcept;
         char const* ToString() const noexcept;
-        TString SubString(std::size_t offset, int32_t length = -1) const noexcept;
+        TString SubString(std::size_t offset, int32_t length = -1) const;
         TString& ToLower() noexcept;
         TString& ToUpper() noexcept;
         TString& Trim();

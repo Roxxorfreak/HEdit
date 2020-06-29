@@ -37,6 +37,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\tests\disassembler_test.cpp" />
     <ClCompile Include="..\..\src\tests\string_test.cpp" />
+    <ClCompile Include="..\..\src\tests\value_processor_test.cpp" />
     <ClCompile Include="..\..\src\tests\_disassembler_runner.cpp" />
     <ClCompile Include="..\..\src\tests\_new_operator.cpp" />
     <ClCompile Include="..\..\src\tests\_test_data_factory.cpp" />
@@ -46,6 +47,7 @@
     <ClCompile Include="..\..\src\disassembler.cpp" />
     <ClCompile Include="..\..\src\file.cpp" />
     <ClCompile Include="..\..\src\string.cpp" />
+    <ClCompile Include="..\..\src\value_processor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="hedit.vcxproj">

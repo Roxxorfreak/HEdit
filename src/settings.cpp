@@ -157,7 +157,7 @@ bool TSettings::LoadSettings()
         return false;
     }
 
-    // Read the file line by line
+    // Read the configuration items
     while (file->ReadNextEntry(&entry) == true)
     {
         // The colors

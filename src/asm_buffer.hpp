@@ -5,18 +5,6 @@
     // Header included
     #define HEDIT_SRC_ASM_BUFFER_HPP_
 
-    // Define the immediate value / displacement sizes (in bytes)
-    // These values are used to calculate the number of bytes during disassembling.
-    enum class TValueSize : std::size_t {
-        BYTE = 1,   //!< The value size: byte
-        WORD = 2,   //!< The value size: word
-        DWORD = 4,  //!< The value size: double word
-        QWORD = 8   //!< The value size: quad word
-    };
-
-    // The macro for accessing the value of a TValueSize
-    #define EV(x) static_cast<std::size_t>(x)
-
     /**
      * @brief The buffer class that manages a byte buffer for machine code to be used with the Disassembler.
      */

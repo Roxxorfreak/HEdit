@@ -337,7 +337,7 @@ char const* TString::ToString() const noexcept
  * @param length The length of the sub-string to return or -1 (default) to return the whole string up the terminating zero.
  * @return The sub-string or an empty string on error.
  */
-TString TString::SubString(std::size_t offset, int32_t length) const noexcept
+TString TString::SubString(std::size_t offset, int32_t length) const
 {
     TString result;
     std::size_t chars_to_copy;
@@ -366,7 +366,7 @@ TString TString::SubString(std::size_t offset, int32_t length) const noexcept
 
     // Copy string-data to new buffer
     strncpy_s(buffer, chars_to_copy + 1, &this->buffer_[offset], chars_to_copy);
- 
+
     // Copy buffer to TString object
     result = buffer;
 

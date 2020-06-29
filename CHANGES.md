@@ -4,7 +4,9 @@
 
 * Source code improvements.
 * The source code now requires C++14.
-* Fixed a display bug in the Disassembler.
+* Bugfix: Screen update in the Disassembler.
+* Bugfix: Binary value presentation in the Disassembler.
+* Bugfix: Parser bug with spaces in the script path in config files.
 
 ## 05.06.2020 - HEdit 4.2.0
 

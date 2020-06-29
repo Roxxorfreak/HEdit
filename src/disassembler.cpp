@@ -7,9 +7,8 @@
  * @param buffer The buffer with the machine code bytes.
  * @param ai A pointer to an object that receives for disassembled instruction data (see TAsmInstruction).
  * @param architecture The processor architecture to use for disassembling (see TArchitecture).
- * @param number_format The number format for the output of number (see TNumberFormat).
  */
-void TDisassembler::DisassembleInstruction(TAsmBuffer* buffer, TAsmInstruction* ai, TArchitecture architecture, TNumberFormat number_format)
+void TDisassembler::DisassembleInstruction(TAsmBuffer* buffer, TAsmInstruction* ai, TArchitecture architecture)
 {
     // Prepare instruction
     ai->Clear();
@@ -25,7 +24,7 @@ void TDisassembler::DisassembleInstruction(TAsmBuffer* buffer, TAsmInstruction* 
     if (ai->GetOpcode() == nullptr)
     {
         // Create a "db" mnemonic with the current byte aka. the unknown opcode
-        ai->assembler_code_ = TString("db ") + this->FormatValue(buffer->ReadValue(TValueSize::BYTE), TValueSize::BYTE, number_format);
+        ai->assembler_code_ = TString("db ") + this->formatter_.FormatValue(buffer->ReadValue(TValueSize::BYTE), TValueSize::BYTE);
 
         // Opcode could not be identified, store machine code
         ai->SetMachineCode(buffer);
@@ -87,9 +86,9 @@ void TDisassembler::DisassembleInstruction(TAsmBuffer* buffer, TAsmInstruction* 
         if (ai->param_[index].type == PT_REG_MEM)
         {
             if (this->AddressSize32(architecture, ai->address_size_prefix_))
-                ai->param_[index].value = this->DecodeModRmByte32(ai, index, buffer, architecture, number_format);
+                ai->param_[index].value = this->DecodeModRmByte32(ai, index, buffer, architecture);
             else
-                ai->param_[index].value = this->DecodeModRmByte16(ai, index, buffer, architecture, number_format);
+                ai->param_[index].value = this->DecodeModRmByte16(ai, index, buffer, architecture);
         }
 
         // Immediate Value (no Mod R/M)
@@ -97,30 +96,30 @@ void TDisassembler::DisassembleInstruction(TAsmBuffer* buffer, TAsmInstruction* 
         {
             if (ai->param_[index].size == BIT8)
             {
-                ai->param_[index].value = this->FormatValue(buffer->ReadValue(TValueSize::BYTE), TValueSize::BYTE, number_format);
+                ai->param_[index].value = this->formatter_.FormatValue(buffer->ReadValue(TValueSize::BYTE), TValueSize::BYTE);
             }
             else if (ai->param_[index].size == BIT16)
             {
-                ai->param_[index].value = this->FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD, number_format);
+                ai->param_[index].value = this->formatter_.FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD);
             }
             else if (ai->param_[index].size == BIT32)
             {
-                ai->param_[index].value = this->FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD, number_format);
+                ai->param_[index].value = this->formatter_.FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD);
             }
             else if (ai->param_[index].size == BIT1632)
             {
                 if (this->OperandSize32(architecture, ai->operand_size_prefix_))  // 32 bit
                 {
-                    ai->param_[index].value = this->FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD, number_format);
+                    ai->param_[index].value = this->formatter_.FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD);
                 }
                 else
                 {
-                    ai->param_[index].value = this->FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD, number_format);
+                    ai->param_[index].value = this->formatter_.FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD);
                 }
             }
             else if (ai->param_[index].size == BIT64)
             {
-                ai->param_[index].value = this->FormatValue(buffer->ReadValue(TValueSize::QWORD), TValueSize::QWORD, number_format);
+                ai->param_[index].value = this->formatter_.FormatValue(buffer->ReadValue(TValueSize::QWORD), TValueSize::QWORD);
             }
         }
 
@@ -163,7 +162,7 @@ void TDisassembler::DisassembleInstruction(TAsmBuffer* buffer, TAsmInstruction* 
             const int64_t address = buffer->GetCurrentAddress() + val;
 
             // Always display address in 64bit
-            ai->param_[index].value = this->FormatValue(address, TValueSize::QWORD, number_format);
+            ai->param_[index].value = this->formatter_.FormatValue(address, TValueSize::QWORD);
         }
 
         // Memory offset (only for some mov instructions)
@@ -179,16 +178,16 @@ void TDisassembler::DisassembleInstruction(TAsmBuffer* buffer, TAsmInstruction* 
             {
                 if (ai->param_[index].size == BIT16)  // parameters with 16bit operands even in 32bit mode
                 {
-                    ai->param_[index].value += this->FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD, number_format);
+                    ai->param_[index].value += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD);
                 }
                 else  // parameters are changed from 16bit to 32bit (BIT32, BIT1632)
                 {
-                    ai->param_[index].value += this->FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD, number_format);
+                    ai->param_[index].value += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD);
                 }
             }
             else  // 16bit processing
             {
-                ai->param_[index].value += this->FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD, number_format);
+                ai->param_[index].value += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD);
             }
             ai->param_[index].value += "]";
         }  // EO Memory offset
@@ -204,17 +203,17 @@ void TDisassembler::DisassembleInstruction(TAsmBuffer* buffer, TAsmInstruction* 
             {
                 val = buffer->ReadValue(TValueSize::DWORD);
                 val2 = buffer->ReadValue(TValueSize::WORD);
-                ai->param_[index].value = this->FormatValue(val2, TValueSize::WORD, number_format);
+                ai->param_[index].value = this->formatter_.FormatValue(val2, TValueSize::WORD);
                 ai->param_[index].value += ":";
-                ai->param_[index].value += this->FormatValue(val, TValueSize::DWORD, number_format);
+                ai->param_[index].value += this->formatter_.FormatValue(val, TValueSize::DWORD);
             }
             else
             {
                 val = buffer->ReadValue(TValueSize::WORD);
                 val2 = buffer->ReadValue(TValueSize::WORD);
-                ai->param_[index].value = this->FormatValue(val2, TValueSize::WORD, number_format);
+                ai->param_[index].value = this->formatter_.FormatValue(val2, TValueSize::WORD);
                 ai->param_[index].value += ":";
-                ai->param_[index].value += this->FormatValue(val, TValueSize::WORD, number_format);
+                ai->param_[index].value += this->formatter_.FormatValue(val, TValueSize::WORD);
             }
         }  // EO Absolute address
     }  /* End of parameter processing */
@@ -326,10 +325,9 @@ void TDisassembler::ProcessPrefixes(TAsmBuffer* buffer, TAsmInstruction* ai)
  * @param index The zero-based index of the parameter that is being processed.
  * @param buffer The machine code buffer to read additional data from.
  * @param architecture The processor architecture to use for disassembling (see TArchitecture).
- * @param number_format The number format for the output of numbers (see TNumberFormat).
  * @return The decoded value of the ModR/M byte.
  */
-TString TDisassembler::DecodeModRmByte16(TAsmInstruction* ai, int32_t index, TAsmBuffer* buffer, TArchitecture architecture, TNumberFormat number_format)
+TString TDisassembler::DecodeModRmByte16(TAsmInstruction* ai, int32_t index, TAsmBuffer* buffer, TArchitecture architecture)
 {
     TString val;
 
@@ -372,7 +370,7 @@ TString TDisassembler::DecodeModRmByte16(TAsmInstruction* ai, int32_t index, TAs
                 break;
             case 6:
                 val += "[";
-                val += this->FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD, number_format);
+                val += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD);
                 val += "]";
                 break;
             case 7:
@@ -391,7 +389,7 @@ TString TDisassembler::DecodeModRmByte16(TAsmInstruction* ai, int32_t index, TAs
         if (ai->mod_rm_.rm == 6) val += "[bp";
         if (ai->mod_rm_.rm == 7) val += "[bx";
 
-        val += this->FormatValue(buffer->ReadValue(TValueSize::BYTE), TValueSize::BYTE, number_format, true);
+        val += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::BYTE), TValueSize::BYTE, true);
         val += "]";
     }
     else if (ai->mod_rm_.mod == 2)
@@ -405,7 +403,7 @@ TString TDisassembler::DecodeModRmByte16(TAsmInstruction* ai, int32_t index, TAs
         if (ai->mod_rm_.rm == 6) val += "[bp";
         if (ai->mod_rm_.rm == 7) val += "[bx";
 
-        val += this->FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD, number_format, true);
+        val += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::WORD), TValueSize::WORD, true);
         val += "]";
     }
 
@@ -419,10 +417,9 @@ TString TDisassembler::DecodeModRmByte16(TAsmInstruction* ai, int32_t index, TAs
  * @param index The zero-based index of the parameter that is being processed.
  * @param buffer The machine code buffer to read additional data from.
  * @param architecture The processor architecture to use for disassembling (see TArchitecture).
- * @param number_format The number format for the output of numbers (see TNumberFormat).
  * @return The decoded value of the ModR/M byte.
  */
-TString TDisassembler::DecodeModRmByte32(TAsmInstruction* ai, int32_t index, TAsmBuffer* buffer, TArchitecture architecture, TNumberFormat number_format)
+TString TDisassembler::DecodeModRmByte32(TAsmInstruction* ai, int32_t index, TAsmBuffer* buffer, TArchitecture architecture)
 {
     TString val;
 
@@ -468,7 +465,7 @@ TString TDisassembler::DecodeModRmByte32(TAsmInstruction* ai, int32_t index, TAs
                 break;
             case 5:
                 val += "[";
-                val += this->FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD, number_format);
+                val += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD);
                 val += "]";
                 break;
             case 6:
@@ -511,7 +508,7 @@ TString TDisassembler::DecodeModRmByte32(TAsmInstruction* ai, int32_t index, TAs
         }
         if (!sib_present)  // Add 8bit displacement if SIB byte is not present, otherwise remember 8bit displacement and continue to SIP processing
         {
-            val += this->FormatValue(buffer->ReadValue(TValueSize::BYTE), TValueSize::BYTE, number_format, true);
+            val += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::BYTE), TValueSize::BYTE, true);
             val += "]";
         }
     }
@@ -547,7 +544,7 @@ TString TDisassembler::DecodeModRmByte32(TAsmInstruction* ai, int32_t index, TAs
         }
         if (!sib_present)  // Add 32bit displacement if SIB byte is not present, otherwise remember 32bit displacement and continue to SIP processing
         {
-            val += this->FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD, number_format, true);
+            val += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD, true);
             val += "]";
         }
     }
@@ -635,11 +632,11 @@ TString TDisassembler::DecodeModRmByte32(TAsmInstruction* ai, int32_t index, TAs
 
         if (imm8)
         {
-            val += this->FormatValue(buffer->ReadValue(TValueSize::BYTE), TValueSize::BYTE, number_format, true);
+            val += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::BYTE), TValueSize::BYTE, true);
         }
         if (imm32)
         {
-            val += this->FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD, number_format, true);
+            val += this->formatter_.FormatValue(buffer->ReadValue(TValueSize::DWORD), TValueSize::DWORD, true);
         }
 
         val += "]";
@@ -786,62 +783,6 @@ bool TDisassembler::AddressSize32(TArchitecture bit_mode, bool address_size_pref
 }
 
 /**
- * Formats an integer value for output.
- * @param value The value to format for output.
- * @param value_size The size (in bytes) of the value (see TValueSize).
- * @param number_format The number format for the output of number (see TNumberFormat).
- * @param use_sign true to format the output with +/-sign, false otherwise.
- */
-TString TDisassembler::FormatValue(int64_t value, TValueSize value_size, TNumberFormat number_format, bool use_sign) const
-{
-    TString sign;
-    char buffer[65];  // The buffer must be long enough to hold a 64bit number in binary representation
-
-    // Check if to use sign
-    if (use_sign == true)
-    {
-        // Use sign
-        if (value < 0)
-        {
-            // Value is negative, use sign and convert value
-            sign = "-";
-            value = std::llabs(value);
-        }
-        else
-        {
-            // Value is positive, use sign and leave value
-            sign = "+";
-        }
-    }
-    else
-    {
-        // Don't display sign
-        sign = "";
-    }
-
-    switch (number_format)
-    {
-        case TNumberFormat::DEC:
-            snprintf(buffer, sizeof(buffer), "%s%" PRIi64, sign.ToString(), value);
-            break;
-        case TNumberFormat::HEX:
-            if (value_size == TValueSize::BYTE)  snprintf(buffer, sizeof(buffer), "%s0x%02" PRIX8, sign.ToString(), static_cast<uint8_t>(value));
-            if (value_size == TValueSize::WORD)  snprintf(buffer, sizeof(buffer), "%s0x%04" PRIX16, sign.ToString(), static_cast<uint16_t>(value));
-            if (value_size == TValueSize::DWORD) snprintf(buffer, sizeof(buffer), "%s0x%08" PRIX32, sign.ToString(), static_cast<uint32_t>(value));
-            if (value_size == TValueSize::QWORD) snprintf(buffer, sizeof(buffer), "%s0x%016" PRIX64, sign.ToString(), static_cast<uint64_t>(value));
-            break;
-        case TNumberFormat::BIN:
-            TString bin;
-            bin.BinaryFromInt(value, EV(value_size));
-            snprintf(buffer, sizeof(buffer), "%s%s", sign.ToString(), bin.ToString());
-            break;
-    }
-
-    // Return the string
-    return TString(buffer);
-}
-
-/**
  * Disassembles the specified buffer into an array of assembler instructions.
  * @param buffer The buffer that contains the machine code to disassemble.
  * @param instruction A pointer to an array that receives the disassembled instructions.
@@ -854,6 +795,9 @@ int32_t TDisassembler::Disassemble(TAsmBuffer* buffer, TAsmInstruction* instruct
 {
     int32_t disassembled_instructions = 0;
 
+    // Set the parameters for the value processor
+    this->formatter_.SetNumberFormat(number_format);
+
     // Start over
     buffer->ResetInstructionPointer();
 
@@ -864,7 +808,7 @@ int32_t TDisassembler::Disassemble(TAsmBuffer* buffer, TAsmInstruction* instruct
         if (buffer->GetInstructionPointer() >= buffer->GetCodeLength()) break;
 
         // Disassemble next instruction
-        this->DisassembleInstruction(buffer, &instruction[i], architecture, number_format);
+        this->DisassembleInstruction(buffer, &instruction[i], architecture);
 
         // Count the disassembled instruction
         disassembled_instructions++;
