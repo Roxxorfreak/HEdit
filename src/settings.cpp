@@ -4,7 +4,7 @@
 
 /**
  * Loads the settings from the config file.
- * @param config_dir The directory to store the config file (usually the user's home directory).
+ * @param config_dir The directory to store the config file (usually the user's home directory). Must end with a path delimiter (HE_PATH_DELIMITER).
  */
 TSettings::TSettings(const char* config_dir)
 {
@@ -45,7 +45,7 @@ void TSettings::LoadDefaultSettings()
     this->use_caching_              = true;
     this->plugin_file_              = "numeric.hs";
 
-    // Create default path for script files
+    // Create default path for script files (~\.hedit-scripts by default)
     this->plugin_path_ = this->config_dir_;
     this->plugin_path_ += ".hedit-scripts";
     this->plugin_path_ += HE_PATH_DELIMITER;
@@ -92,7 +92,7 @@ void TSettings::GetColor(TString& line, const char* color_name, TColor* color_va
     // Get length of color name
     const auto length = strlen(color_name);
 
-    // Extract color if, if color name was found on the line
+    // Extract color, if color name was found on the line
     if (line.EqualsCI(color_name, length) == true) (*color_value) = this->GetColorId(line.SubString(length + 1));
 }
 
