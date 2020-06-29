@@ -15,7 +15,6 @@ void TValueProcessor::SetNumberFormat(TNumberFormat format)
  * Formats an integer value for output.
  * @param value The value to format for output.
  * @param value_size The size (in bytes) of the value (see TValueSize).
- * @param number_format The number format for the output of number (see TNumberFormat).
  * @param use_sign true to format the output with +/-sign, false otherwise.
  */
 TString TValueProcessor::FormatValue(int64_t value, TValueSize value_size, bool use_sign) const
