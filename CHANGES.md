@@ -1,6 +1,6 @@
 # Changelog
 
-## 09.06.2020 - HEdit 4.2.1
+## 29.06.2020 - HEdit 4.2.1
 
 * Source code improvements.
 * The source code now requires C++14.
