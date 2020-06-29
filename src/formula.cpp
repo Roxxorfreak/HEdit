@@ -117,8 +117,7 @@ int64_t TFormula::EvaluateOperand(TString term)
     if (term.Equals("0x", 2))
     {
         operand_type = TFormulaOperand::HEX;
-        TString temp = TString(term.SubString(2));
-        term = temp;
+        term = term.SubString(2);
     }
     else if (term[length - 1] == 'd')
     {

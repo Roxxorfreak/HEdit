@@ -79,21 +79,18 @@ void TSettings::LoadDefaultSettings()
 
 /**
  * Reads a color value from the specified line, if it contains the specified color name.
- * @param line The config file line (in the format "<color name>=<color value>")
- * @param color_name The color name to read (e.g. "TextColor")
+ * @param entry The config entry (containing "<color name>=<color value>").
+ * @param color_name The color name to read (e.g. "TextColor").
  * @param color_value A pointer to an integer that receives the color value (TConsole color code).
  */
-void TSettings::GetColor(TString& line, const char* color_name, TColor* color_value) noexcept
+void TSettings::GetColor(const TConfigEntry& entry, const char* color_name, TColor* color_value) noexcept
 {
     // Validate pointers
     if (color_name == nullptr) return;
     if (color_value == nullptr) return;
 
-    // Get length of color name
-    const auto length = strlen(color_name);
-
     // Extract color, if color name was found on the line
-    if (line.EqualsCI(color_name, length) == true) (*color_value) = this->GetColorId(line.SubString(length + 1));
+    if (entry.key.EqualsCI(color_name) == true) (*color_value) = this->GetColorId(entry.value);
 }
 
 /**
@@ -145,7 +142,7 @@ void TSettings::WriteConfigLine(TConfigFile* file, const char* format, ...) noex
  */
 bool TSettings::LoadSettings()
 {
-    TString line;
+    TConfigEntry entry;
 
     // Create the config file object
     auto file = new TConfigFile(this->config_file_);
@@ -161,59 +158,46 @@ bool TSettings::LoadSettings()
     }
 
     // Read the file line by line
-    do
+    while (file->ReadNextEntry(&entry) == true)
     {
-        // Read the next line
-        line = file->ReadLine();
-        if (line.Length() == 0) continue;
-
-        // Remove spaces and tabs from the line
-        line.StripChar(0x09);
-        line.StripChar(0x20);
-
-        // Skip comments (starting with ; or # or //)
-        if (line.Equals(";", 1)) continue;
-        if (line.Equals("#", 1)) continue;
-        if (line.Equals("//", 2)) continue;
-
         // The colors
-        this->GetColor(line, "textcolor", &this->text_color_);
-        this->GetColor(line, "inactivetextcolor", &this->inactive_text_color_);
-        this->GetColor(line, "textbackgroundcolor", &this->text_back_color_);
-        this->GetColor(line, "activefilecolor", &this->active_file_color_);
-        this->GetColor(line, "activefilebackgroundcolor", &this->active_file_back_color_);
-        this->GetColor(line, "markedtextcolor", &this->marked_text_color_);
-        this->GetColor(line, "markedtextbackgroundcolor", &this->marked_text_back_color_);
-        this->GetColor(line, "differencecolor1", &this->difference_color_[0]);
-        this->GetColor(line, "differencebackgroundcolor1", &this->difference_back_color_[0]);
-        this->GetColor(line, "differencecolor2", &this->difference_color_[1]);
-        this->GetColor(line, "differencebackgroundcolor2", &this->difference_back_color_[1]);
-        this->GetColor(line, "differencecolor3", &this->difference_color_[2]);
-        this->GetColor(line, "differencebackgroundcolor3", &this->difference_back_color_[2]);
-        this->GetColor(line, "differencecolor4", &this->difference_color_[3]);
-        this->GetColor(line, "differencebackgroundcolor4", &this->difference_back_color_[3]);
-        this->GetColor(line, "differencecolor5", &this->difference_color_[4]);
-        this->GetColor(line, "differencebackgroundcolor5", &this->difference_back_color_[4]);
-        this->GetColor(line, "dialogcolor", &this->dialog_color_);
-        this->GetColor(line, "dialogbackgroundcolor", &this->dialog_back_color_);
+        this->GetColor(entry, "textcolor", &this->text_color_);
+        this->GetColor(entry, "inactivetextcolor", &this->inactive_text_color_);
+        this->GetColor(entry, "textbackgroundcolor", &this->text_back_color_);
+        this->GetColor(entry, "activefilecolor", &this->active_file_color_);
+        this->GetColor(entry, "activefilebackgroundcolor", &this->active_file_back_color_);
+        this->GetColor(entry, "markedtextcolor", &this->marked_text_color_);
+        this->GetColor(entry, "markedtextbackgroundcolor", &this->marked_text_back_color_);
+        this->GetColor(entry, "differencecolor1", &this->difference_color_[0]);
+        this->GetColor(entry, "differencebackgroundcolor1", &this->difference_back_color_[0]);
+        this->GetColor(entry, "differencecolor2", &this->difference_color_[1]);
+        this->GetColor(entry, "differencebackgroundcolor2", &this->difference_back_color_[1]);
+        this->GetColor(entry, "differencecolor3", &this->difference_color_[2]);
+        this->GetColor(entry, "differencebackgroundcolor3", &this->difference_back_color_[2]);
+        this->GetColor(entry, "differencecolor4", &this->difference_color_[3]);
+        this->GetColor(entry, "differencebackgroundcolor4", &this->difference_back_color_[3]);
+        this->GetColor(entry, "differencecolor5", &this->difference_color_[4]);
+        this->GetColor(entry, "differencebackgroundcolor5", &this->difference_back_color_[4]);
+        this->GetColor(entry, "dialogcolor", &this->dialog_color_);
+        this->GetColor(entry, "dialogbackgroundcolor", &this->dialog_back_color_);
 
         // The settings for word detection
-        if (line.EqualsCI("MinimumLength", 13)) this->probable_word_length_ = atoi(line.SubString(14));
-        if (line.EqualsCI("CharSet", 7)) this->probable_word_char_set_ = line.SubString(8);
+        if (entry.key.EqualsCI("MinimumLength")) this->probable_word_length_ = static_cast<int32_t>(entry.value.ParseDec());
+        if (entry.key.EqualsCI("CharSet")) this->probable_word_char_set_ = entry.value;
 
         // The temporary file name
-        if (line.EqualsCI("TempFile", 8)) this->temp_file_name_ = line.SubString(9);
+        if (entry.key.EqualsCI("TempFile")) this->temp_file_name_ = entry.value;
 
         // Plugin path
-        if (line.EqualsCI("PluginPath", 10)) this->plugin_path_ = line.SubString(11);
+        if (entry.key.EqualsCI("PluginPath")) this->plugin_path_ = entry.value;
 
         // The Plugin for Shift-F4
-        if (line.EqualsCI("PluginName", 10)) this->plugin_file_ = line.SubString(11);
+        if (entry.key.EqualsCI("PluginName")) this->plugin_file_ = entry.value;
 
         // The cache persistency setting
-        if (line.EqualsCI("Persistent", 10))
+        if (entry.key.EqualsCI("Persistent"))
         {
-            if (_strnicmp(line.SubString(11), "yes", 3) == 0)
+            if (entry.value.EqualsCI("yes") == true)
             {
                 this->temp_file_persistent_ = true;
             }
@@ -224,9 +208,9 @@ bool TSettings::LoadSettings()
         }
 
         // The cache setting
-        if (line.EqualsCI("Caching", 7))
+        if (entry.key.EqualsCI("Caching"))
         {
-            if (_strnicmp(line.SubString(8), "yes", 3) == 0)
+            if (entry.value.EqualsCI("yes") == true)
             {
                 this->use_caching_ = true;
             }
@@ -237,17 +221,17 @@ bool TSettings::LoadSettings()
         }
 
         // The numeric format
-        if (line.EqualsCI("NumericFormat", 13))
+        if (entry.key.EqualsCI("NumericFormat", 13))
         {
-            if (_strnicmp(line.SubString(14), "dec", 3) == 0) this->number_format_ = TNumberFormat::DEC;
-            if (_strnicmp(line.SubString(14), "hex", 3) == 0) this->number_format_ = TNumberFormat::HEX;
-            if (_strnicmp(line.SubString(14), "bin", 3) == 0) this->number_format_ = TNumberFormat::BIN;
+            if (entry.value.EqualsCI("dec") == true) this->number_format_ = TNumberFormat::DEC;
+            if (entry.value.EqualsCI("hex") == true) this->number_format_ = TNumberFormat::HEX;
+            if (entry.value.EqualsCI("bin") == true) this->number_format_ = TNumberFormat::BIN;
         }
 
         // The number of undo steps
-        if (line.EqualsCI("Steps", 5)) this->undo_steps_ = atoi(line.SubString(6));
+        if (entry.key.EqualsCI("Steps", 5)) this->undo_steps_ = static_cast<int32_t>(entry.value.ParseDec());
 
-    } while (!file->IsEOF());
+    }
 
     // Append trailing (back)slash to plugin path if not present
     if (!this->plugin_path_.EndsWith(HE_PATH_DELIMITER)) this->plugin_path_ += HE_PATH_DELIMITER;

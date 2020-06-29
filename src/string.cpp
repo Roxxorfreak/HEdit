@@ -543,7 +543,7 @@ bool TString::IsEmpty() noexcept
  * @param string The character string to compare the current string object to.
  * @return true if the strings are equal, false otherwise.
  */
-bool TString::Equals(const char* string) noexcept
+bool TString::Equals(const char* string) const noexcept
 {
     // If one of the strings is not initialized, they are considered NOT equal
     if ((this->buffer_ == nullptr) || (string == nullptr)) return false;
@@ -558,7 +558,7 @@ bool TString::Equals(const char* string) noexcept
  * @param length The number of characters to compare.
  * @return true if the strings are equal, false otherwise.
  */
-bool TString::Equals(const char* string, std::size_t length) noexcept
+bool TString::Equals(const char* string, std::size_t length) const noexcept
 {
     // If one of the strings is not initialized, they are considered NOT equal
     if ((this->buffer_ == nullptr) || (string == nullptr)) return false;
@@ -572,7 +572,7 @@ bool TString::Equals(const char* string, std::size_t length) noexcept
  * @param string The character string to compare the current string object to.
  * @return true if the strings are equal, false otherwise.
  */
-bool TString::EqualsCI(const char* string) noexcept
+bool TString::EqualsCI(const char* string) const noexcept
 {
     // If one of the strings is not initialized, they are considered NOT equal
     if ((this->buffer_ == nullptr) || (string == nullptr)) return false;
@@ -587,7 +587,7 @@ bool TString::EqualsCI(const char* string) noexcept
  * @param length The number of characters to compare.
  * @return true if the strings are equal, false otherwise.
  */
-bool TString::EqualsCI(const char* string, std::size_t length) noexcept
+bool TString::EqualsCI(const char* string, std::size_t length) const noexcept
 {
     // If one of the strings is not initialized, they are considered NOT equal
     if ((this->buffer_ == nullptr) || (string == nullptr)) return false;

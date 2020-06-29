@@ -51,8 +51,8 @@ bool TConfigFile::ReadNextEntry(TConfigEntry* entry)
         auto value = line.SubString(static_cast<std::size_t>(divider_pos) + 1, -1);
 
         // Assign key and value
-        entry->key = key;
-        entry->value = value;
+        entry->key = key.Trim();
+        entry->value = value.Trim();
 
         // Successfully read config entry
         return true;
