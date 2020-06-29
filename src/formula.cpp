@@ -59,10 +59,9 @@ int64_t TFormula::Evaluate(TString term)
     const char operator_char = term[static_cast<std::size_t>(operator_pos)];
 
     // Extract the left part of the formula
-    TString left_term = term;
-    left_term[static_cast<std::size_t>(operator_pos)] = 0;
+    TString left_term = term.SubString(0, operator_pos);
     // Extract the right part of the formula
-    TString right_term = TString(term.SubString(static_cast<std::size_t>(operator_pos + 1)));
+    TString right_term = term.SubString(operator_pos + 1);
 
     // Recursively compute both parts of the formula
     const auto left_value = this->Evaluate(left_term);

@@ -879,8 +879,8 @@ void THEdit::Calculator()
             this->console_->SetCursor(24, 4); this->console_->PrintFormat("%" PRIi64, result);
             this->console_->SetCursor(24, 5); this->console_->PrintFormat("%" PRIu64, result);
             this->console_->SetCursor(24, 6); this->console_->PrintFormat("0x%016" PRIX64, result);
-            this->console_->SetCursor(24, 7); this->console_->PrintFormat("%.32s", binary.ToString());
-            this->console_->SetCursor(24, 8); this->console_->PrintFormat("%.32s", binary.SubString(32));
+            this->console_->SetCursor(24, 7); this->console_->PrintFormat("%.32s", binary.SubString(0, 32).ToString());
+            this->console_->SetCursor(24, 8); this->console_->PrintFormat("%.32s", binary.SubString(32).ToString());
         }
         else
         {

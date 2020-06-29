@@ -502,8 +502,7 @@ bool TScriptInterpreter::FindFunction(const char* function_name, const TStringLi
         }
 
         // Success: Extract script description
-        this->script_description_ = line.SubString(static_cast<std::size_t>(start_quote_index) + 1);
-        this->script_description_[static_cast<std::size_t>(end_quote_index - start_quote_index - 1)] = 0;
+        this->script_description_ = line.SubString(static_cast<std::size_t>(start_quote_index) + 1, end_quote_index - start_quote_index - 1);
 
         // Return success
         return true;
