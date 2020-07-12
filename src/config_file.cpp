@@ -65,7 +65,6 @@ bool TConfigFile::ReadNextEntry(TConfigEntry* entry)
 
 /**
  * Write a newline to the specified (text) file.
- * @param file The file to write to.
  */
 void TConfigFile::WriteNewline() noexcept
 {
