@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\tests\asm_buffer_test.cpp" />
+    <ClCompile Include="..\..\src\tests\asm_instruction_test.cpp" />
     <ClCompile Include="..\..\src\tests\disassembler_test.cpp" />
     <ClCompile Include="..\..\src\tests\string_test.cpp" />
     <ClCompile Include="..\..\src\tests\value_processor_test.cpp" />
