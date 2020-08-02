@@ -112,3 +112,36 @@ TEST(TAsmBuffer, ReadByte)
     // Instruction pointer must be 10
     ASSERT_EQ(10u, buffer.GetInstructionPointer());
 }
+
+TEST(TAsmBuffer, ReadValue)
+{
+    int64_t value = 1311768467284833366;
+    TAsmBuffer buffer(10);
+
+    // Copy the number bytes to the string
+    strncpy_s(reinterpret_cast<char*>(buffer.GetBuffer()), 10, reinterpret_cast<char*>(&value), 8);
+
+    // Set code length
+    buffer.SetCodeLength(8);
+
+    // Read byte
+    ASSERT_EQ(0x56, buffer.ReadValue(TValueSize::BYTE));
+
+    // Read word
+    ASSERT_EQ(0x1234, buffer.ReadValue(TValueSize::WORD));
+
+    // Read dword
+    ASSERT_EQ(0x34567890, buffer.ReadValue(TValueSize::DWORD));
+
+    // Read qword
+    ASSERT_EQ(0x0000000000000012, buffer.ReadValue(TValueSize::QWORD));
+
+    // Read word
+    ASSERT_EQ(0, buffer.ReadValue(TValueSize::WORD));
+
+    // Start over
+    buffer.ResetInstructionPointer();
+
+    // Read qword
+    ASSERT_EQ(0x1234567890123456, buffer.ReadValue(TValueSize::QWORD));
+}
