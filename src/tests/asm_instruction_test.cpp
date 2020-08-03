@@ -49,3 +49,59 @@ TEST(TAsmInstruction, GetSegmentOverrideName)
     inst.SetSegmentOverride(TSegmentOverride::GS);
     ASSERT_STREQ("gs:", inst.GetSegmentOverrideName().ToString());
 }
+
+TEST(TAsmInstruction, GetSetOpcode)
+{
+    TAsmBuffer buffer(2);
+    TAsmInstruction inst;
+    TAsmOpcodeManager opcodes;
+
+    // Init the buffer for opcode "nop"
+    *buffer.GetBuffer() = 0x90;
+    buffer.SetCodeLength(1);
+
+    // Find opcode
+    auto oc = opcodes.FindOpcode(&buffer);
+    ASSERT_NE(nullptr, oc);
+    ASSERT_EQ(nullptr, inst.GetOpcode());
+
+    // Set the opcde
+    inst.SetOpcode(oc);
+
+    // Validate opcode data
+    ASSERT_EQ(PT_NONE, inst.param_[0].type);
+    ASSERT_EQ(DONTCARE, inst.param_[0].size);
+    ASSERT_EQ(HE_OPCODE_PREFIX_NONE, inst.opcode_prefix_);
+    
+    // Validate opcode & data
+    ASSERT_NE(nullptr, inst.GetOpcode());
+    ASSERT_STREQ("nop", inst.GetOpcode()->asm16.ToString());
+    ASSERT_STREQ("nop", inst.GetOpcode()->asm32.ToString());
+}
+
+TEST(TAsmInstruction, GetSetMachineCode)
+{
+    TAsmBuffer buffer(3);
+    TAsmInstruction inst;
+    TAsmOpcodeManager opcodes;
+
+    // Init the buffer for command "add eax, dword ptr [eax]"
+    *buffer.GetBuffer() = 0x03;
+    buffer.SetCodeLength(2);
+
+    // Find opcode
+    auto oc = opcodes.FindOpcode(&buffer);
+    ASSERT_NE(nullptr, oc);
+
+    // Set the opcde
+    inst.SetOpcode(oc);
+
+    // Set the machine code (the second byte is not decoded)
+    inst.SetMachineCode(&buffer);
+
+    // Length should be 1
+    ASSERT_EQ(1u, inst.GetLength());
+
+    // Compare first code byte
+    ASSERT_EQ(3u, *inst.GetMachineCode());
+}

@@ -120,7 +120,7 @@ const TOpcode* TAsmInstruction::GetOpcode()
  */
 void TAsmInstruction::SetMachineCode(TAsmBuffer* buffer)
 {
-    // Calculate the length of the machine code for the current istruction
+    // Calculate the length of the machine code for the current instruction
     auto length = static_cast<std::size_t>(buffer->GetCurrentAddress() - this->address_);
 
     // Calculate start offset
