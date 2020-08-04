@@ -105,3 +105,48 @@ TEST(TAsmInstruction, GetSetMachineCode)
     // Compare first code byte
     ASSERT_EQ(3u, *inst.GetMachineCode());
 }
+
+TEST(TAsmInstruction, DecodeModRMByte)
+{
+    TAsmInstruction inst;
+
+    // Decode 0xff
+    inst.DecodeModRMByte(0xff);
+
+    // Validate
+    ASSERT_EQ(3u, inst.mod_rm_.mod);
+    ASSERT_EQ(7u, inst.mod_rm_.reg);
+    ASSERT_EQ(7u, inst.mod_rm_.rm);
+
+    // Decode 0xaa
+    inst.DecodeModRMByte(0xaa);
+
+    // Validate
+    ASSERT_EQ(2u, inst.mod_rm_.mod);
+    ASSERT_EQ(5u, inst.mod_rm_.reg);
+    ASSERT_EQ(2u, inst.mod_rm_.rm);
+
+    // Only mod set
+    inst.DecodeModRMByte(0xc0);
+
+    // Validate
+    ASSERT_EQ(3u, inst.mod_rm_.mod);
+    ASSERT_EQ(0u, inst.mod_rm_.reg);
+    ASSERT_EQ(0u, inst.mod_rm_.rm);
+
+    // Only reg set
+    inst.DecodeModRMByte(0x38);
+
+    // Validate
+    ASSERT_EQ(0u, inst.mod_rm_.mod);
+    ASSERT_EQ(7u, inst.mod_rm_.reg);
+    ASSERT_EQ(0u, inst.mod_rm_.rm);
+
+    // Only rm set
+    inst.DecodeModRMByte(0x07);
+
+    // Validate
+    ASSERT_EQ(0u, inst.mod_rm_.mod);
+    ASSERT_EQ(0u, inst.mod_rm_.reg);
+    ASSERT_EQ(7u, inst.mod_rm_.rm);
+}
