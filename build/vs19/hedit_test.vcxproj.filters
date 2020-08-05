@@ -49,6 +49,12 @@
     <ClCompile Include="..\..\src\tests\asm_opcode_manager_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tests\formula_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\formula.cpp">
+      <Filter>hedit-Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
