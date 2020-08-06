@@ -16,8 +16,15 @@ TString::TString() noexcept
  * Move constructor.
  * @param source_string The source string to move.
  */
-TString::TString(TString&& source_string) noexcept : TString(std::exchange(source_string.buffer_, nullptr))
+TString::TString(TString&& source_string) noexcept
 {
+    // Reset data
+    this->buffer_ = nullptr;
+    this->buffer_size_ = 0;
+
+    // Move internal data
+    std::swap(this->buffer_, source_string.buffer_);
+    std::swap(this->buffer_size_, source_string.buffer_size_);
 }
 
 /**
@@ -96,8 +103,9 @@ void TString::Free() noexcept
  */
 TString& TString::operator=(TString&& source_string) noexcept
 {
-    // move string
+    // Move internal data
     std::swap(this->buffer_, source_string.buffer_);
+    std::swap(this->buffer_size_, source_string.buffer_size_);
 
     // Return this reference
     return *this;
