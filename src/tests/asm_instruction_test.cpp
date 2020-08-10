@@ -72,7 +72,7 @@ TEST(TAsmInstruction, GetSetOpcode)
     ASSERT_EQ(PT_NONE, inst.param_[0].type);
     ASSERT_EQ(DONTCARE, inst.param_[0].size);
     ASSERT_EQ(HE_OPCODE_PREFIX_NONE, inst.opcode_prefix_);
-    
+
     // Validate opcode & data
     ASSERT_NE(nullptr, inst.GetOpcode());
     ASSERT_STREQ("nop", inst.GetOpcode()->asm16.ToString());

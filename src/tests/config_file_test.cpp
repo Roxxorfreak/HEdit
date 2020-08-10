@@ -38,7 +38,7 @@ TEST(TConfigFile, ReadNextEntry)
     ASSERT_EQ(true, config.ReadNextEntry(&entry));
     ASSERT_STREQ("valid", entry.key.ToString());
     ASSERT_STREQ("entry", entry.value.ToString());
-    
+
     // No more entries
     ASSERT_EQ(false, config.ReadNextEntry(&entry));
 }
