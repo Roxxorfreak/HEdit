@@ -16,7 +16,7 @@
     public:
         void Clear() noexcept;
         bool IsSelected(int64_t position) noexcept;
-        int64_t Length() noexcept;
+        int64_t Length() const noexcept;
         int64_t Start() const noexcept;
     };
 
