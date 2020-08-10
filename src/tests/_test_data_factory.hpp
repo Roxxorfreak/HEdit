@@ -19,6 +19,7 @@ public:
     std::size_t ReadBinaryFile(const char* file_name, unsigned char* buffer, std::size_t buffer_size);
     std::size_t WriteBinaryFile(const char* file_name, unsigned char* buffer, std::size_t buffer_size);
     void DeleteFile(const char* file_name);
+    static TString TestDataFactory::GetConfigName();
 };
 
 #endif   // HEDIT_SRC_TESTS__TEST_DATA_FACTORY_HPP_

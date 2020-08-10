@@ -103,6 +103,12 @@
     <ClCompile Include="..\..\src\undo_engine.cpp">
       <Filter>hedit-Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tests\config_file_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\config_file.cpp">
+      <Filter>hedit-Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

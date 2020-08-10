@@ -109,3 +109,13 @@ void TestDataFactory::DeleteFile(const char* file_name)
     // Delete file
     _unlink(full_file);
 }
+
+/**
+ * Returns a string with the full path name of a config file for testing.
+ * @return The full path name of a config file for testing.
+ */
+TString TestDataFactory::GetConfigName()
+{
+    // A config file used for testing
+    return TString(HE_TEST_DATA_DIR) + "files/test.config";
+}

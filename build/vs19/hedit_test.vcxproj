@@ -38,6 +38,7 @@
     <ClCompile Include="..\..\src\asm_viewer.cpp" />
     <ClCompile Include="..\..\src\base_viewer.cpp" />
     <ClCompile Include="..\..\src\comparator.cpp" />
+    <ClCompile Include="..\..\src\config_file.cpp" />
     <ClCompile Include="..\..\src\console.cpp" />
     <ClCompile Include="..\..\src\editor.cpp" />
     <ClCompile Include="..\..\src\formula.cpp" />
@@ -52,6 +53,7 @@
     <ClCompile Include="..\..\src\tests\asm_instruction_test.cpp" />
     <ClCompile Include="..\..\src\tests\asm_opcode_manager_test.cpp" />
     <ClCompile Include="..\..\src\tests\comparator_test.cpp" />
+    <ClCompile Include="..\..\src\tests\config_file_test.cpp" />
     <ClCompile Include="..\..\src\tests\disassembler_test.cpp" />
     <ClCompile Include="..\..\src\tests\formula_test.cpp" />
     <ClCompile Include="..\..\src\tests\string_test.cpp" />
