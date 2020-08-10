@@ -109,6 +109,9 @@
     <ClCompile Include="..\..\src\config_file.cpp">
       <Filter>hedit-Sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tests\console_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

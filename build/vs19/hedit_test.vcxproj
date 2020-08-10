@@ -54,6 +54,7 @@
     <ClCompile Include="..\..\src\tests\asm_opcode_manager_test.cpp" />
     <ClCompile Include="..\..\src\tests\comparator_test.cpp" />
     <ClCompile Include="..\..\src\tests\config_file_test.cpp" />
+    <ClCompile Include="..\..\src\tests\console_test.cpp" />
     <ClCompile Include="..\..\src\tests\disassembler_test.cpp" />
     <ClCompile Include="..\..\src\tests\formula_test.cpp" />
     <ClCompile Include="..\..\src\tests\string_test.cpp" />
