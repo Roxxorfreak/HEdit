@@ -59,6 +59,7 @@
     <ClCompile Include="..\..\src\tests\formula_test.cpp" />
     <ClCompile Include="..\..\src\tests\marker_test.cpp" />
     <ClCompile Include="..\..\src\tests\string_test.cpp" />
+    <ClCompile Include="..\..\src\tests\undo_engine_test.cpp" />
     <ClCompile Include="..\..\src\tests\value_processor_test.cpp" />
     <ClCompile Include="..\..\src\tests\_disassembler_runner.cpp" />
     <ClCompile Include="..\..\src\tests\_new_operator.cpp" />
