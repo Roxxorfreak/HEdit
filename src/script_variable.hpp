@@ -6,14 +6,14 @@
     #define HEDIT_SRC_SCRIPT_VARIABLE_HPP_
 
     /**
-     * @brief The structur for managing the data of a script variable.
+     * @brief The structure for managing the data of a script variable.
      */
     class TScriptVariable
     {
     public:
         bool is_signed_ = { false };  //!< The "signed" flag, true if the variable is signed, false otherwise.
         uint64_t value_ = { 0 };      //!< The current variable value.
-        TString name_;              //!< The name of the variable.
+        TString name_;                //!< The name of the variable as referred in the script code.
     public:
         int32_t AsSignedInt32() const noexcept;
         uint64_t AsUnsignedInt64() const noexcept;
