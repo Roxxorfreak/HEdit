@@ -36,7 +36,7 @@ It is designed to run and tested on Windows, Linux, Rasperry Pi and MacOS X.
 
 ## Supported compilers
 
-HEdit should be compatible with every compiler that supports C++11.
+HEdit should be compatible with every compiler that supports C++14.
 It was confirmed working with the following compilers:
 
 * Visual Studio 2019 (Windows)
