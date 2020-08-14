@@ -126,3 +126,45 @@ TEST(TScriptVariable, AsUnsignedInt64)
     var.value_ = 0xffffffff00000100;
     ASSERT_EQ(0xffffffff00000100u, var.AsUnsignedInt64());
 }
+
+TEST(TScriptVariable, Add)
+{
+    TScriptVariable var;
+
+    // Add with sign
+    var.value_ = 0xfffffffffffffffe;
+    var.is_signed_ = true;
+    var.Add(1);
+    ASSERT_EQ(0xffffffffffffffffu, var.AsUnsignedInt64());
+    var.Add(-1);
+    ASSERT_EQ(0xfffffffffffffffeu, var.AsUnsignedInt64());
+
+    // Add without sign
+    var.value_ = 0xfffffffffffffffe;
+    var.is_signed_ = false;
+    var.Add(1);
+    ASSERT_EQ(0xffffffffffffffffu, var.AsUnsignedInt64());
+    var.Add(-1);
+    ASSERT_EQ(0xfffffffffffffffeu, var.AsUnsignedInt64());
+}
+
+TEST(TScriptVariable, Sub)
+{
+    TScriptVariable var;
+
+    // Sub with sign
+    var.value_ = 0xfffffffffffffffe;
+    var.is_signed_ = true;
+    var.Sub(1);
+    ASSERT_EQ(0xfffffffffffffffdu, var.AsUnsignedInt64());
+    var.Sub(-1);
+    ASSERT_EQ(0xfffffffffffffffeu, var.AsUnsignedInt64());
+
+    // Sub without sign
+    var.value_ = 0xfffffffffffffffe;
+    var.is_signed_ = false;
+    var.Sub(1);
+    ASSERT_EQ(0xfffffffffffffffdu, var.AsUnsignedInt64());
+    var.Sub(-1);
+    ASSERT_EQ(0xfffffffffffffffeu, var.AsUnsignedInt64());
+}
