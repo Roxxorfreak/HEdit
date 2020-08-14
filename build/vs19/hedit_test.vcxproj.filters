@@ -118,6 +118,9 @@
     <ClCompile Include="..\..\src\tests\undo_engine_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\tests\script_variable_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

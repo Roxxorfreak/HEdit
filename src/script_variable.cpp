@@ -4,6 +4,7 @@
 
 /**
  * Returns the current variable value as signed 32bit integer.
+ * The upper 32 bit of the internal 64 bit memory are discarded.
  * @return The current variable value as signed 32bit integer.
  */
 int32_t TScriptVariable::AsSignedInt32() const noexcept
