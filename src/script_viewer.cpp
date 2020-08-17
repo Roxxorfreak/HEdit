@@ -18,7 +18,7 @@ TScriptViewer::TScriptViewer(TConsole* console, TFile* file, int64_t* file_pos, 
     current_line_(0)
 {
     // Initialize the script interpreter
-    this->script_interpreter_ = std::unique_ptr<TScriptInterpreter>(new TScriptInterpreter(this->settings_));
+    this->script_interpreter_ = std::unique_ptr<TScriptInterpreter>(new TScriptInterpreter(this->settings_->plugin_path_));
 
     // Create the virtual screen buffer
     this->screen_buffer_ = new TString[HE_SCRIPT_MAX_SCREEN_ROWS];

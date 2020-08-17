@@ -4,12 +4,12 @@
 
 /**
  * Initializes all elements of the script interpreter.
- * @param settings The editor settings object.
+ * @param script_path The path to load script files from.
  */
-TScriptInterpreter::TScriptInterpreter(TSettings* settings)
+TScriptInterpreter::TScriptInterpreter(const TString& script_path)
     : script_loaded_(false),
     error_line_(0),
-    settings_(settings)
+    script_path_(script_path)
 {
     // Load the known script commands
     this->script_command_manager_.LoadScriptCommands();
@@ -208,7 +208,7 @@ int32_t TScriptInterpreter::ScriptExecuteAt(TFile* file, int64_t position, TStri
     int32_t index = 0;
     snprintf(temp, sizeof(temp), "User variables: %z" PRIu32, this->script_variable_.size());
     virtual_screen_buffer[max_line + 2].InsertAt(1, temp);
-    for (auto var : this->script_variable_)
+    for (const auto& var : this->script_variable_)
     {
         if (var.is_signed_)
             snprintf(temp, sizeof(temp), "Variable \"%s\": %" PRIi32 " (signed)", var.name_.ToString(), var.AsSignedInt32());
@@ -278,8 +278,8 @@ bool TScriptInterpreter::LoadScriptFile(TString& file_name, TStringList& script_
     if (file->Open(TFileMode::READ) == false)
     {
         // The file could not be openend:
-        // Create and use an alternate file name using the "plugin path" from the settings
-        alternate_file_name = this->settings_->plugin_path_ + file_name;
+        // Create an alternate file name using the default script file path (from the settings)
+        alternate_file_name = this->script_path_ + file_name;
         file->AssignFileName(alternate_file_name);
 
         // Try to open the plugin file at the alternate location
@@ -287,7 +287,7 @@ bool TScriptInterpreter::LoadScriptFile(TString& file_name, TStringList& script_
         {
             // Store the error description
             this->error_string_ = "Unable to open script file (in ";
-            this->error_string_ += this->settings_->plugin_path_;
+            this->error_string_ += this->script_path_;
             this->error_string_ += ")";
 
             // Delete the file object
@@ -1505,7 +1505,7 @@ bool TScriptInterpreter::VariableExists(const char* name)
     if (name == nullptr) return false;
 
     // Check all variables for the variable with the specified name (case sensitive!)
-    for (auto variable : this->script_variable_)
+    for (const auto& variable : this->script_variable_)
     {
         // If the name is found, return the variable
         if (variable.name_.Equals(name) == true) return true;

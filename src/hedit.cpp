@@ -743,7 +743,7 @@ bool THEdit::SwitchViewer(int32_t active_editor)
     TStringList descriptions;
 
     // Create a script interpreter instance (without assigned file)
-    auto script_interpreter = new TScriptInterpreter(this->settings_.get());
+    auto script_interpreter = new TScriptInterpreter(this->settings_->plugin_path_);
 
     // Enumerate all HEdit Scripts in the HEdit plugin directory
     // This files are *.hs files under windows. Under Linux all files

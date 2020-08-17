@@ -25,9 +25,9 @@
         TString script_file_;                           //!< The file name of the script file (used for error output).
         TString error_string_;                          //!< The string variable for the error description.
         TString script_description_;                    //!< The string variable for the script description (taken from the main function).
-        TSettings* settings_;                           //!< The settings object, used to get the plugin path.
-        std::vector<TScriptVariable>script_variable_;   //!< The array of variable in the script.
-        std::vector<TScriptInstruction> script_code_;   //!< The array for the decoded script instructions.
+        const TString& script_path_;                    //!< The path to load script files from, if no full path is specified.
+        std::vector<TScriptVariable>script_variable_;   //!< The storage for the variables in the script.
+        std::vector<TScriptInstruction> script_code_;   //!< The storage for the decoded script instructions.
         TScriptCommandManager script_command_manager_;  //!< The script instruction manager.
     private:
         int32_t OutputErrorMessage(TString* virtual_screen_buffer);
@@ -46,7 +46,7 @@
         bool VariableExists(const char* name);
         TScriptVariable* GetVariable(const char* name) noexcept;
     public:
-        explicit TScriptInterpreter(TSettings* settings);
+        explicit TScriptInterpreter(const TString& script_path);
         bool LoadScript(TString& file_name);
         const char* ScriptDescription() const noexcept;
         int32_t ScriptExecuteAt(TFile* file, int64_t position, TString* virtual_screen_buffer);
