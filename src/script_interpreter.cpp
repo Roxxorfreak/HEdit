@@ -21,7 +21,7 @@ TScriptInterpreter::TScriptInterpreter(const TString& script_path)
  * @param file_name The file name of the script file to load.
  * @return true, if the script was loaded, false otherwise.
  */
-bool TScriptInterpreter::LoadScript(TString& file_name)
+bool TScriptInterpreter::LoadScript(const TString& file_name)
 {
     int32_t script_start_line = 0;  // The zero-based line index of the line where the script code is expected to start.
     int32_t script_start_column = 0;  // The zero-based column index of the column where the script code is expected to start.
@@ -257,7 +257,7 @@ int32_t TScriptInterpreter::OutputErrorMessage(TString* virtual_screen_buffer)
  * @param script_code A pointer to an TStringList that receive the script source code lines.
  * @return true on success, false otherwise.
  */
-bool TScriptInterpreter::LoadScriptFile(TString& file_name, TStringList& script_code)
+bool TScriptInterpreter::LoadScriptFile(const TString& file_name, TStringList& script_code)
 {
     TString alternate_file_name;
 

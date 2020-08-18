@@ -541,7 +541,7 @@ std::size_t TString::Length() const noexcept
  * Checks if the string is empty.
  * @return true if the string is empty, false otherwise.
  */
-bool TString::IsEmpty() noexcept
+bool TString::IsEmpty() const noexcept
 {
     return (this->Length() == 0) ? true : false;
 }

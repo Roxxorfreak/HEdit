@@ -116,6 +116,14 @@ void TestDataFactory::DeleteFile(const char* file_name)
  */
 TString TestDataFactory::GetConfigName()
 {
-    // A config file used for testing
     return TString(HE_TEST_DATA_DIR) + "files/test.config";
+}
+
+/**
+ * Returns a string with the directory name of the folder with the scripts for testing.
+ * @return The full directory name of the script folder.
+ */
+TString TestDataFactory::GetScriptDir()
+{
+    return TString(HE_TEST_DATA_DIR) + "scripts/";
 }
