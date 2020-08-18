@@ -1508,7 +1508,7 @@ bool TScriptInterpreter::VariableExists(const char* name)
     for (const auto& variable : this->script_variable_)
     {
         // If the name is found, return the variable
-        if (variable.name_.Equals(name) == true) return true;
+        if (variable.name_.Equals(name) == true) return true; // cppcheck-suppress useStlAlgorithm
     }
 
     // Return failure
