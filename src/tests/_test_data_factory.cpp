@@ -120,8 +120,17 @@ TString TestDataFactory::GetConfigName()
 }
 
 /**
+ * Returns a string with the directory name of the folder with additional files for testing.
+ * @return The full directory name of the "files" folder.
+ */
+TString TestDataFactory::GetFilesDir()
+{
+    return TString(HE_TEST_DATA_DIR) + "files/";
+}
+
+/**
  * Returns a string with the directory name of the folder with the scripts for testing.
- * @return The full directory name of the script folder.
+ * @return The full directory name of the "scripts" folder.
  */
 TString TestDataFactory::GetScriptDir()
 {

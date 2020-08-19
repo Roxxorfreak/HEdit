@@ -22,6 +22,7 @@ public:
     std::size_t WriteBinaryFile(const char* file_name, unsigned char* buffer, std::size_t buffer_size);
     void DeleteFile(const char* file_name);
     static TString GetConfigName();
+    static TString GetFilesDir();
     static TString GetScriptDir();
 };
 
