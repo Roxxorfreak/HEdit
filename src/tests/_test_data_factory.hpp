@@ -24,6 +24,7 @@ public:
     static TString GetConfigName();
     static TString GetFilesDir();
     static TString GetScriptDir();
+    static TString GetTestScriptDir();
 };
 
 #endif   // HEDIT_SRC_TESTS__TEST_DATA_FACTORY_HPP_

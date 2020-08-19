@@ -129,10 +129,19 @@ TString TestDataFactory::GetFilesDir()
 }
 
 /**
- * Returns a string with the directory name of the folder with the scripts for testing.
+ * Returns a string with the directory name of the folder with the HEdit scripts.
  * @return The full directory name of the "scripts" folder.
  */
 TString TestDataFactory::GetScriptDir()
+{
+    return TString("../scripts/");
+}
+
+/**
+ * Returns a string with the directory name of the folder with the scripts for testing.
+ * @return The full directory name of the "scripts" folder within the test data.
+ */
+TString TestDataFactory::GetTestScriptDir()
 {
     return TString(HE_TEST_DATA_DIR) + "scripts/";
 }
