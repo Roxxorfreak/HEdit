@@ -91,12 +91,16 @@ const char* TScriptInterpreter::GetLastError() const noexcept
  * All offsets specified in the script are treated relative to the specified position.
  * @param file The (opened) file object to execute a script on (not the script file, but the source data).
  * @param position The file position to execute the script at.
- * @param virtual_screen_buffer A pointer to array of TStrings that represents the virtual screen buffer (used for the script output).
+ * @param virtual_screen_buffer A pointer to array of TStrings that represents the virtual screen buffer (used for the script output). Must contain at least 5 entries.
  * @return The number of lines that were output into the virtual screen buffer.
  */
 int32_t TScriptInterpreter::ScriptExecuteAt(TFile* file, int64_t position, TString* virtual_screen_buffer)
 {
     TExecutionContext ec;
+
+    // Validate parameters
+    if (file == nullptr) return 0;
+    if (virtual_screen_buffer == nullptr) return 0;
 
     // The highest (virtual screen) line number that was accessed via any print* instruction
     int32_t max_line = 0;
