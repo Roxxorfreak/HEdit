@@ -104,7 +104,6 @@ int32_t TScriptInterpreter::ScriptExecuteAt(TFile* file, int64_t position, TStri
 
     // Clear virtual screen
     for (std::size_t i = 0; i < HE_SCRIPT_MAX_SCREEN_ROWS; i++) virtual_screen_buffer[i].Free();
-    
 
     // The highest (virtual screen) line number that was accessed via any print* instruction
     int32_t max_line = 0;
