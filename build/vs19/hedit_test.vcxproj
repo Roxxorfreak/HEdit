@@ -56,6 +56,7 @@
     <ClCompile Include="..\..\src\tests\config_file_test.cpp" />
     <ClCompile Include="..\..\src\tests\console_test.cpp" />
     <ClCompile Include="..\..\src\tests\disassembler_test.cpp" />
+    <ClCompile Include="..\..\src\tests\file_test.cpp" />
     <ClCompile Include="..\..\src\tests\formula_test.cpp" />
     <ClCompile Include="..\..\src\tests\marker_test.cpp" />
     <ClCompile Include="..\..\src\tests\script_interpreter_test.cpp" />
