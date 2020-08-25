@@ -84,4 +84,8 @@ TEST(TFile, ReadAt)
     ASSERT_EQ(0xA6, buffer[1]);
     ASSERT_EQ(0x7B, buffer[2]);
     ASSERT_EQ(0xF9, buffer[3]);
+
+    // Out of range
+    ASSERT_EQ(0u, file.ReadAt(buffer, 1, 0x00045678));
+    ASSERT_EQ(0u, file2.ReadAt(buffer, 1, 0x00045678));
 }
