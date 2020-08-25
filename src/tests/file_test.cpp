@@ -53,3 +53,35 @@ TEST(TFile, Read)
     ASSERT_EQ(0x00, buffer[2]);
     ASSERT_EQ(0x00, buffer[3]);
 }
+
+TEST(TFile, ReadAt)
+{
+    unsigned char buffer[64];
+    TFile file(TestDataFactory::GetFilesDir() + "test.zip", true);
+    TFile file2(TestDataFactory::GetFilesDir() + "test.zip", false);
+
+    // Read from closed file (with and without cache)
+    ASSERT_EQ(0u, file.ReadAt(buffer, 4, 0x00004567));
+    ASSERT_EQ(0u, file2.ReadAt(buffer, 4, 0x00004567));
+
+    // Read from openend file (with and without cache)
+    // With cache
+    ASSERT_EQ(true, file.Open(TFileMode::READ));
+    ASSERT_EQ(4u, file.ReadAt(buffer, 4, 0x00004567));
+    ASSERT_EQ(0x99, buffer[0]);
+    ASSERT_EQ(0xA6, buffer[1]);
+    ASSERT_EQ(0x7B, buffer[2]);
+    ASSERT_EQ(0xF9, buffer[3]);
+    ASSERT_EQ(4u, file.ReadAt(buffer, 4, 0x00004568));
+    ASSERT_EQ(0xA6, buffer[0]);
+    ASSERT_EQ(0x7B, buffer[1]);
+    ASSERT_EQ(0xF9, buffer[2]);
+    ASSERT_EQ(0x24, buffer[3]);
+    // No cache
+    ASSERT_EQ(true, file2.Open(TFileMode::READ));
+    ASSERT_EQ(4u, file2.ReadAt(buffer, 4, 0x00004567));
+    ASSERT_EQ(0x99, buffer[0]);
+    ASSERT_EQ(0xA6, buffer[1]);
+    ASSERT_EQ(0x7B, buffer[2]);
+    ASSERT_EQ(0xF9, buffer[3]);
+}
