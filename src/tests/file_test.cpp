@@ -89,3 +89,25 @@ TEST(TFile, ReadAt)
     ASSERT_EQ(0u, file.ReadAt(buffer, 1, 0x00045678));
     ASSERT_EQ(0u, file2.ReadAt(buffer, 1, 0x00045678));
 }
+
+TEST(TFile, Write)
+{
+    TString file_name = TestDataFactory::GetFilesDir() + "test.dat";
+    TFile file(file_name, true);
+    const unsigned char* text = reinterpret_cast<unsigned char*>("Hello");
+
+    // Write to closed file
+    ASSERT_EQ(0u, file.Write(text, 5));
+
+    // Write to read-only file
+    ASSERT_EQ(false, file.Open(TFileMode::READ)) << "<" << file_name.ToString() << "> must be deleted prior to test run";
+    ASSERT_EQ(0u, file.Write(text, 5));
+
+    // Write to r/w file
+    ASSERT_EQ(true, file.Open(TFileMode::CREATE));
+    ASSERT_EQ(5u, file.Write(text, 5));
+    file.Close();
+
+    // Delete test file
+    ASSERT_EQ(0, _unlink(file_name.ToString())) << "Delete failed for <" << file_name.ToString() << ">";
+}
