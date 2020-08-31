@@ -5,12 +5,14 @@
     // Header included
     #define HEDIT_SRC_CONSOLE_HPP_
 
-    // The maximum number of cascaded console windows that can be created using the DefineWindow() function.
-    // If more windows are created a std::exception will be thrown.
+    /**
+     * @brief The maximum number of cascaded console windows that can be created using the DefineWindow() function.
+     * @details If more windows are created, a std::exception will be thrown.
+     */
     constexpr int32_t HE_CONSOLE_MAX_WINDOW_DEPTH = 10;
 
     // Character definitions
-    constexpr unsigned char HE_CONSOLE_CHARACTER_PROGRESS_BAR = 254;  //!< The ascii code for the character that is used to draw a progress bar.
+    constexpr unsigned char HE_CONSOLE_CHARACTER_PROGRESS_BAR = 254;  //!< The ASCII code for the character that is used to draw a progress bar.
 
     // Console key modifiers (modifier bits are in the upper byte of the keycode's word value, i.e. (keycode & 0xff00))
     constexpr int32_t HE_CONSOLE_KEY_MODIFIER_CONTROL   = 0x0100;   //!< A control key was pressed.
@@ -83,7 +85,7 @@
         constexpr unsigned char HE_CONSOLE_BORDER_RIGHT_CONNECT = 185;
 
         /**
-         * @brief The class that provides the platform-dependant console window data structure.
+         * @brief The class that provides the platform-specific console window data structure.
          * @details This contains all data for managing console windows under Windows.
          */
         struct TConsoleWindow
@@ -111,7 +113,7 @@
         constexpr unsigned char HE_CONSOLE_BORDER_RIGHT_CONNECT = 117;
 
         /**
-         * @brief The class that provides the platform-dependant console window data structure.
+         * @brief The class that provides the platform-specific console window data structure.
          * @details This contains all data for managing console windows under Linux/Raspian/MacOS.
          */
         struct TConsoleWindow
@@ -126,7 +128,7 @@
     #endif
 
     /**
-     * @brief The class that provides a platform-independant console object.
+     * @brief The class that provides a platform-independent console object.
      * @details This involves all basic window, color, key and directory handling.
      */
     class TConsole
