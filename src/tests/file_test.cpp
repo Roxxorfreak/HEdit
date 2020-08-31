@@ -106,8 +106,48 @@ TEST(TFile, Write)
     // Write to r/w file
     ASSERT_EQ(true, file.Open(TFileMode::CREATE));
     ASSERT_EQ(5u, file.Write(text, 5));
+    ASSERT_EQ(5, file.FileSize());
     file.Close();
 
     // Delete test file
     ASSERT_EQ(0, _unlink(file_name.ToString())) << "Delete failed for <" << file_name.ToString() << ">";
+}
+
+TEST(TFile, WriteAt)
+{
+    TString file_name = TestDataFactory::GetFilesDir() + "test.dat";
+    TFile file(file_name, true);
+    const unsigned char* text = reinterpret_cast<unsigned char*>("Hello");
+
+    // Write to closed file
+    ASSERT_EQ(0u, file.WriteAt(text, 5, 42));
+
+    // Write to read-only file
+    ASSERT_EQ(false, file.Open(TFileMode::READ)) << "<" << file_name.ToString() << "> must be deleted prior to test run";
+    ASSERT_EQ(0u, file.WriteAt(text, 5, 42));
+
+    // Write to r/w file
+    ASSERT_EQ(true, file.Open(TFileMode::CREATE));
+    ASSERT_EQ(5u, file.WriteAt(text, 5, 42));
+    ASSERT_EQ(47, file.FileSize());
+    file.Close();
+
+    // Delete test file
+    ASSERT_EQ(0, _unlink(file_name.ToString())) << "Delete failed for <" << file_name.ToString() << ">";
+}
+
+TEST(TFile, Seek)
+{
+    TFile file(TestDataFactory::GetFilesDir() + "test.zip", true);
+
+    // Seek in closed file
+    ASSERT_EQ(false, file.Seek(10));
+
+    // Seek in open file
+    ASSERT_EQ(true, file.Open(TFileMode::READ));
+    ASSERT_EQ(false, file.Seek(-10));
+    ASSERT_EQ(true, file.Seek(0));
+    ASSERT_EQ(true, file.Seek(129006));
+    ASSERT_EQ(true, file.Seek(0));
+    ASSERT_EQ(true, file.Seek(229006));
 }
