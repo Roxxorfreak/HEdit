@@ -167,3 +167,27 @@ TEST(TFile, ReadLine)
     ASSERT_STREQ("end", file.ReadLine().ToString());
     ASSERT_STREQ(nullptr, file.ReadLine().ToString());
 }
+
+TEST(TFile, IsEOF)
+{
+    TFile file(TestDataFactory::GetFilesDir() + "test.zip", true);
+    TFile file2(TestDataFactory::GetFilesDir() + "test.zip", false);
+
+    // Closed file
+    ASSERT_EQ(true, file.IsEOF());
+    ASSERT_EQ(true, file2.IsEOF());
+
+    // Open file with caching
+    ASSERT_EQ(true, file.Open(TFileMode::READ));
+    ASSERT_EQ(false, file.IsEOF());
+    ASSERT_EQ(true, file.Seek(file.FileSize()));
+    ASSERT_EQ(true, file.IsEOF());
+    file.Close();
+
+    // Open file without caching
+    ASSERT_EQ(true, file.Open(TFileMode::READ));
+    ASSERT_EQ(false, file.IsEOF());
+    ASSERT_EQ(true, file.Seek(file.FileSize()));
+    ASSERT_EQ(true, file.IsEOF());
+    file.Close();
+}
