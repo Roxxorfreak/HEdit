@@ -216,3 +216,25 @@ TEST(TFile, IsReadOnly)
     ASSERT_EQ(false, file.IsReadOnly());
     file.Close();
 }
+
+TEST(TFile, FileSize)
+{
+    TFile file(TestDataFactory::GetFilesDir() + "empty.dat", true);
+
+    // Closed file
+    ASSERT_EQ(0, file.FileSize());
+
+    // Empty file
+    ASSERT_EQ(true, file.Open(TFileMode::READ));
+    ASSERT_EQ(0, file.FileSize());
+
+    // Test bitmap
+    file.AssignFileName(TestDataFactory::GetFilesDir() + "test.bmp");
+    ASSERT_EQ(true, file.Open(TFileMode::READ));
+    ASSERT_EQ(12342, file.FileSize());
+
+    // Test bitmap
+    file.AssignFileName(TestDataFactory::GetFilesDir() + "test.txt");
+    ASSERT_EQ(true, file.Open(TFileMode::READ));
+    ASSERT_EQ(48, file.FileSize());
+}
