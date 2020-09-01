@@ -193,3 +193,26 @@ TEST(TFile, IsEOF)
     ASSERT_EQ(true, file2.IsEOF());
     file2.Close();
 }
+
+TEST(TFile, IsReadOnly)
+{
+    TFile file(TestDataFactory::GetFilesDir() + "empty.dat", true);
+
+    // Closed file
+    ASSERT_EQ(false, file.IsReadOnly());
+
+    // Open read-only
+    ASSERT_EQ(true, file.Open(TFileMode::READ));
+    ASSERT_EQ(true, file.IsReadOnly());
+    file.Close();
+
+    // Open read-write
+    ASSERT_EQ(true, file.Open(TFileMode::READWRITE));
+    ASSERT_EQ(false, file.IsReadOnly());
+    file.Close();
+
+    // Open read-write
+    ASSERT_EQ(true, file.Open(TFileMode::CREATE));
+    ASSERT_EQ(false, file.IsReadOnly());
+    file.Close();
+}
