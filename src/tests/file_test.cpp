@@ -170,6 +170,7 @@ TEST(TFile, ReadLine)
 
 TEST(TFile, IsEOF)
 {
+    unsigned char buffer[2] = {};
     TFile file(TestDataFactory::GetFilesDir() + "test.zip", true);
     TFile file2(TestDataFactory::GetFilesDir() + "test.zip", false);
 
@@ -185,9 +186,10 @@ TEST(TFile, IsEOF)
     file.Close();
 
     // Open file without caching
-    ASSERT_EQ(true, file.Open(TFileMode::READ));
-    ASSERT_EQ(false, file.IsEOF());
-    ASSERT_EQ(true, file.Seek(file.FileSize()));
-    ASSERT_EQ(true, file.IsEOF());
-    file.Close();
+    ASSERT_EQ(true, file2.Open(TFileMode::READ));
+    ASSERT_EQ(false, file2.IsEOF());
+    ASSERT_EQ(true, file2.Seek(file2.FileSize()));
+    ASSERT_EQ(0u, file2.Read(buffer, 1));
+    ASSERT_EQ(true, file2.IsEOF());
+    file2.Close();
 }
