@@ -294,9 +294,12 @@ TString TFile::ReadLine()
  */
 bool TFile::IsEOF() noexcept
 {
+    // A closed file will be reported as as eof
+    if (this->file_handle_ == nullptr) return true;
+
     if (this->use_cache_ == true)
     {
-        return (file_cursor_ >= this->FileSize());
+        return (this->file_cursor_ >= this->FileSize());
     }
     else
     {
