@@ -50,7 +50,7 @@ TFile::~TFile()
 /**
  * Tries to open the file, setting the internal file attribute to
  * TFileAttribute::ACCESS_DENIED if the file cannot be openend for any reason.
- * @param mode The file mode to use for opening (TFileMode).
+ * @param mode The file mode to use for opening (see TFileMode).
  * @return true on success, false otherwise.
  */
 bool TFile::Open(TFileMode mode) noexcept
@@ -106,7 +106,7 @@ bool TFile::Open(TFileMode mode) noexcept
 }
 
 /**
- * Closes the associated file, if open.
+ * Closes the associated file, if open, an clears the internal cache.
  */
 void TFile::Close() noexcept
 {
@@ -124,9 +124,9 @@ void TFile::Close() noexcept
 }
 
 /**
- * Reads some bytes from the current position in the file into a buffer.
+ * Reads the specified number of bytes from the current position in the file into the specified buffer.
  * @param buffer The buffer to read the data into.
- * @param length The size of the buffer.
+ * @param length The size of the buffer (in bytes).
  * @return The number of bytes read from the file.
  */
 uint32_t TFile::Read(unsigned char* buffer, uint32_t length) noexcept
@@ -156,10 +156,10 @@ uint32_t TFile::Read(unsigned char* buffer, uint32_t length) noexcept
 }
 
 /**
- * Reads some bytes from the specified position in the file into a buffer.
+ * Reads the specified number of bytes from the specified position in the file into the specified buffer.
  * @param buffer The buffer to read the data into.
- * @param length The size of the buffer.
- * @param position The position to read at.
+ * @param length The size of the buffer (in bytes).
+ * @param position The zero-based position to read at.
  * @return The number of bytes read from the file.
  */
 uint32_t TFile::ReadAt(unsigned char* buffer, uint32_t length, int64_t position) noexcept
@@ -172,7 +172,7 @@ uint32_t TFile::ReadAt(unsigned char* buffer, uint32_t length, int64_t position)
 }
 
 /**
- * Writes some bytes from a buffer into the file at the current position.
+ * Writes the specified number of bytes from the specified buffer into the file at the current position.
  * @param buffer The buffer with the data.
  * @param length The number of bytes to write.
  * @return The number of bytes written.
@@ -208,10 +208,10 @@ uint32_t TFile::Write(const unsigned char* buffer, uint32_t length) noexcept
 }
 
 /**
- * Writes some bytes from a buffer into the file at the the specified position.
+ * Writes the specified number of bytes from the specified buffer into the file at the the specified position.
  * @param buffer The buffer with the data.
  * @param length The number of bytes to write.
- * @param position The position to write at.
+ * @param position The zero-based position to write at.
  * @return The number of bytes written.
  */
 uint32_t TFile::WriteAt(const unsigned char* buffer, uint32_t length, int64_t position) noexcept
@@ -225,7 +225,7 @@ uint32_t TFile::WriteAt(const unsigned char* buffer, uint32_t length, int64_t po
 
 /**
  * Positions the file cursor.
- * @param position The new position of the file pointer.
+ * @param position The new absolute position of the file pointer (zero-based).
  * @return true on success, false otherwise.
  */
 bool TFile::Seek(int64_t position) noexcept
@@ -257,7 +257,7 @@ bool TFile::Seek(int64_t position) noexcept
 
 /**
  * Reads one line of text from the current position in the file.
- * If no data can be read, an empty line is returned.
+ * If no data can be read, an empty string object is returned.
  * @return A string with the read line.
  */
 TString TFile::ReadLine()
@@ -314,7 +314,7 @@ bool TFile::IsReadOnly() const noexcept
 }
 
 /**
- * Returns the size of the associated file.
+ * Returns the size of the associated file. The file must be open, otherwise 0 is returned.
  * @return The size of the associated file.
  */
 int64_t TFile::FileSize() noexcept
@@ -403,7 +403,7 @@ uint32_t TFile::ReadFromCache(unsigned char* buffer, uint32_t count) noexcept
 }
 
 /**
- * Assigns a new file name to the file class, closing the current one if open.
+ * Assigns a new file name to the file class, closing the current file if open.
  * @param file_name The file name to assign to the file object.
  */
 void TFile::AssignFileName(const char* file_name)
