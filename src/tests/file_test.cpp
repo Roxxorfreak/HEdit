@@ -151,3 +151,19 @@ TEST(TFile, Seek)
     ASSERT_EQ(true, file.Seek(0));
     ASSERT_EQ(true, file.Seek(229006));
 }
+
+TEST(TFile, ReadLine)
+{
+    TFile file(TestDataFactory::GetFilesDir() + "test.txt", true);
+
+    // Read line from closed file
+    ASSERT_STREQ(nullptr, file.ReadLine().ToString());
+
+    // Read lines
+    ASSERT_EQ(true, file.Open(TFileMode::READ));
+    ASSERT_STREQ("Line 1", file.ReadLine().ToString());
+    ASSERT_STREQ("Second line", file.ReadLine().ToString());
+    ASSERT_STREQ("Last line of defense", file.ReadLine().ToString());
+    ASSERT_STREQ("end", file.ReadLine().ToString());
+    ASSERT_STREQ(nullptr, file.ReadLine().ToString());
+}
