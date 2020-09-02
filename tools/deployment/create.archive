@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define version number and date
-version=4_2_1
-creation_date="06/29/2020"
+version=4_2_2
+creation_date="09/02/2020"
 
 # Get system information
 declare -l platform=$(uname -s)
