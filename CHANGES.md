@@ -1,6 +1,14 @@
 # Changelog
 
-## 29.06.2020 - HEdit 4.2.1
+## HEdit 4.2.2
+
+* Fixed C++Builder project file.
+* Added a a lot of tests and test data.
+* Source code and documentation improvements.
+* Bugfix: Possible memory leak in string handling.
+* Bugfix: Virtual screen in script interpreter now cleared.
+
+## HEdit 4.2.1
 
 * Source code improvements.
 * The source code now requires C++14.
@@ -8,7 +16,7 @@
 * Bugfix: Binary value presentation in the Disassembler.
 * Bugfix: Parser bug with spaces in the script path in config files.
 
-## 05.06.2020 - HEdit 4.2.0
+## HEdit 4.2.0
 
 * All source code is now C++11.
 * Overall code improvements and reworks.
