@@ -4,6 +4,7 @@
 
 /**
  * Returns the current variable value as signed 32bit integer.
+ * The upper 32 bit of the internal 64 bit memory are discarded.
  * @return The current variable value as signed 32bit integer.
  */
 int32_t TScriptVariable::AsSignedInt32() const noexcept
@@ -49,6 +50,7 @@ uint8_t TScriptVariable::AsUnsignedInt8() const noexcept
 
 /**
  * Adds the specified value to the variable.
+ * Takes into account the signedness of the variable value.
  * @param value The value to add to the variable.
  */
 void TScriptVariable::Add(int64_t value) noexcept
@@ -69,6 +71,7 @@ void TScriptVariable::Add(int64_t value) noexcept
 
 /**
  * Subtracts the specified value from the variable.
+ * Takes into account the signedness of the variable value.
  * @param value The value to subtract from the variable.
  */
 void TScriptVariable::Sub(int64_t value) noexcept

@@ -11,7 +11,9 @@
 // The directory where the test data is stored
 constexpr char* HE_TEST_DATA_DIR = "../test-data/";
 
-// Class for toggeling memory failure
+/**
+ * @brief The data factory for all tests.
+ */
 class TestDataFactory
 {
 public:
@@ -19,6 +21,10 @@ public:
     std::size_t ReadBinaryFile(const char* file_name, unsigned char* buffer, std::size_t buffer_size);
     std::size_t WriteBinaryFile(const char* file_name, unsigned char* buffer, std::size_t buffer_size);
     void DeleteFile(const char* file_name);
+    static TString GetConfigName();
+    static TString GetFilesDir();
+    static TString GetScriptDir();
+    static TString GetTestScriptDir();
 };
 
 #endif   // HEDIT_SRC_TESTS__TEST_DATA_FACTORY_HPP_

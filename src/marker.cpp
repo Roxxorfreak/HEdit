@@ -26,7 +26,7 @@ bool TMarker::IsSelected(int64_t position) noexcept
  * Returns the length of the marker (in bytes).
  * @return The length of the marker (in bytes).
  */
-int64_t TMarker::Length() noexcept
+int64_t TMarker::Length() const noexcept
 {
     // Validate marker range
     if ((this->start_ == -1) || (this->end_ == -1)) return 0;

@@ -4,12 +4,12 @@
 
 /**
  * Initializes all elements of the script interpreter.
- * @param settings The editor settings object.
+ * @param script_path The path to load script files from.
  */
-TScriptInterpreter::TScriptInterpreter(TSettings* settings)
+TScriptInterpreter::TScriptInterpreter(const TString& script_path)
     : script_loaded_(false),
     error_line_(0),
-    settings_(settings)
+    script_path_(script_path)
 {
     // Load the known script commands
     this->script_command_manager_.LoadScriptCommands();
@@ -21,7 +21,7 @@ TScriptInterpreter::TScriptInterpreter(TSettings* settings)
  * @param file_name The file name of the script file to load.
  * @return true, if the script was loaded, false otherwise.
  */
-bool TScriptInterpreter::LoadScript(TString& file_name)
+bool TScriptInterpreter::LoadScript(const TString& file_name)
 {
     int32_t script_start_line = 0;  // The zero-based line index of the line where the script code is expected to start.
     int32_t script_start_column = 0;  // The zero-based column index of the column where the script code is expected to start.
@@ -91,12 +91,19 @@ const char* TScriptInterpreter::GetLastError() const noexcept
  * All offsets specified in the script are treated relative to the specified position.
  * @param file The (opened) file object to execute a script on (not the script file, but the source data).
  * @param position The file position to execute the script at.
- * @param virtual_screen_buffer A pointer to array of TStrings that represents the virtual screen buffer (used for the script output).
+ * @param virtual_screen_buffer A pointer to array of TStrings that represents the virtual screen buffer (used for the script output). Must contain at least HE_SCRIPT_MAX_SCREEN_ROWS entries.
  * @return The number of lines that were output into the virtual screen buffer.
  */
 int32_t TScriptInterpreter::ScriptExecuteAt(TFile* file, int64_t position, TString* virtual_screen_buffer)
 {
     TExecutionContext ec;
+
+    // Validate parameters
+    if (file == nullptr) return 0;
+    if (virtual_screen_buffer == nullptr) return 0;
+
+    // Clear virtual screen
+    for (std::size_t i = 0; i < HE_SCRIPT_MAX_SCREEN_ROWS; i++) virtual_screen_buffer[i].Free();
 
     // The highest (virtual screen) line number that was accessed via any print* instruction
     int32_t max_line = 0;
@@ -208,7 +215,7 @@ int32_t TScriptInterpreter::ScriptExecuteAt(TFile* file, int64_t position, TStri
     int32_t index = 0;
     snprintf(temp, sizeof(temp), "User variables: %z" PRIu32, this->script_variable_.size());
     virtual_screen_buffer[max_line + 2].InsertAt(1, temp);
-    for (auto var : this->script_variable_)
+    for (const auto& var : this->script_variable_)
     {
         if (var.is_signed_)
             snprintf(temp, sizeof(temp), "Variable \"%s\": %" PRIi32 " (signed)", var.name_.ToString(), var.AsSignedInt32());
@@ -257,7 +264,7 @@ int32_t TScriptInterpreter::OutputErrorMessage(TString* virtual_screen_buffer)
  * @param script_code A pointer to an TStringList that receive the script source code lines.
  * @return true on success, false otherwise.
  */
-bool TScriptInterpreter::LoadScriptFile(TString& file_name, TStringList& script_code)
+bool TScriptInterpreter::LoadScriptFile(const TString& file_name, TStringList& script_code)
 {
     TString alternate_file_name;
 
@@ -278,8 +285,8 @@ bool TScriptInterpreter::LoadScriptFile(TString& file_name, TStringList& script_
     if (file->Open(TFileMode::READ) == false)
     {
         // The file could not be openend:
-        // Create and use an alternate file name using the "plugin path" from the settings
-        alternate_file_name = this->settings_->plugin_path_ + file_name;
+        // Create an alternate file name using the default script file path (from the settings)
+        alternate_file_name = this->script_path_ + file_name;
         file->AssignFileName(alternate_file_name);
 
         // Try to open the plugin file at the alternate location
@@ -287,7 +294,7 @@ bool TScriptInterpreter::LoadScriptFile(TString& file_name, TStringList& script_
         {
             // Store the error description
             this->error_string_ = "Unable to open script file (in ";
-            this->error_string_ += this->settings_->plugin_path_;
+            this->error_string_ += this->script_path_;
             this->error_string_ += ")";
 
             // Delete the file object
@@ -1505,10 +1512,10 @@ bool TScriptInterpreter::VariableExists(const char* name)
     if (name == nullptr) return false;
 
     // Check all variables for the variable with the specified name (case sensitive!)
-    for (auto variable : this->script_variable_)
+    for (const auto& variable : this->script_variable_)
     {
         // If the name is found, return the variable
-        if (variable.name_.Equals(name) == true) return true;
+        if (variable.name_.Equals(name) == true) return true; // cppcheck-suppress useStlAlgorithm
     }
 
     // Return failure

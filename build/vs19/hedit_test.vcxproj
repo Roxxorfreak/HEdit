@@ -35,8 +35,34 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\asm_viewer.cpp" />
+    <ClCompile Include="..\..\src\base_viewer.cpp" />
+    <ClCompile Include="..\..\src\comparator.cpp" />
+    <ClCompile Include="..\..\src\config_file.cpp" />
+    <ClCompile Include="..\..\src\console.cpp" />
+    <ClCompile Include="..\..\src\editor.cpp" />
+    <ClCompile Include="..\..\src\formula.cpp" />
+    <ClCompile Include="..\..\src\hex_viewer.cpp" />
+    <ClCompile Include="..\..\src\marker.cpp" />
+    <ClCompile Include="..\..\src\message_box.cpp" />
+    <ClCompile Include="..\..\src\script_command_manager.cpp" />
+    <ClCompile Include="..\..\src\script_interpreter.cpp" />
+    <ClCompile Include="..\..\src\script_variable.cpp" />
+    <ClCompile Include="..\..\src\script_viewer.cpp" />
+    <ClCompile Include="..\..\src\tests\asm_buffer_test.cpp" />
+    <ClCompile Include="..\..\src\tests\asm_instruction_test.cpp" />
+    <ClCompile Include="..\..\src\tests\asm_opcode_manager_test.cpp" />
+    <ClCompile Include="..\..\src\tests\comparator_test.cpp" />
+    <ClCompile Include="..\..\src\tests\config_file_test.cpp" />
+    <ClCompile Include="..\..\src\tests\console_test.cpp" />
     <ClCompile Include="..\..\src\tests\disassembler_test.cpp" />
+    <ClCompile Include="..\..\src\tests\file_test.cpp" />
+    <ClCompile Include="..\..\src\tests\formula_test.cpp" />
+    <ClCompile Include="..\..\src\tests\marker_test.cpp" />
+    <ClCompile Include="..\..\src\tests\script_interpreter_test.cpp" />
+    <ClCompile Include="..\..\src\tests\script_variable_test.cpp" />
     <ClCompile Include="..\..\src\tests\string_test.cpp" />
+    <ClCompile Include="..\..\src\tests\undo_engine_test.cpp" />
     <ClCompile Include="..\..\src\tests\value_processor_test.cpp" />
     <ClCompile Include="..\..\src\tests\_disassembler_runner.cpp" />
     <ClCompile Include="..\..\src\tests\_new_operator.cpp" />
@@ -47,7 +73,10 @@
     <ClCompile Include="..\..\src\disassembler.cpp" />
     <ClCompile Include="..\..\src\file.cpp" />
     <ClCompile Include="..\..\src\string.cpp" />
+    <ClCompile Include="..\..\src\text_viewer.cpp" />
+    <ClCompile Include="..\..\src\undo_engine.cpp" />
     <ClCompile Include="..\..\src\value_processor.cpp" />
+    <ClCompile Include="..\..\src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="hedit.vcxproj">

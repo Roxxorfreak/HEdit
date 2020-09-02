@@ -109,3 +109,39 @@ void TestDataFactory::DeleteFile(const char* file_name)
     // Delete file
     _unlink(full_file);
 }
+
+/**
+ * Returns a string with the full path name of a config file for testing.
+ * @return The full path name of a config file for testing.
+ */
+TString TestDataFactory::GetConfigName()
+{
+    return TString(HE_TEST_DATA_DIR) + "files/test.config";
+}
+
+/**
+ * Returns a string with the directory name of the folder with additional files for testing.
+ * @return The full directory name of the "files" folder.
+ */
+TString TestDataFactory::GetFilesDir()
+{
+    return TString(HE_TEST_DATA_DIR) + "files/";
+}
+
+/**
+ * Returns a string with the directory name of the folder with the HEdit scripts.
+ * @return The full directory name of the "scripts" folder.
+ */
+TString TestDataFactory::GetScriptDir()
+{
+    return TString("../scripts/");
+}
+
+/**
+ * Returns a string with the directory name of the folder with the scripts for testing.
+ * @return The full directory name of the "scripts" folder within the test data.
+ */
+TString TestDataFactory::GetTestScriptDir()
+{
+    return TString(HE_TEST_DATA_DIR) + "scripts/";
+}

@@ -6,7 +6,7 @@
     #define HEDIT_SRC_FILE_HPP_
 
     // The size for the file cache
-    constexpr uint32_t HE_FILE_CACHE_SIZE = 8192;  //!< The size of the memory that is used for caching the file content.
+    constexpr uint32_t HE_FILE_CACHE_SIZE = 8192;  //!< The size (in bytes) of the memory that is used for caching the file content.
 
     // The file modes
     enum class TFileMode : int32_t {
@@ -23,7 +23,7 @@
     };
 
     /**
-     * @brief The class that encapsulates a file object that can be used for platform-independant file access.
+     * @brief The class that encapsulates a file object that can be used for platform-independent file access.
      */
     class TFile
     {

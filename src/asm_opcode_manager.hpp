@@ -6,29 +6,29 @@
     #define HEDIT_SRC_ASM_OPCODE_MANAGER_HPP_
 
     // Operand sizes
-    constexpr std::size_t DONTCARE  = 0;
-    constexpr std::size_t BIT8      = 8;
-    constexpr std::size_t BIT16     = 16;
-    constexpr std::size_t BIT1632   = 17;
-    constexpr std::size_t BIT32     = 32;
-    constexpr std::size_t BIT32128  = 34;   // For some instructions like "punpcklbw", "punpcklwd", "punpckldq"
-    constexpr std::size_t BIT48     = 48;   // For some instructions like "sgdt", "sidt", "lgdt" or "lidt"
-    constexpr std::size_t BIT64     = 64;
-    constexpr std::size_t BIT64128  = 65;
-    constexpr std::size_t BIT128    = 128;
+    constexpr std::size_t DONTCARE  = 0;    //!< Operand size is unused
+    constexpr std::size_t BIT8      = 8;    //!< Operand size is 8 bit
+    constexpr std::size_t BIT16     = 16;   //!< Operand size is 16 bit
+    constexpr std::size_t BIT1632   = 17;   //!< Operand size is 16 or 32 bit
+    constexpr std::size_t BIT32     = 32;   //!< Operand size is 32 bit
+    constexpr std::size_t BIT32128  = 34;   //!< Operand size is 32 or 128 bit (for some instructions like "punpcklbw", "punpcklwd", "punpckldq")
+    constexpr std::size_t BIT48     = 48;   //!< Operand size is 48 bit (for some instructions like "sgdt", "sidt", "lgdt" or "lidt")
+    constexpr std::size_t BIT64     = 64;   //!< Operand size is 64 bit
+    constexpr std::size_t BIT64128  = 65;   //!< Operand size is 64 or 128 bit
+    constexpr std::size_t BIT128    = 128;  //!< Operand size is 128 bit
 
     // Parameter types
-    constexpr int16_t PT_NONE        = 0;   // No parameter
-    constexpr int16_t PT_REG         = 1;   // Register (in reg field of r/m byte)
-    constexpr int16_t PT_REG_MEM     = 2;   // Register or memory (in mm and r/m fields of r/m byte)
-    constexpr int16_t PT_SREG        = 3;   // Segment register (in reg field of r/m byte)
-    constexpr int16_t PT_IMMVAL      = 4;   // Immediate Value
-    constexpr int16_t PT_REL_ADDRESS = 5;   // Relative address
-    constexpr int16_t PT_ABS_ADDRESS = 6;   // Absolute address (Segment:Offset)
-    constexpr int16_t PT_MEMOFFS     = 7;   // Memory offset ([XXXX])
-    constexpr int16_t PT_CREG        = 8;   // Control Register (Only used for mov)
-    constexpr int16_t PT_DREG        = 9;   // Debug Register (Only used for mov)
-    constexpr int16_t PT_TREG        = 10;  // Test Register (Only used for mov)
+    constexpr int16_t PT_NONE        = 0;   //!< No parameter
+    constexpr int16_t PT_REG         = 1;   //!< Register (in reg field of r/m byte)
+    constexpr int16_t PT_REG_MEM     = 2;   //!< Register or memory (in mm and r/m fields of r/m byte)
+    constexpr int16_t PT_SREG        = 3;   //!< Segment register (in reg field of r/m byte)
+    constexpr int16_t PT_IMMVAL      = 4;   //!< Immediate Value
+    constexpr int16_t PT_REL_ADDRESS = 5;   //!< Relative address
+    constexpr int16_t PT_ABS_ADDRESS = 6;   //!< Absolute address (Segment:Offset)
+    constexpr int16_t PT_MEMOFFS     = 7;   //!< Memory offset ([XXXX])
+    constexpr int16_t PT_CREG        = 8;   //!< Control Register (Only used for mov)
+    constexpr int16_t PT_DREG        = 9;   //!< Debug Register (Only used for mov)
+    constexpr int16_t PT_TREG        = 10;  //!< Test Register (Only used for mov)
 
     // Define the opcode extensions (The value of the "reg" field in the ModR/M byte)
     // (see Intel Instruction Set Reference, Vol. 2A, Chapter 2.1.3)
@@ -55,7 +55,7 @@
         std::size_t length = {};            //!< The length of the opcode in bytes (excluding the parameters).
         TString asm16;                      //!< The 16 bit opcode mnemonic.
         TString asm32;                      //!< The 32 bit opcode mnemonic.
-        TString comment = {};               //!< The description of the opcode.
+        TString comment;                    //!< The description of the opcode.
     };
 
 

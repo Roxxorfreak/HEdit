@@ -47,7 +47,7 @@
         char* New(std::size_t size, char filler);
         std::size_t Size() const noexcept;
         std::size_t Length() const noexcept;
-        bool IsEmpty() noexcept;
+        bool IsEmpty() const noexcept;
         bool Equals(const char* string) const noexcept;
         bool Equals(const char* string, std::size_t length) const noexcept;
         bool EqualsCI(const char* string) const noexcept;
