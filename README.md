@@ -40,7 +40,6 @@ HEdit should be compatible with every compiler that supports C++14.
 It was confirmed working with the following compilers:
 
 * Visual Studio 2019 (Windows)
-* C++Builder 10.3.3 (Windows)
 * g++ (Debian 4.9.2-10+deb8u2) 4.9.2
 * g++ (Debian 8.3.0-6) 8.3.0
 * g++ (Ubuntu 9.3.0-10ubuntu2) 9.3.0
