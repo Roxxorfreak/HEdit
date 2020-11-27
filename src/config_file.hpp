@@ -6,13 +6,15 @@
     #define HEDIT_SRC_CONFIG_FILE_HPP_
 
     /**
-     * @brief A single entry read from the config file.
+     * @brief The class that encapsulates a single entry read from the config file.
+     * @details A config file entry has the format "key=value" on a single line in the file.
+     * Lines that start with #, ; or // are treated as comments and cannot be accessed as config entry.
      */
     struct TConfigEntry
     {
         TString key;    //!< The config entry key.
         TString value;  //!< The config entry value as string
-        bool is(const char* val) const { return key.EqualsCI(val); }
+        bool is(const char* val) const { return key.EqualsCI(val); } //!< Checks if the config entry matches the specified key.
     };
 
     /**
