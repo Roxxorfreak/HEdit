@@ -1,5 +1,9 @@
 # Changelog
 
+## HEdit 4.2.3
+
+
+
 ## HEdit 4.2.2
 
 * Fixed C++Builder project file.
