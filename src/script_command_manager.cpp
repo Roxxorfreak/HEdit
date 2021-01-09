@@ -50,7 +50,7 @@ void TScriptCommandManager::LoadScriptCommands()
 /**
  * Adds a new script command.
  * @param name The case-sensitive name of the command.
- * @param execution_proc The function that executes the command. May be NULL, if no explicit execution is needed.
+ * @param execution_proc The function that executes the command. May be nullptr, if no explicit execution is needed.
  * @param parameter_count The number of parameters used by this command.
  * @param param1 The first parameter.
  * @param param2 The second parameter.
@@ -91,7 +91,7 @@ TScriptCommand* TScriptCommandManager::GetCommandByName(const char* name) noexce
         if (command.name.Equals(name) == true) return &command;
     }
 
-    // Command not found, return a NULL pointer
+    // Command not found
     return nullptr;
 }
 
