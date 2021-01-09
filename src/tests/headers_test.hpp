@@ -1,4 +1,4 @@
-// Copyright(C) 2020 Roxxorfreak
+// Copyright(C) 2021 Roxxorfreak
 // Default header file for unit tests
 
 #pragma once

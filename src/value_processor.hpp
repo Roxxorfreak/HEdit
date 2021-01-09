@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #ifndef HEDIT_SRC_VALUE_PROCESSOR_HPP_
 

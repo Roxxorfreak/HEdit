@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #ifndef HEDIT_SRC_HEDIT_HPP_
 
@@ -7,7 +7,7 @@
 
     // Version and copyright
     constexpr const char* HE_PROGRAM_TITLE      = "HEdit v4.2.3";                       //!< The program title including version number.
-    constexpr const char* HE_PROGRAM_COPYRIGHT  = "Copyright (c) 2020 Roxxorfreak";     //!< The copyright notice (for the about box).
+    constexpr const char* HE_PROGRAM_COPYRIGHT  = "Copyright (c) 2021 Roxxorfreak";     //!< The copyright notice (for the about box).
     constexpr const char* HE_PROGRAM_BUILD_DATE = __DATE__;                             //!< The build date of the application.
 
     // Modes for the "Goto Address" function

@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #ifndef HEDIT_SRC_SETTINGS_HPP_
 

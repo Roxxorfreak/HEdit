@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #ifndef HEDIT_SRC_CONFIG_FILE_HPP_
 
@@ -6,7 +6,7 @@
     #define HEDIT_SRC_CONFIG_FILE_HPP_
 
     /**
-     * @brief The class that encapsulates a single entry read from the config file.
+     * @brief The class that encapsulates a single entry in the config file.
      * @details A config file entry has the format "key=value" on a single line in the file.
      * Lines that start with #, ; or // are treated as comments and cannot be accessed as config entry.
      */
@@ -19,6 +19,7 @@
 
     /**
      * @brief The class that encapsulates a config file object.
+     * It is used to read and write the HEdit config file.
      */
     class TConfigFile : public TFile
     {
