@@ -661,7 +661,7 @@ void TConsole::CloseWindow() noexcept
         // Delete the current window
         delwin(this->window_[this->windows_].handle);
         // Restore old window, only if not the main window
-        if (this->windows_ > 1)
+        if (this->windows_ >= 1)
         {
             // Improve access
             const auto win = &this->window_[this->windows_ - 1];
