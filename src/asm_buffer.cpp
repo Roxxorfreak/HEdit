@@ -22,7 +22,7 @@ TAsmBuffer::TAsmBuffer(std::size_t size)
  * Returns the size of the underlying memory buffer.
  * @return The size of the underlying memory buffer.
  */
-std::size_t TAsmBuffer::GetSize()
+std::size_t TAsmBuffer::GetSize() const noexcept
 {
     return this->buffer_size_;
 }
@@ -31,7 +31,7 @@ std::size_t TAsmBuffer::GetSize()
  * Returns a pointer to the underlying memory.
  * @return A pointer to the underlying memory.
  */
-unsigned char* TAsmBuffer::GetBuffer()
+unsigned char* TAsmBuffer::GetBuffer() const noexcept
 {
     return this->buffer_.get();
 }
@@ -41,7 +41,7 @@ unsigned char* TAsmBuffer::GetBuffer()
  * ! This does not affect the size or content of the underlying memory !
  * @param code_length The length of the machine code (in bytes).
  */
-void TAsmBuffer::SetCodeLength(std::size_t code_length)
+void TAsmBuffer::SetCodeLength(std::size_t code_length) noexcept
 {
     this->code_length_ = code_length;
 }
@@ -50,7 +50,7 @@ void TAsmBuffer::SetCodeLength(std::size_t code_length)
  * Returns the length of the machine code data (in bytes) actually stored in the buffer.
  * @return The length of the machine code data (in bytes) actually stored in the buffer.
  */
-std::size_t TAsmBuffer::GetCodeLength()
+std::size_t TAsmBuffer::GetCodeLength() const noexcept
 {
     return this->code_length_;
 }
@@ -59,7 +59,7 @@ std::size_t TAsmBuffer::GetCodeLength()
  * Sets the absolute base address of the machine code in the buffer.
  * @param base_address The absolute base address of the machine code in the buffer.
  */
-void TAsmBuffer::SetBaseAddress(int64_t base_address)
+void TAsmBuffer::SetBaseAddress(int64_t base_address) noexcept
 {
     this->base_address_ = base_address;
 }
@@ -68,7 +68,7 @@ void TAsmBuffer::SetBaseAddress(int64_t base_address)
  * Returns the absolute base address of the machine code in the buffer (the address of the first byte in the buffer).
  * @return The absolute base address of the machine code in the buffer.
  */
-int64_t TAsmBuffer::GetBaseAddress()
+int64_t TAsmBuffer::GetBaseAddress() const noexcept
 {
     return this->base_address_;
 }
@@ -78,7 +78,7 @@ int64_t TAsmBuffer::GetBaseAddress()
  * This is the value of "base address" + "instruction pointer".
  * @return The current absolute address of the instruction pointer in the buffer.
  */
-int64_t TAsmBuffer::GetCurrentAddress()
+int64_t TAsmBuffer::GetCurrentAddress() const noexcept
 {
     return this->base_address_ + this->instruction_pointer_;
 }
@@ -90,7 +90,7 @@ int64_t TAsmBuffer::GetCurrentAddress()
  * @param file The file to load the machine code from.
  * @param base_address The base address (file offset) to load the machine code from.
  */
-void TAsmBuffer::LoadFromFile(TFile* file, int64_t base_address)
+void TAsmBuffer::LoadFromFile(TFile* file, int64_t base_address) noexcept
 {
     // Store the base address
     this->SetBaseAddress(base_address);
@@ -103,7 +103,7 @@ void TAsmBuffer::LoadFromFile(TFile* file, int64_t base_address)
  * Resets the instruction pointer.
  * (Sets it to zero)
  */
-void TAsmBuffer::ResetInstructionPointer()
+void TAsmBuffer::ResetInstructionPointer() noexcept
 {
     this->instruction_pointer_ = 0;
 }
@@ -112,7 +112,7 @@ void TAsmBuffer::ResetInstructionPointer()
  * Adds the specified offset to the instruction pointer.
  * @param offset The offset to add.
  */
-void TAsmBuffer::AdvanceInstructionPointer(std::size_t offset)
+void TAsmBuffer::AdvanceInstructionPointer(std::size_t offset) noexcept
 {
     // Advance instruction pointer
     this->instruction_pointer_ += offset;
@@ -122,7 +122,7 @@ void TAsmBuffer::AdvanceInstructionPointer(std::size_t offset)
  * Returns the instruction pointer (the offset to the start of the buffer)
  * @return The instruction pointer.
  */
-std::size_t TAsmBuffer::GetInstructionPointer()
+std::size_t TAsmBuffer::GetInstructionPointer() const noexcept
 {
     return this->instruction_pointer_;
 }
@@ -133,7 +133,7 @@ std::size_t TAsmBuffer::GetInstructionPointer()
  * @param offset The offset that is added to the instruction pointer.
  * @return The byte at the current position (of the instruction pointer).
  */
-unsigned char TAsmBuffer::GetByte(std::size_t offset)
+unsigned char TAsmBuffer::GetByte(std::size_t offset) const noexcept
 {
     // If the instruction pointer is beyond the end of the code, return a null byte.
     if ((this->instruction_pointer_ + offset) >= this->code_length_) return 0u;
@@ -147,7 +147,7 @@ unsigned char TAsmBuffer::GetByte(std::size_t offset)
  * The instruction pointer IS moved afterwards!
  * @return The byte at the current position (of the instruction pointer).
  */
-unsigned char TAsmBuffer::ReadByte()
+unsigned char TAsmBuffer::ReadByte() noexcept
 {
     // If the instruction pointer is beyond the end of the code, return a null byte.
     if (this->instruction_pointer_ >= this->code_length_) return 0u;

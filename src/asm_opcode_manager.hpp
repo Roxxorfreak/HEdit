@@ -71,7 +71,7 @@
         void AddOpcode(std::size_t length, unsigned char opcode1, unsigned char opcode2, int16_t opcode_ext, const char* asm16, const char* asm32, bool mod_rm_present,
             int16_t pt1, std::size_t ps1, int16_t pt2, std::size_t ps2, int16_t pt3, std::size_t ps3, const char* comment);
         void AddOpcode(std::size_t length, unsigned char opcode1, unsigned char opcode2, const char* asm16, const char* asm32, const char* comment);
-        static bool IsOpcode(TAsmBuffer* buffer, const TOpcode* opcode) noexcept;
+        static bool IsOpcode(const TAsmBuffer* buffer, const TOpcode* opcode) noexcept;
     public:
         TAsmOpcodeManager();
         TOpcode* FindOpcode(TAsmBuffer* buffer);
