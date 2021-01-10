@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #include "headers.hpp"
 
@@ -50,7 +50,7 @@ void TScriptCommandManager::LoadScriptCommands()
 /**
  * Adds a new script command.
  * @param name The case-sensitive name of the command.
- * @param execution_proc The function that executes the command. May be NULL, if no explicit execution is needed.
+ * @param execution_proc The function that executes the command. May be nullptr, if no explicit execution is needed.
  * @param parameter_count The number of parameters used by this command.
  * @param param1 The first parameter.
  * @param param2 The second parameter.
@@ -91,7 +91,7 @@ TScriptCommand* TScriptCommandManager::GetCommandByName(const char* name) noexce
         if (command.name.Equals(name) == true) return &command;
     }
 
-    // Command not found, return a NULL pointer
+    // Command not found
     return nullptr;
 }
 
@@ -540,7 +540,7 @@ bool TScriptCommandManager::printhsProc(TExecutionContext* ec)
  */
 bool TScriptCommandManager::printxorProc(TExecutionContext* ec)
 {
-    char temp_string[4] = {};
+    char temp_string[HE_SCRIPT_MAX_TEXT_TOKEN_LENGTH] = {};
     unsigned char buffer[HE_SCRIPT_MAX_OUTPUT_STRING_LENGTH] = {};
 
     // Reset the buffer
@@ -555,7 +555,7 @@ bool TScriptCommandManager::printxorProc(TExecutionContext* ec)
     // Ensure the string was read
     if (bytes != ec->si->word_val) return false;
 
-    // Output HEX String
+    // Create and output xor'ed value
     auto checksum = buffer[0];
     for (uint16_t j = 1; j < ec->si->word_val; j++)
     {

@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #include "headers.hpp"
 
@@ -64,7 +64,8 @@ bool TConfigFile::ReadNextEntry(TConfigEntry* entry)
 }
 
 /**
- * Write a newline to the specified (text) file.
+ * Writes one or two newline characters to the specified (text) file.
+ * The characters written depend on the HE_LINE_BREAK_STRING constant.
  */
 void TConfigFile::WriteNewline() noexcept
 {
@@ -74,7 +75,6 @@ void TConfigFile::WriteNewline() noexcept
 
 /**
  * Writes a single line to the config file. The appropriate newline character(s) are appended.
- * @param file The file to write to.
  * @param format The string to write to the file.
  * @param ... additional arguments
  */

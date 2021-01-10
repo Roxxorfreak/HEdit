@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #include "headers.hpp"
 
@@ -831,7 +831,7 @@ void TAsmOpcodeManager::AddOpcode(std::size_t length, unsigned char opcode1, uns
  * @param opcode The opcode to check.
  * @return true if the buffer contains the specified opcode, false otherwise.
  */
-bool TAsmOpcodeManager::IsOpcode(TAsmBuffer* buffer, const TOpcode* opcode) noexcept
+bool TAsmOpcodeManager::IsOpcode(const TAsmBuffer* buffer, const TOpcode* opcode) noexcept
 {
     if (opcode->length == 3)  // For SIMD (or other 3 byte) instructions
     {

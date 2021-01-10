@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #ifndef HEDIT_SRC_ASM_INSTRUCTION_HPP_
 
@@ -69,18 +69,18 @@
         TModRMByte mod_rm_ = {};                                        //!< The decoded ModR/M byte, see TModRMByte.
         TInstructionParameter param_[3] = {};                           //!< The array for the (up to three) parameters of the instruction.
     public:
-        void Clear();
-        void SetAddress(int64_t address);
-        int64_t GetAddress();
-        void SetSegmentOverride(TSegmentOverride segment_override);
-        TSegmentOverride GetSegmentOverride();
+        void Clear() noexcept;
+        void SetAddress(int64_t address) noexcept;
+        int64_t GetAddress() const noexcept;
+        void SetSegmentOverride(TSegmentOverride segment_override) noexcept;
+        TSegmentOverride GetSegmentOverride() const noexcept;
         TString GetSegmentOverrideName();
         void SetOpcode(const TOpcode* opcode);
-        const TOpcode* GetOpcode();
+        const TOpcode* GetOpcode() const noexcept;
         void SetMachineCode(TAsmBuffer* buffer);
-        const unsigned char* GetMachineCode();
-        std::size_t GetLength();
-        void DecodeModRMByte(unsigned char code_byte);
+        const unsigned char* GetMachineCode() const noexcept;
+        std::size_t GetLength() const noexcept;
+        void DecodeModRMByte(unsigned char code_byte) noexcept;
     };
 
 #endif  // HEDIT_SRC_ASM_INSTRUCTION_HPP_

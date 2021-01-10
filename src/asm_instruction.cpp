@@ -1,11 +1,11 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #include "headers.hpp"
 
 /**
  * Clears the contents of the assembler instruction.
  */
-void TAsmInstruction::Clear()
+void TAsmInstruction::Clear() noexcept
 {
     // Clear all data fields
     this->length_ = 0;
@@ -32,7 +32,7 @@ void TAsmInstruction::Clear()
  * Sets the absolute address of the instruction.
  * @param address The absolute address of the instruction.
  */
-void TAsmInstruction::SetAddress(int64_t address)
+void TAsmInstruction::SetAddress(int64_t address) noexcept
 {
     this->address_ = address;
 }
@@ -41,7 +41,7 @@ void TAsmInstruction::SetAddress(int64_t address)
  * Returns the absolute address of the instruction.
  * @return The absolute address of the instruction.
  */
-int64_t TAsmInstruction::GetAddress()
+int64_t TAsmInstruction::GetAddress() const noexcept
 {
     return this->address_;
 }
@@ -51,7 +51,7 @@ int64_t TAsmInstruction::GetAddress()
  * (see TSegmentOverride)
  * @param segment_override The segement override code of the instruction.
  */
-void TAsmInstruction::SetSegmentOverride(TSegmentOverride segment_override)
+void TAsmInstruction::SetSegmentOverride(TSegmentOverride segment_override) noexcept
 {
     this->segment_override_ = segment_override;
 }
@@ -61,7 +61,7 @@ void TAsmInstruction::SetSegmentOverride(TSegmentOverride segment_override)
  * (see TSegmentOverride)
  * @return The segement override code of the instruction.
  */
-TSegmentOverride TAsmInstruction::GetSegmentOverride()
+TSegmentOverride TAsmInstruction::GetSegmentOverride() const noexcept
 {
     return this->segment_override_;
 }
@@ -107,7 +107,7 @@ void TAsmInstruction::SetOpcode(const TOpcode* opcode)
  * Returns the opcode of the instruction.
  * @return A pointer to the TOpcode that is represented by the instruction (or nullptr, if none).
  */
-const TOpcode* TAsmInstruction::GetOpcode()
+const TOpcode* TAsmInstruction::GetOpcode() const noexcept
 {
     return this->opcode_;
 }
@@ -143,7 +143,7 @@ void TAsmInstruction::SetMachineCode(TAsmBuffer* buffer)
  * Returns a pointer to the buffer containing the machine code.
  * @return A pointer to the buffer containing the machine code.
  */
-const unsigned char* TAsmInstruction::GetMachineCode()
+const unsigned char* TAsmInstruction::GetMachineCode() const noexcept
 {
     return this->machine_code_;
 }
@@ -152,7 +152,7 @@ const unsigned char* TAsmInstruction::GetMachineCode()
  * Returns the length of the machine code of the instruction (in bytes).
  * @return The length of the machine code of the instruction (in bytes).
  */
-std::size_t TAsmInstruction::GetLength()
+std::size_t TAsmInstruction::GetLength() const noexcept
 {
     return this->length_;
 }
@@ -162,7 +162,7 @@ std::size_t TAsmInstruction::GetLength()
  * The byte is decoded and split in the respective values.
  * @param code_byte The byte to add.
  */
-void TAsmInstruction::DecodeModRMByte(unsigned char code_byte)
+void TAsmInstruction::DecodeModRMByte(unsigned char code_byte) noexcept
 {
     // Decode the ModR/M
     this->mod_rm_.mod = static_cast<uint16_t>(code_byte >> 6);

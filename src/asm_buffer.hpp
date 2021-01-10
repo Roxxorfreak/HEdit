@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #ifndef HEDIT_SRC_ASM_BUFFER_HPP_
 
@@ -22,19 +22,19 @@
         TAsmBuffer& operator=(const TAsmBuffer& source) = delete;
         TAsmBuffer(TAsmBuffer&&) = delete;
         TAsmBuffer& operator=(TAsmBuffer&&) = delete;
-        std::size_t GetSize();
-        unsigned char* GetBuffer();
-        void SetCodeLength(std::size_t code_length);
-        std::size_t GetCodeLength();
-        void SetBaseAddress(int64_t base_address);
-        int64_t GetBaseAddress();
-        int64_t GetCurrentAddress();
-        void LoadFromFile(TFile* file, int64_t base_address);
-        void ResetInstructionPointer();
-        void AdvanceInstructionPointer(std::size_t offset);
-        std::size_t GetInstructionPointer();
-        unsigned char GetByte(std::size_t offset = 0);
-        unsigned char ReadByte();
+        std::size_t GetSize() const noexcept;
+        unsigned char* GetBuffer() const noexcept;
+        void SetCodeLength(std::size_t code_length) noexcept;
+        std::size_t GetCodeLength() const noexcept;
+        void SetBaseAddress(int64_t base_address) noexcept;
+        int64_t GetBaseAddress() const noexcept;
+        int64_t GetCurrentAddress() const noexcept;
+        void LoadFromFile(TFile* file, int64_t base_address) noexcept;
+        void ResetInstructionPointer() noexcept;
+        void AdvanceInstructionPointer(std::size_t offset) noexcept;
+        std::size_t GetInstructionPointer() const noexcept;
+        unsigned char GetByte(std::size_t offset = 0) const noexcept;
+        unsigned char ReadByte() noexcept;
         int64_t ReadValue(TValueSize value_size) noexcept;
     };
 

@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #include "headers.hpp"
 
@@ -320,22 +320,22 @@ TString::operator char* () noexcept
 }
 
 /**
- * Returns a pointer to the string object currently in memory.
+ * Returns a constant pointer to the string object currently in memory.
  * @return The pointer to the internal buffer.
  */
 TString::operator char const* () const noexcept
 {
-    // Return pointer to string buffer_
+    // Return pointer to string buffer
     return this->buffer_;
 }
 
 /**
- * Returns a pointer to the string object currently in memory.
+ * Returns a constant pointer to the string object currently in memory.
  * @return The pointer to the internal buffer.
  */
 char const* TString::ToString() const noexcept
 {
-    // Return pointer to string buffer_
+    // Return pointer to string buffer
     return this->buffer_;
 }
 

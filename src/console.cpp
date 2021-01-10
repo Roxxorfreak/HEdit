@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Roxxorfreak
+// Copyright (c) 2021 Roxxorfreak
 
 #include "headers.hpp"
 
@@ -21,7 +21,7 @@ TConsole::TConsole() noexcept
         this->window_[0].new_rect.Bottom = this->window_[0].old_info.dwSize.Y;
     #else
         // Do not accept Escape Sequences
-        ESCDELAY = 0;
+        set_escdelay(0);
 
         // Under Linux the initial screen IS a window
         this->windows_ = 1;
@@ -661,7 +661,7 @@ void TConsole::CloseWindow() noexcept
         // Delete the current window
         delwin(this->window_[this->windows_].handle);
         // Restore old window, only if not the main window
-        if (this->windows_ > 1)
+        if (this->windows_ >= 1)
         {
             // Improve access
             const auto win = &this->window_[this->windows_ - 1];
