@@ -44,6 +44,7 @@ It was confirmed working with the following compilers:
 * g++ (Debian 8.3.0-6) 8.3.0
 * g++ (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
 * g++ (Raspbian 8.3.0-6+rpi1) 8.3.0
+* g++ (SUSE Linux) 7.5.0
 
 ## Other tools 
 
