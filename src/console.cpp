@@ -21,7 +21,7 @@ TConsole::TConsole() noexcept
         this->window_[0].new_rect.Bottom = this->window_[0].old_info.dwSize.Y;
     #else
         // Do not accept Escape Sequences
-        ESCDELAY = 0;
+        set_escdelay(0);
 
         // Under Linux the initial screen IS a window
         this->windows_ = 1;
