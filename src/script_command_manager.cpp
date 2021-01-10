@@ -540,7 +540,7 @@ bool TScriptCommandManager::printhsProc(TExecutionContext* ec)
  */
 bool TScriptCommandManager::printxorProc(TExecutionContext* ec)
 {
-    char temp_string[4] = {};
+    char temp_string[HE_SCRIPT_MAX_TEXT_TOKEN_LENGTH] = {};
     unsigned char buffer[HE_SCRIPT_MAX_OUTPUT_STRING_LENGTH] = {};
 
     // Reset the buffer
@@ -555,7 +555,7 @@ bool TScriptCommandManager::printxorProc(TExecutionContext* ec)
     // Ensure the string was read
     if (bytes != ec->si->word_val) return false;
 
-    // Output HEX String
+    // Create and output xor'ed value
     auto checksum = buffer[0];
     for (uint16_t j = 1; j < ec->si->word_val; j++)
     {
