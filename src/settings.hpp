@@ -49,7 +49,7 @@
         static const char* GetColorName(TColor color_id) noexcept;
         void LoadDefaultSettings();
     public:
-        explicit TSettings(const char* config_file);
+        explicit TSettings(const char* config_dir);
         TSettings(const TSettings&) = delete;
         TSettings& operator=(const TSettings&) = delete;
         TSettings(TSettings&&) = delete;
