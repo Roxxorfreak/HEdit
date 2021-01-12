@@ -1,5 +1,9 @@
 # Changelog
 
+## HEdit 4.2.4
+
+* 
+
 ## HEdit 4.2.3
 
 * Bugfix: Fixed memory leak for Linux console main window.
