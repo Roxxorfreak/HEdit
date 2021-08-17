@@ -33,8 +33,7 @@ bool TMessageBox::Display(TMessageBoxType type, TString text1, TString text2)
     int32_t key_code = 0;
 
     // Calculate MessageBox width (Title + 4. because there are brackets added)
-    uint32_t width = 0;
-    if ((this->title_.Length() + 4) > width) width = this->title_.Length() + 4;
+    uint32_t width = this->title_.Length() + 4;
     if (text1.Length() > width) width = text1.Length();
     if (text2.Length() > width) width = text2.Length();
     width += 4;
