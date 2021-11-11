@@ -129,9 +129,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="hedit-Sources">
       <UniqueIdentifier>{63beec5d-7fc3-4040-9161-d5034b3835cf}</UniqueIdentifier>
     </Filter>
@@ -150,5 +147,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\tests\headers_test.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
