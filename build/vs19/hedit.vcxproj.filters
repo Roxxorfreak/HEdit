@@ -187,6 +187,7 @@
     <None Include="..\..\README.md" />
     <None Include="..\..\SCRIPT.md" />
     <None Include="..\..\CPPLINT.cfg" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\src\hedit.rc" />
