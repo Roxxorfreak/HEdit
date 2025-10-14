@@ -4,9 +4,9 @@
 
 /**
  * Prepares the buffer by allocating the requested number of bytes.
- * @param size The number of bytes for the buffer.
+ * @param[in] size The number of bytes for the buffer.
  */
-TAsmBuffer::TAsmBuffer(std::size_t size)
+TAsmBuffer::TAsmBuffer(const std::size_t size)
 {
     // Allocate the buffer
     this->buffer_ = std::unique_ptr<unsigned char[]>(new unsigned char[size]);

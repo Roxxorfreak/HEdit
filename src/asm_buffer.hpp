@@ -17,7 +17,7 @@
         std::size_t instruction_pointer_ = {};          //!< The offset of the current instruction, relative to the buffer start.
         std::unique_ptr<unsigned char[]> buffer_ = {};  //!< The buffer for the data to disassemble.
     public:
-        explicit TAsmBuffer(std::size_t size);
+        explicit TAsmBuffer(const std::size_t size);
         TAsmBuffer(const TAsmBuffer& source) = delete;
         TAsmBuffer& operator=(const TAsmBuffer& source) = delete;
         TAsmBuffer(TAsmBuffer&&) = delete;
