@@ -2,7 +2,7 @@
 
 # Define version number and date
 version=4_2_4
-creation_date="01/12/2021"
+creation_date="14/10/2025"
 
 # Get system information
 declare -l platform=$(uname -s)

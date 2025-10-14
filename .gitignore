@@ -8,3 +8,4 @@
 /temp/*
 /tools/deployment/*.tgz
 /tools/deployment/*.zip
+/.vs

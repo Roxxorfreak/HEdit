@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Roxxorfreak
+// Copyright (c) 2025 Roxxorfreak
 
 #ifndef HEDIT_SRC_MESSAGE_BOX_HPP_
 

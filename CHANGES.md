@@ -2,7 +2,9 @@
 
 ## HEdit 4.2.4
 
-* 
+* Updated project icon
+* Updated Copyright date
+* Updated tooling configuration (Doxygen 1.14.0)
 
 ## HEdit 4.2.3
 
@@ -11,7 +13,7 @@
 ## HEdit 4.2.2
 
 * Fixed C++Builder project file.
-* Added a a lot of tests and test data.
+* Added a lot of tests and test data.
 * Source code and documentation improvements.
 * Bugfix: Possible memory leak in string handling.
 * Bugfix: Virtual screen in script interpreter now cleared.
